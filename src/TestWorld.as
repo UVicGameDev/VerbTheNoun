@@ -1,0 +1,20 @@
+package  
+{
+	import net.flashpunk.World;
+	import net.flashpunk.FP;
+	/**
+	 * ...
+	 * @author Lambwatt
+	 */
+	public class TestWorld extends World
+	{
+		
+		public function TestWorld(graphic:Class) 
+		{
+			super();
+			FP.world.add(new TestSprite(graphic))
+		}
+		
+	}
+
+}
