@@ -18,11 +18,11 @@ package
 		public function Game_list() 
 		{
 			game_list = new Array();
-			game_list.push(new GameSelectable(new GamePortal(new TestWorld(REDSTANDIN), REDSTANDIN)));
-			game_list.push(new GameSelectable(new GamePortal(new TestWorld(GREENSTANDIN), GREENSTANDIN)));
-			game_list.push(new GameSelectable(new GamePortal(new TestWorld(YELLOWSTANDIN), YELLOWSTANDIN)));
-			game_list.push(new GameSelectable(new GamePortal(new TestWorld(BLUESTANDIN), BLUESTANDIN)));
-			game_list.push(new GameSelectable(new GamePortal(new TestWorld(VIOLETSTANDIN), VIOLETSTANDIN)));
+			game_list.push((new GamePortal(new TestWorld(REDSTANDIN), REDSTANDIN)));
+			game_list.push((new GamePortal(new TestWorld(GREENSTANDIN), GREENSTANDIN)));
+			game_list.push((new GamePortal(new TestWorld(YELLOWSTANDIN), YELLOWSTANDIN)));
+			game_list.push((new GamePortal(new TestWorld(BLUESTANDIN), BLUESTANDIN)));
+			game_list.push((new GamePortal(new TestWorld(VIOLETSTANDIN), VIOLETSTANDIN)));
 		}	
 	}
 

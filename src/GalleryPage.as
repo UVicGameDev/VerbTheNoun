@@ -94,7 +94,7 @@ package
 		{
 			for (var i:int = 0; i < num_games; i++)
 			{
-				var next_game:GameSelectable = game_list.game_list[(i + game_index)];
+				var next_game:GameSelectable = new GameSelectable(game_list.game_list[(i + game_index)]);
 				next_game.x = 180 + (i*220);
 				next_game.y = 100;
 				add(next_game);
@@ -109,6 +109,14 @@ package
 					backButton.down_link = next_game;
 					
 					next_game.down_link = backButton;
+					
+					if (i == num_games - 1)
+					{
+						next_game.right_link = rightArrow;
+						rightArrow.left_link = next_game;
+						
+						backButton.up_link = next_game;
+					}
 				}
 				else 
 				{
@@ -132,48 +140,62 @@ package
 			{
 				if (((GalleryArrow)(selector.selection)).direction > 0)
 				{
-					page_right();
+					if (!page_right())
+						return;
 				}
 				else
 				{
-					page_left();
+					if (!page_left())
+						return;
 				}
-				if (game_index <= game_list.game_list.length)
+
+				if (game_list.game_list.length - 1 - game_index >= MAX_GAMES_PER_PAGE) 
 				{
-					if (game_list.game_list.length - game_index > MAX_GAMES_PER_PAGE) 
-					{
-						num_games = MAX_GAMES_PER_PAGE;
-					}
-					else
-					{
-						num_games = game_list.game_list.length - game_index;
-					}
-					
+					num_games = MAX_GAMES_PER_PAGE;
 				}
+				else
+				{
+					num_games = game_list.game_list.length - game_index;
+				}
+				fill_gallery_page();
+
 			}
 		}
 		
-		public function page_right():void 
+		public function page_right():Boolean 
 		{
-			if (game_list.game_list.length - game_index - 2 > MAX_GAMES_PER_PAGE)
+			if (game_list.game_list.length - game_index - 2 >= MAX_GAMES_PER_PAGE)
 			{
 				clear_page();
 				game_index += 2;
+				return true;
 			}
+			else if (game_list.game_list.length - (game_index + 2) < MAX_GAMES_PER_PAGE 
+				&& game_list.game_list.length - (game_index + 2) > 0)
+			{
+				clear_page();
+				game_index += 2;
+				num_games = 1;
+				return true;
+			}
+			return false;
 		}
 		
-		public function page_left():void  
+		public function page_left():Boolean  
 		{
-			if (game_index - 2 > 0)
+			if (game_index - 2 >= 0)
 			{
 				clear_page();
 				game_index -= 2;
+				return true;
 			}
+			return false;
 		}
 		
 		private function clear_page():void  
 		{
 			FP.world.removeList(page_games);
+			page_games = [];
 		}
 	}
 
