@@ -5,7 +5,7 @@ package
 	import net.flashpunk.FP;
 	import net.flashpunk.utils.Key;
 	import net.flashpunk.utils.Input;
-	
+	import MainMenuWorld;
 	
 	/**
 	 * ...
@@ -158,7 +158,14 @@ package
 					num_games = game_list.game_list.length - game_index;
 				}
 				fill_gallery_page();
-
+			}
+			else if (selector.selection is GalleryButton)
+			{
+				FP.world = new MainMenuWorld();
+			}
+			else if (selector.selection is GameSelectable)
+			{
+				FP.world = ((GameSelectable)(selector.selection)).portal.game;
 			}
 		}
 		
