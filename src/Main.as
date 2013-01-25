@@ -1,27 +1,26 @@
 package 
 {
+	import flash.display.Sprite;
+	import flash.events.Event;
 	import net.flashpunk.Engine;
 	import net.flashpunk.FP;
+	
 	/**
 	 * ...
-	 * @author Lambwatt
+	 * @author Nick Pettyjohn
 	 */
-	public class Main extends Engine 
+	public class Main extends Engine
 	{
-		
-		public function Main():void 
+		public function Main()
 		{
-			super(800, 800, 60, false);
 
-			FP.world = new GalleryPage;
-			//FP.console.enable();
+			super(800, 600, 60, false);
+			FP.world = new MainMenuWorld;
 		}
-		
 		override public function init():void
 		{
 			trace("FlashPunk has started successfully!");
 		}
-		
 	}
 	
 }

@@ -10,7 +10,7 @@ package
 	 */
 	public class SliderEntity extends MenuEntity
 	{
-		[Embed(source = '../assets/button.png')] private const BUTTON:Class;
+		[Embed(source = 'assets/button.png')] private const BUTTON:Class;
 		public var value:Number = .5;
 		
 		private var sliderName:TextEntity;

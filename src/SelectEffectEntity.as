@@ -8,7 +8,7 @@ package
 	 */
 	public class SelectEffectEntity extends Entity
 	{
-		[Embed(source = '../assets/button.png')] private const SELECT:Class;
+		[Embed(source = 'assets/button.png')] private const SELECT:Class;
 		
 		// Variables for pulsation effect
 		private var alpha = .5;

@@ -10,7 +10,7 @@ package
 	 */
 	public class SliderTabEntity extends Entity
 	{
-		[Embed(source = '../assets/button.png')] private const BUTTON:Class;
+		[Embed(source = 'assets/button.png')] private const BUTTON:Class;
 		
 		public var isSelected:Boolean = false;
 		

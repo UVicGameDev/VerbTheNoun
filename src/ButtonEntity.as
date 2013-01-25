@@ -10,7 +10,7 @@ package
 	 */
 	public class ButtonEntity extends MenuEntity
 	{
-		[Embed(source = '../assets/button.png')] private const BUTTON:Class;
+		[Embed(source = 'assets/button.png')] private const BUTTON:Class;
 		
 		// Keep track of sub entities so we can animate them
 		private var selectEntity:SelectEffectEntity;

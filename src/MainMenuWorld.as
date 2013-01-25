@@ -39,11 +39,8 @@ package
 		 */
 		override protected function HandleSelect():void
 		{
-			if (playButton.isSelected){
-				trace("PlayButton Activated!");
-			} else {
+			if (playButton.isSelected|| optionsButton.isSelected){
 				SetTransitionOff();
-				//FP.world = new OptionsMenuWorld();
 			}
 		}
 		/* Checks which button is selected, and selects the 
@@ -62,7 +59,8 @@ package
 		override protected function Transition():void
 		{
 			if (playButton.isSelected){
-				trace("PlayButton Activated!");
+				FP.world = new GalleryPage();
+				
 			} else {
 				FP.world = new OptionsMenuWorld();
 			}

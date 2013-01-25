@@ -5,7 +5,7 @@ package
 	import net.flashpunk.FP;
 	import net.flashpunk.utils.Key;
 	import net.flashpunk.utils.Input;
-	import MainMenuWorld;
+	//import MainMenuWorld;
 	
 	/**
 	 * ...

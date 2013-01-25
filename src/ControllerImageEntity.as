@@ -8,7 +8,7 @@ package
 	 */
 	public class ControllerImageEntity extends Entity
 	{
-		[Embed(source = '../assets/nes-joystick.png')] private const NESCONTROLLER:Class;
+		[Embed(source = 'assets/nes-joystick.png')] private const NESCONTROLLER:Class;
 		
 		public function ControllerImageEntity(xPos:Number, yPos:Number) 
 		{
