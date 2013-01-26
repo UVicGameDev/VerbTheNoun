@@ -1,4 +1,4 @@
 VerbTheNoun
 ===========
 
-The UVic Gamedev Grouo Minigame Collection
+The UVic Gamedev Group Minigame Collection
