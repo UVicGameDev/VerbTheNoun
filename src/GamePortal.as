@@ -16,10 +16,10 @@ package
 			super(0, 0);
 		}
 		*/
-		public var game:World;
+		public var game:Function;
 		private var game_graphic:Graphic;
 		
-		public function GamePortal(game:World, game_graphic:Class) 
+		public function GamePortal(game:Function, game_graphic:Class) 
 		{
 			super(0,0);
 			this.game_graphic = new Image(game_graphic);

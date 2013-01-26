@@ -165,7 +165,7 @@ package
 			}
 			else if (selector.selection is GameSelectable)
 			{
-				FP.world = ((GameSelectable)(selector.selection)).portal.game;
+				FP.world = ((GameSelectable)(selector.selection)).portal.game();
 			}
 		}
 		

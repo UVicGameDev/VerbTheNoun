@@ -12,7 +12,7 @@ package
 		public function TestWorld(graphic:Class) 
 		{
 			super();
-			FP.world.add(new TestSprite(graphic))
+			add(new TestSprite(graphic))
 		}
 		
 	}
