@@ -1,5 +1,6 @@
 package  
 {
+	import HeartTheBeets.HeartTheBeetsWorld;
 	import net.flashpunk.World;
 	/**
 	 * ...
@@ -10,7 +11,7 @@ package
 		public var game_list:Array;
 		
 		//Embedd Game selectable 
-		[Embed(source = 'assets/game_standin_red.png')] private const REDSTANDIN:Class;
+		[Embed(source = 'HeartTheBeets/HTB_assets/Cloud.png')] private const HTB:Class;
 		[Embed(source = 'assets/game_standin_green.png')] private const GREENSTANDIN:Class;
 		[Embed(source = 'assets/game_standin_yellow.png')] private const YELLOWSTANDIN:Class;
 		[Embed(source = 'assets/game_standin_blue.png')] private const BLUESTANDIN:Class;
@@ -19,7 +20,7 @@ package
 		public function Game_list() 
 		{
 			game_list = new Array();
-			game_list.push((new GamePortal(function():World {return new TestWorld(REDSTANDIN)}, REDSTANDIN)));
+			game_list.push((new GamePortal(function():World {return new HeartTheBeetsWorld()}, HTB)));
 			game_list.push((new GamePortal(function():World {return new TestWorld(GREENSTANDIN)}, GREENSTANDIN)));
 			game_list.push((new GamePortal(function():World {return new TestWorld(YELLOWSTANDIN)}, YELLOWSTANDIN)));
 			game_list.push((new GamePortal(function():World {return new TestWorld(BLUESTANDIN)}, BLUESTANDIN)));
