@@ -3,6 +3,7 @@ package HeartTheBeets
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Graphiclist;
 	import net.flashpunk.World;
+	import net.flashpunk.FP;
 	//import mx.utils;
 	/**
 	 * ...
@@ -10,6 +11,8 @@ package HeartTheBeets
 	 */
 	public class HeartTheBeetsWorld extends World
 	{
+		
+		
 		//private var object_list:LinkedList = new LinkedList;
 		private var cloud_list:Array = new Array();
 		private var rain_list:Array = new Array();
@@ -18,9 +21,11 @@ package HeartTheBeets
 		
 		public function HeartTheBeetsWorld() 
 		{
+			FP.screen.color = 0x7070FF;
 			//create stuff
 			add(new Ground(240));
-			add(new Player(0,180));
+			add(new Player(0, 180));
+			add(new Beet(300,220));
 		}
 		
 		override public function update():void 
@@ -31,6 +36,7 @@ package HeartTheBeets
 			{
 				render_list.add(((HeartTheBeetsEntity)(permanent_list[i])).get_graphic_list());
 			}
+			//graphic = render_list;
 			/*for (var i:int = 0; i<permanent_list.length; i++)
 			{
 				render_list.add(((HeartTheBeetsEntity)(permanent_list[i])).get_image_list());

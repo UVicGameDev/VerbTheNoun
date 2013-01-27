@@ -13,6 +13,7 @@ package HeartTheBeets
 		public function Ground(y:int) 
 		{
 			super(0, y);
+			graphic = new Image(DIRT);
 		}
 		
 		public override function get_graphic_list():Graphiclist

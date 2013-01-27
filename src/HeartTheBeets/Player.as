@@ -31,6 +31,7 @@ package HeartTheBeets
 			super(x, y);
 			playerSprite.play("stand_still");
 			graphic = playerSprite;
+			setHitbox(40,80);
 		}
 		
 		public function add_animations()
@@ -73,22 +74,23 @@ package HeartTheBeets
 					//else if snuggle button (x)
 						//switch to snuggling
 						//apply snuggle effects
-					if (Input.pressed(Key.LEFT))
+					if (Input.pressed(Key.LEFT)&& x>0)
 					{
 						playerSprite.play("walk");
 						state = WALKING;
-						x_step += -3;
+						x_step += -4;
 					}
-					if (Input.pressed(Key.RIGHT))
+					if (Input.pressed(Key.RIGHT) && x<560)
 					{
 						playerSprite.play("walk");
 						state = WALKING;
-						x_step += 3;
+						x_step += 4;
 					}
 					
 					if (Input.pressed(Key.X))
 					{
 						playerSprite.play("snuggle");
+						state = SNUGGLING;
 					}
 					
 					//if(playerSprite.currentAnim == "stand_up" && playerSprite.currentAnim == )
@@ -97,10 +99,11 @@ package HeartTheBeets
 				case SNUGGLING:
 					//if snuggle animation complete at last
 					//go to normal
-					if (playerSprite.frame == 5 )
+					if (playerSprite.complete && playerSprite.currentAnim == "snuggle")
 					{
 						if (keep_snuggling)
 						{
+							playerSprite.setFrame(0)
 							playerSprite.play("snuggle");
 							keep_snuggling = false;
 						}
@@ -110,35 +113,44 @@ package HeartTheBeets
 							playerSprite.play("stand_still");
 						}
 					}
-					else
+					if (Input.pressed(Key.X))
 					{
-						if (Input.pressed(Key.X))
-						{
-							keep_snuggling = true;
-						}
+						keep_snuggling = true;
 					}
 					break;
 					
 				default:
 					var x_step:int = 0;
 					//check keys
-					if (Input.pressed(Key.LEFT))
+					if (Input.check(Key.LEFT)&& x>0)
 					{
 						x_step += -3;
 					}
-					if (Input.pressed(Key.RIGHT))
+					if (Input.check(Key.RIGHT)&& x<560)
 					{
 						x_step += 3;
 					}
 					
 					if (Input.pressed(Key.Z))
 					{
-						//if in range
-						//switch animation
-						//zap to beet position
-						playerSprite.play("squat");
-						state = GRABBING;
+						var target:Beet = collide("Beet", x, y) as Beet;
+						if (target)
+						{
+							//switch animation
+							//zap to beet position
+							x = target.x + 8;
+							playerSprite.play("squat");
+							state = GRABBING;
+							
+						}
 						break;
+					}
+					if (x_step == 0)
+					{
+						playerSprite.play("stand_still");
+					}
+					else if (playerSprite.currentAnim=="stand_still") {
+						playerSprite.play("walk");
 					}
 					x += x_step;
 					break;
