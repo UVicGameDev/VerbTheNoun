@@ -23,6 +23,10 @@ package HeartTheBeets
 		
 		private var state:int = HOLDING;
 		private var keep_snuggling:Boolean;
+		private var target:Beet = null;
+		private var pull_frame_index:int = -1;
+		private var drop_frame_index:int = -1;
+		private var holding_beet:Boolean = false;
 		
 		
 		public override function Player(x:int, y:int) 
@@ -36,10 +40,10 @@ package HeartTheBeets
 		
 		public function add_animations()
 		{
-			playerSprite.add("walk", [0,1,2],8,true);
-			playerSprite.add("squat", [1,6,7,8],4,false);
-			playerSprite.add("stand_up", [8,7,6,1],4,false);
-			playerSprite.add("snuggle", [4,3,4,5],5, false);
+			playerSprite.add("walk", [0,1,2],24,true);
+			playerSprite.add("squat", [1,6,7,8],12,false);
+			playerSprite.add("stand_up", [8,7,6,1],12,false);
+			playerSprite.add("snuggle", [4,3,4,5],15, false);
 			playerSprite.add("stand_still", [1],0,true);
 		}
 		
@@ -57,6 +61,7 @@ package HeartTheBeets
 					if (playerSprite.frame == 8)
 					{
 						playerSprite.play("stand_up");
+						pull_frame_index = playerSprite.index-1;
 						state = HOLDING;
 					}
 					//if(at end of track)
@@ -68,31 +73,92 @@ package HeartTheBeets
 					break;
 					
 				case HOLDING:
-					//if standing animation complete, just stand.
-					//if arrow key drop and move (state = nomal)
-						//start standing animation
-					//else if snuggle button (x)
-						//switch to snuggling
-						//apply snuggle effects
-					if (Input.pressed(Key.LEFT)&& x>0)
+			
+						//add if gholding beet, put beet down before dropping
+					if (target == null)
 					{
-						playerSprite.play("walk");
-						state = WALKING;
-						x_step += -4;
+						if (Input.pressed(Key.LEFT)&& x>0)
+						{
+							playerSprite.play("walk");
+							state = WALKING;
+							x_step += -4;
+						}
+						if (Input.pressed(Key.RIGHT) && x<560)
+						{
+							playerSprite.play("walk");
+							state = WALKING;
+							x_step += 4;
+						}
+						if (Input.pressed(Key.Z))
+						{
+							target = collide("Beet", x, y) as Beet;
+							if (target)
+							{
+								//switch animation
+								//zap to beet position
+								x = target.x + 8;
+								playerSprite.play("squat");
+								state = GRABBING;
+								
+							}
+							//break;
+						}
 					}
-					if (Input.pressed(Key.RIGHT) && x<560)
+					else 
 					{
-						playerSprite.play("walk");
-						state = WALKING;
-						x_step += 4;
+						if (holding_beet)
+						{
+							if (Input.pressed(Key.X))
+							{
+								playerSprite.play("snuggle");
+								target.snuggle();
+								state = SNUGGLING;
+							}
+							if (Input.pressed(Key.LEFT)&& x>0)
+							{
+								playerSprite.play("squat");
+								drop_frame_index = -1;
+								holding_beet = false;
+								state = WALKING;
+							}
+							if (Input.pressed(Key.RIGHT) && x<560)
+							{
+								playerSprite.play("squat");
+								drop_frame_index = -1;
+								holding_beet = false;
+								state = WALKING;
+							}
+						}
+						else
+						{
+							if (playerSprite.index>pull_frame_index)
+							{
+								pull_frame_index = playerSprite.index;
+								if (target.stalk_list.length > 0)
+								{
+									target.pull_stalk();
+								}
+							}
+							
+							if (pull_frame_index>=3)
+							{
+								if (target.remove_stalk())
+								{
+									target.show_hands = false;
+									target.update_graphic_list();
+									target = null;
+								}
+								else 
+								{
+									holding_beet = true;
+									target.grabbed = true;
+									//target.show_hands = true;
+									//target.update_graphic_list();
+								}
+							}
+						}
+						
 					}
-					
-					if (Input.pressed(Key.X))
-					{
-						playerSprite.play("snuggle");
-						state = SNUGGLING;
-					}
-					
 					//if(playerSprite.currentAnim == "stand_up" && playerSprite.currentAnim == )
 					break;
 					
@@ -103,6 +169,7 @@ package HeartTheBeets
 					{
 						if (keep_snuggling)
 						{
+							target.snuggle();
 							playerSprite.setFrame(0)
 							playerSprite.play("snuggle");
 							keep_snuggling = false;
@@ -119,40 +186,76 @@ package HeartTheBeets
 					}
 					break;
 					
-				default:
-					var x_step:int = 0;
-					//check keys
-					if (Input.check(Key.LEFT)&& x>0)
+				case WALKING:
+					if (target == null)
 					{
-						x_step += -3;
-					}
-					if (Input.check(Key.RIGHT)&& x<560)
-					{
-						x_step += 3;
-					}
-					
-					if (Input.pressed(Key.Z))
-					{
-						var target:Beet = collide("Beet", x, y) as Beet;
-						if (target)
+						var x_step:int = 0;
+						//check keys
+						if (Input.check(Key.LEFT)&& x>0)
 						{
-							//switch animation
-							//zap to beet position
-							x = target.x + 8;
-							playerSprite.play("squat");
-							state = GRABBING;
-							
+							x_step += -3;
 						}
-						break;
+						if (Input.check(Key.RIGHT)&& x<560)
+						{
+							x_step += 3;
+						}
+						
+						if (Input.pressed(Key.Z))
+						{
+							target = collide("Beet", x, y) as Beet;
+							if (target)
+							{
+								//switch animation
+								//zap to beet position
+								x = target.x + 8;
+								playerSprite.play("squat");
+								state = GRABBING;
+							}
+							break;
+						}
+						if (x_step == 0)
+						{
+							playerSprite.play("stand_still");
+						}
+						else if (playerSprite.currentAnim=="stand_still") {
+							playerSprite.play("walk");
+						}
+						x += x_step;
 					}
-					if (x_step == 0)
+					else
 					{
-						playerSprite.play("stand_still");
+						if (playerSprite.index>drop_frame_index)
+						{
+							drop_frame_index = playerSprite.index;
+							target.drop_beet();
+						}
+						
+						if (drop_frame_index>=3)
+						{
+							if (target != null)
+							{
+								target.grabbed = false;
+								target.show_hands = false;
+								target.update_graphic_list();
+								target = null;
+							}
+							else
+							{
+								if (Input.pressed(Key.LEFT)&& x>0)
+								{
+									playerSprite.play("walk");
+									
+								}
+								if (Input.pressed(Key.RIGHT) && x<560)
+								{
+									playerSprite.play("walk");
+									
+								}
+							}
+						}
+					
+						
 					}
-					else if (playerSprite.currentAnim=="stand_still") {
-						playerSprite.play("walk");
-					}
-					x += x_step;
 					break;
 			}
 		}

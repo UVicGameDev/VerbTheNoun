@@ -28,9 +28,9 @@ package
 		public function GalleryPage() 
 		{
 			///*var games:Array = new Array();
-			leftArrow = new GalleryArrow(30, 150, -1);
-			rightArrow = new GalleryArrow(630, 150, 1);
-			backButton = new GalleryButton(230, 400);
+			leftArrow = new GalleryArrow(0, 150, -1);
+			rightArrow = new GalleryArrow(500, 150, 1);
+			backButton = new GalleryButton(150, 310);
 			game_index = 0;
 			num_games = 2;
 			game_list = new Game_list();
@@ -95,7 +95,7 @@ package
 			for (var i:int = 0; i < num_games; i++)
 			{
 				var next_game:GameSelectable = new GameSelectable(game_list.game_list[(i + game_index)]);
-				next_game.x = 180 + (i*220);
+				next_game.x = 115 + (i*190);
 				next_game.y = 100;
 				add(next_game);
 				//next_game.display();//see if this still does anything

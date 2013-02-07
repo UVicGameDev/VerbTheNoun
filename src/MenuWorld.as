@@ -11,8 +11,8 @@ package
 	 */
 	public class MenuWorld extends World
 	{
-		protected const Width:Number = 800;
-		protected const Height:Number = 600;
+		protected const Width:Number = 600;
+		protected const Height:Number = 480;
 		
 		private var entityList:Array = new Array();
 		
