@@ -104,7 +104,7 @@ package
 		
 		protected function SetTransitionOn():void
 		{
-			for (var i = 0; i < entityList.length; i++) {
+			for (var i:uint = 0; i < entityList.length; i++) {
 				targetXPositions.push(entityList[i].x);
 				targetYPositions.push(entityList[i].y);
 				//entityList[i].x = 0;
@@ -118,7 +118,7 @@ package
 		}
 		protected function SetTransitionOff():void
 		{
-			for (var i = 0; i < entityList.length; i++) {
+			for (var i:uint = 0; i < entityList.length; i++) {
 				targetXPositions.push(-100);
 				targetYPositions.push(-100);
 				transitionSpeed = -20;

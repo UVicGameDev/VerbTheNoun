@@ -11,8 +11,8 @@ package
 		[Embed(source = 'assets/button.png')] private const SELECT:Class;
 		
 		// Variables for pulsation effect
-		private var alpha = .5;
-		private var pulseFactor = .02;
+		private var alpha:Number = .5;
+		private var pulseFactor:Number = .02;
 		
 		public function SelectEffectEntity(xPos:Number, yPos:Number, effectScale:Number) 
 		{
