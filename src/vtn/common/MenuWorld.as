@@ -11,8 +11,8 @@ package vtn.common
 	 */
 	public class MenuWorld extends World
 	{
-		protected const Width:Number = 800;
-		protected const Height:Number = 600;
+		protected function get WIDTH():uint { return Consts.GAME_WIDTH; }
+		protected function get HEIGHT():uint { return Consts.GAME_HEIGHT; }
 		
 		private var entityList:Array = new Array();
 		

@@ -14,7 +14,7 @@ package vtn.main
 		public function Main()
 		{
 
-			super(800, 600, 60, false);
+			super(Consts.GAME_WIDTH, Consts.GAME_HEIGHT, 60, false);
 			FP.world = new MainMenuWorld;
 		}
 		override public function init():void

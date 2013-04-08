@@ -35,13 +35,13 @@ package vtn.options
 		
 		public function OptionsMenuWorld() 
 		{
-			title = new TextEntity("Options", Width / 2, Height / 3 - 100, 30);
+			title = new TextEntity("Options", WIDTH / 2, HEIGHT / 3 - 100, 30);
 			
 			// Initialize buttons at positions
-			musSlider = new SliderEntity("Music", Width / 2, Height / 4);
-			sfxSlider = new SliderEntity("SFX", Width / 2, Height / 4 + 75);
+			musSlider = new SliderEntity("Music", WIDTH / 2, HEIGHT / 4);
+			sfxSlider = new SliderEntity("SFX", WIDTH / 2, HEIGHT / 4 + 75);
 			
-			controllerImage = new ControllerImageEntity(Width / 2, Height / 4 + 200);
+			controllerImage = new ControllerImageEntity(WIDTH / 2, HEIGHT / 4 + 200);
 			
 			/*inputs.push(new InputConfigEntity(Key.A, "A", configInput.x + configInput.width / 2 - 20, configInput.y, 20));
 			inputs.push(new InputConfigEntity(Key.S, "S", configInput.x + configInput.width / 2, configInput.y, 20));
@@ -52,7 +52,7 @@ package vtn.options
 			inputs.push(new InputConfigEntity(Key.DOWN, "DOWN", configInput.x + configInput.width / 2 + 20, configInput.y + 20, 20));
 			inputs.push(new InputConfigEntity(Key.LEFT, "LEFT", configInput.x + configInput.width / 2, configInput.y, 20));
 			*/
-			backButton = new ButtonEntity("Back", Width / 2, Height / 4 + 350);
+			backButton = new ButtonEntity("Back", WIDTH / 2, HEIGHT / 4 + 350);
 			
 			
 			musSlider.isSelected = true;

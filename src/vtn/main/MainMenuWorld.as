@@ -14,7 +14,7 @@ package vtn.main
 	 * @author Nick Pettyjohn
 	 */
 	public class MainMenuWorld extends MenuWorld
-	{	
+	{			
 		// Keep track of entities so we can move them in transitions
 		// and handle button selection
 		private var title:TextEntity;
@@ -24,11 +24,11 @@ package vtn.main
 		public function MainMenuWorld()
 		{
 			// Initialize title
-			title = new TextEntity("UVGD Verb The Noun", Width / 2, Height / 3 - 100, 30);
+			title = new TextEntity("UVGD Verb The Noun", WIDTH / 2, HEIGHT / 3 - 100, 30);
 			
 			// Initialize buttons at positions
-			playButton = new ButtonEntity("Play", Width / 2, Height / 2);
-			optionsButton = new ButtonEntity("Options", Width / 2, Height / 2 + 100);
+			playButton = new ButtonEntity("Play", WIDTH / 2, HEIGHT / 2);
+			optionsButton = new ButtonEntity("Options", WIDTH / 2, HEIGHT / 2 + 100);
 			
 			playButton.isSelected = true; // start with playButton selected
 			
