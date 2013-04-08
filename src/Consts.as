@@ -1,7 +1,7 @@
 package  
 {
 	/**
-	 * ...
+	 * Universal constatns
 	 * @author beyamor
 	 */
 	public class Consts 
