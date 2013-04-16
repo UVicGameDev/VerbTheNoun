@@ -14,18 +14,24 @@ package games.missTheMissile.entities
 	public class Player extends Entity 
 	{
 		private static const	MAX_VELOCITY:Number		= 400,
-								ACCELERATION:Number		= 80;
+								ACCELERATION:Number		= 80,
+								WIDTH:Number			= 48,
+								HEIGHT:Number			= 48;
 		
 		private var	sprite:Canvas,
 					velocity:Point		= new Point(0, 0);				
 		
 		public function Player(x:Number, y:Number)
 		{
-			sprite		= new Canvas(48, 48);
+			sprite		= new Canvas(WIDTH, HEIGHT);
 			sprite.x	= -sprite.width / 2;
 			sprite.y	= -sprite.height / 2;
 			
-			sprite.drawRect(new Rectangle(1, 1, 47, 47), 0xFFFFFF);
+			width		= WIDTH;
+			height		= HEIGHT;
+			centerOrigin();
+			
+			sprite.drawRect(new Rectangle(0, 0, width, height), 0xFFFFFF);
 			
 			super(x, y, sprite);
 		}
@@ -38,6 +44,8 @@ package games.missTheMissile.entities
 			
 			x += velocity.x * FP.elapsed;
 			y += velocity.y * FP.elapsed;
+			
+			wrap();
 		}
 		
 		private function checkMotion():void {
@@ -66,6 +74,16 @@ package games.missTheMissile.entities
 				velocity.x *= clampRatio;
 				velocity.y *= clampRatio;
 			}
+		}
+		
+		private function wrap():void {
+			
+			if (!world) return;
+			
+			if (x < -width)					x = FP.width + width;
+			if (x > FP.width + width)		x = -width;
+			if (y < -height)				y = FP.height + height;
+			if (y > FP.height + height)		y = -height;
 		}
 	}
 
