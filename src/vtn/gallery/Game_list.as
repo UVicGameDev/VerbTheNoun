@@ -1,5 +1,6 @@
 package vtn.gallery
 {
+	import games.missTheMissile.MissTheMissile;
 	import net.flashpunk.World;
 	import vtn.gallery.test.TestWorld;
 	/**
@@ -20,7 +21,7 @@ package vtn.gallery
 		public function Game_list() 
 		{
 			game_list = new Array();
-			game_list.push((new GamePortal(function():World {return new TestWorld(REDSTANDIN)}, REDSTANDIN)));
+			game_list.push((new GamePortal(function():World { return new MissTheMissile; }, REDSTANDIN)));
 			game_list.push((new GamePortal(function():World {return new TestWorld(GREENSTANDIN)}, GREENSTANDIN)));
 			game_list.push((new GamePortal(function():World {return new TestWorld(YELLOWSTANDIN)}, YELLOWSTANDIN)));
 			game_list.push((new GamePortal(function():World {return new TestWorld(BLUESTANDIN)}, BLUESTANDIN)));
