@@ -17,7 +17,8 @@ package games.missTheMissile
 	 */
 	public class MissTheMissile extends Game 
 	{
-		private var player:Player;
+		public var player:Player;
+		private var launcher:MisisleLauncher;
 		
 		public function MissTheMissile() 
 		{
@@ -26,12 +27,14 @@ package games.missTheMissile
 			player = new Player(FP.halfWidth, FP.halfHeight);
 			add(player);
 			createNextAsteroid();
-			shootMissile();
+			
+			launcher = new MisisleLauncher(this);
 		}
 		
 		override public function update():void 
 		{
 			super.update();
+			launcher.update();
 			
 			checkCollisions();
 		}
@@ -66,14 +69,6 @@ package games.missTheMissile
 			
 			var asteroid:Asteroid = new Asteroid(this, 0, 0);
 			add(asteroid);
-		}
-		
-		private function shootMissile():void {
-			
-			add(new Missile(
-				Random.inRange(0, FP.width),
-				Random.inRange(0, FP.height),
-				player));
 		}
 	}
 

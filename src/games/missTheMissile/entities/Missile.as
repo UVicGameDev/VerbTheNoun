@@ -50,6 +50,13 @@ package games.missTheMissile.entities
 			
 			speed = Math.min(MAX_SPEED, speed);
 		}
+		
+		override public function collided(other:MissTheMissileEntity):void 
+		{
+			super.collided(other);
+			
+			if (!(other is Missile) && world) world.remove(this);
+		}
 	}
 
 }
