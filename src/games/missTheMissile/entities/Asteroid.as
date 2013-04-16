@@ -34,8 +34,8 @@ package games.missTheMissile.entities
 			
 			super(x, y, sprite);
 			
-			var	direction:Number = Random.inRange(0, Math.PI * 2);
-			velocity = new Point(SPEED * Math.cos(direction), SPEED * Math.sin(direction));
+			speed = SPEED;
+			direction = Random.inRange(0, Math.PI * 2);
 		}
 		
 		override public function collided(other:MissTheMissileEntity):void 
