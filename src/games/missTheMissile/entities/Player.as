@@ -16,7 +16,8 @@ package games.missTheMissile.entities
 		private static const	MAX_VELOCITY:Number		= 400,
 								ACCELERATION:Number		= 80,
 								WIDTH:Number			= 48,
-								HEIGHT:Number			= 48;
+								HEIGHT:Number			= 48,
+								FRICTION:Number			= 8;
 		
 		private var	sprite:Canvas;			
 		
@@ -42,21 +43,37 @@ package games.missTheMissile.entities
 			checkMotion();
 		}
 		
+		private function applyFriction():void {
+			
+			var	speed:Number = velocity.length;
+			
+			if (speed == 0) return;
+			
+			var	reducedSpeed:Number	= Math.max(0, speed - FRICTION),
+				speedRatio:Number	= reducedSpeed / speed;
+				
+			velocity.x *= speedRatio;
+			velocity.y *= speedRatio;
+		}
+		
 		private function checkMotion():void {
 			
 			var	dx:Number	= 0,
-				dy:Number	= 0;
+				dy:Number	= 0,
+				tryingToMove:Boolean = false;
 				
-			if (Input.check(Keys.LEFT))		dx -= 1;
-			if (Input.check(Keys.RIGHT))	dx += 1;
-			if (Input.check(Keys.UP))		dy -= 1;
-			if (Input.check(Keys.DOWN))		dy += 1;
+			if (Input.check(Keys.LEFT))		{ dx -= 1; tryingToMove = true; }
+			if (Input.check(Keys.RIGHT))	{ dx += 1; tryingToMove = true; }
+			if (Input.check(Keys.UP))		{ dy -= 1; tryingToMove = true; }
+			if (Input.check(Keys.DOWN))		{ dy += 1; tryingToMove = true; }
 			
 			if (dx != 0 && dy != 0) {
 				
 				dx *= Math.SQRT1_2;
 				dy *= Math.SQRT1_2;
 			}
+			
+			if (!tryingToMove) applyFriction();
 			
 			velocity.x += dx * ACCELERATION;
 			velocity.y += dy * ACCELERATION;
