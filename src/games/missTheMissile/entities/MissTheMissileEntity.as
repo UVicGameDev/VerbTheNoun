@@ -37,6 +37,11 @@ package games.missTheMissile.entities
 			if (y < -height)				y = FP.height + height;
 			if (y > FP.height + height)		y = -height;
 		}
+		
+		public function collided(other:MissTheMissileEntity):void {
+			
+			// Override in subclass
+		}
 	}
 
 }
