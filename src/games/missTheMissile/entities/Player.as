@@ -11,15 +11,14 @@ package games.missTheMissile.entities
 	 * This guy moves it moves it.
 	 * @author beyamor
 	 */
-	public class Player extends Entity 
+	public class Player extends MissTheMissileEntity 
 	{
 		private static const	MAX_VELOCITY:Number		= 400,
 								ACCELERATION:Number		= 80,
 								WIDTH:Number			= 48,
 								HEIGHT:Number			= 48;
 		
-		private var	sprite:Canvas,
-					velocity:Point		= new Point(0, 0);				
+		private var	sprite:Canvas;			
 		
 		public function Player(x:Number, y:Number)
 		{
@@ -41,11 +40,6 @@ package games.missTheMissile.entities
 			super.update();
 			
 			checkMotion();
-			
-			x += velocity.x * FP.elapsed;
-			y += velocity.y * FP.elapsed;
-			
-			wrap();
 		}
 		
 		private function checkMotion():void {
@@ -74,16 +68,6 @@ package games.missTheMissile.entities
 				velocity.x *= clampRatio;
 				velocity.y *= clampRatio;
 			}
-		}
-		
-		private function wrap():void {
-			
-			if (!world) return;
-			
-			if (x < -width)					x = FP.width + width;
-			if (x > FP.width + width)		x = -width;
-			if (y < -height)				y = FP.height + height;
-			if (y > FP.height + height)		y = -height;
 		}
 	}
 
