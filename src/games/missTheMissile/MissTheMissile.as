@@ -2,6 +2,7 @@ package games.missTheMissile
 {
 	import core.Debug;
 	import core.Game;
+	import games.missTheMissile.entities.Asteroid;
 	import games.missTheMissile.entities.Player;
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Text;
@@ -18,6 +19,7 @@ package games.missTheMissile
 			if (Debug.isEnabled) addGraphic(new Text("Miss the Missile"));
 			
 			add(new Player(FP.halfWidth, FP.halfHeight));
+			add(new Asteroid(0, 0));
 		}
 		
 	}
