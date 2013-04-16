@@ -42,6 +42,32 @@ package games.missTheMissile.entities
 			
 			// Override in subclass
 		}
+		
+		public function get direction():Number {
+			
+			return Math.atan2(velocity.y, velocity.x);
+		}
+		
+		public function set direction(direction:Number):void {
+			
+			var speed:Number = velocity.length;
+			
+			velocity.x = speed * Math.cos(direction);
+			velocity.y = speed * Math.sin(direction);
+		}
+		
+		public function get speed():Number {
+			
+			return velocity.length;
+		}
+		
+		public function set speed(speed:Number):void {
+			
+			var direction:Number = this.direction;
+			
+			velocity.x = speed * Math.cos(direction);
+			velocity.y = speed * Math.sin(direction);
+		}
 	}
 
 }

@@ -2,7 +2,9 @@ package games.missTheMissile
 {
 	import core.Debug;
 	import core.Game;
+	import core.Random;
 	import games.missTheMissile.entities.Asteroid;
+	import games.missTheMissile.entities.Missile;
 	import games.missTheMissile.entities.MissTheMissileEntity;
 	import games.missTheMissile.entities.Player;
 	import net.flashpunk.Entity;
@@ -15,12 +17,16 @@ package games.missTheMissile
 	 */
 	public class MissTheMissile extends Game 
 	{
+		private var player:Player;
+		
 		public function MissTheMissile() 
 		{
 			if (Debug.isEnabled) addGraphic(new Text("Miss the Missile"));
 			
-			add(new Player(FP.halfWidth, FP.halfHeight));
+			player = new Player(FP.halfWidth, FP.halfHeight);
+			add(player);
 			createNextAsteroid();
+			shootMissile();
 		}
 		
 		override public function update():void 
@@ -60,6 +66,14 @@ package games.missTheMissile
 			
 			var asteroid:Asteroid = new Asteroid(this, 0, 0);
 			add(asteroid);
+		}
+		
+		private function shootMissile():void {
+			
+			add(new Missile(
+				Random.inRange(0, FP.width),
+				Random.inRange(0, FP.height),
+				player));
 		}
 	}
 

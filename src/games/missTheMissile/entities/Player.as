@@ -45,15 +45,9 @@ package games.missTheMissile.entities
 		
 		private function applyFriction():void {
 			
-			var	speed:Number = velocity.length;
-			
 			if (speed == 0) return;
 			
-			var	reducedSpeed:Number	= Math.max(0, speed - FRICTION),
-				speedRatio:Number	= reducedSpeed / speed;
-				
-			velocity.x *= speedRatio;
-			velocity.y *= speedRatio;
+			speed	= Math.max(0, speed - FRICTION);
 		}
 		
 		private function checkMotion():void {
