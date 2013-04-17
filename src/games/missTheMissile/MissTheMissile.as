@@ -24,11 +24,11 @@ package games.missTheMissile
 	public class MissTheMissile extends Game 
 	{
 		public var	player:Player,
-					arena:Arena;
+					arena:Arena,
+					arenaCam:Camera;
 					
 		private var	launcher:MisisleLauncher,
-					asteroidSpawner:AsteroidSpawner,
-					arenaCam:Camera;
+					asteroidSpawner:AsteroidSpawner;
 		
 		public function MissTheMissile() 
 		{

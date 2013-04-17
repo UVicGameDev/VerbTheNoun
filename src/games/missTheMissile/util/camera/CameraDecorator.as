@@ -51,6 +51,10 @@ package games.missTheMissile.util.camera
 			cam.update();
 		}
 		
+		public function get top():Number { return cam.top; }
+		public function get bottom():Number { return cam.bottom; }
+		public function get left():Number { return cam.left; }
+		public function get right():Number { return cam.right; }
 	}
 
 }

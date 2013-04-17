@@ -50,6 +50,25 @@ package games.missTheMissile.util.camera
 			// Do nothing
 		}
 		
+		public function get left():Number
+		{
+			return x;
+		}
+		
+		public function get right():Number
+		{
+			return x + width;
+		}
+		
+		public function get top():Number
+		{
+			return y;
+		}
+		
+		public function get bottom():Number
+		{
+			return y + height;
+		}
 	}
 
 }
