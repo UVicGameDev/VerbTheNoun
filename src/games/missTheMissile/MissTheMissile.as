@@ -28,10 +28,10 @@ package games.missTheMissile
 		{
 			if (Debug.isEnabled) addGraphic(new Text("Miss the Missile"));
 			
-			player = new Player(FP.halfWidth, FP.halfHeight);
-			add(player);
-			
 			arena = new Arena(FP.width * 2, FP.height * 2);
+			
+			player = new Player(FP.halfWidth, FP.halfHeight, arena);
+			add(player);
 			
 			launcher		= new MisisleLauncher(this);
 			asteroidSpawner	= new AsteroidSpawner(this);

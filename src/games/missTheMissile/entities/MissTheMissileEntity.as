@@ -24,18 +24,6 @@ package games.missTheMissile.entities
 			
 			x += velocity.x * FP.elapsed;
 			y += velocity.y * FP.elapsed;
-			
-			wrap();
-		}
-		
-		private function wrap():void {
-			
-			if (!world) return;
-			
-			if (x < -width)					x = FP.width + width;
-			if (x > FP.width + width)		x = -width;
-			if (y < -height)				y = FP.height + height;
-			if (y > FP.height + height)		y = -height;
 		}
 		
 		public function collided(other:MissTheMissileEntity):void {
