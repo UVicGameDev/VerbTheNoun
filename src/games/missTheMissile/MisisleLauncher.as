@@ -5,7 +5,7 @@ package games.missTheMissile
 	import flash.geom.Point;
 	import games.missTheMissile.arena.BoundaryPositioner;
 	import games.missTheMissile.entities.Missile;
-	import games.missTheMissile.ui.IncomingAlert;
+	import games.missTheMissile.ui.alert.IncomingAlert;
 	import net.flashpunk.FP;
 	/**
 	 * ...
@@ -45,7 +45,7 @@ package games.missTheMissile
 			var missile:Missile = new Missile(position.x, position.y, mtm.player);
 			mtm.add(missile);
 			
-			var alert:IncomingAlert = new IncomingAlert("missile", 0xffff0000, missile, mtm.arenaCam);
+			var alert:IncomingAlert = new IncomingAlert("missile", 0xff0000, missile, mtm.arenaCam);
 			mtm.add(alert);
 		}
 		

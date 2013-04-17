@@ -1,8 +1,10 @@
 package games.missTheMissile.entities 
 {
+	import flash.filters.DisplacementMapFilterMode;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import games.missTheMissile.arena.Arena;
+	import games.missTheMissile.ui.alert.AlertArrow;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Canvas;
@@ -21,7 +23,8 @@ package games.missTheMissile.entities
 								FRICTION:Number			= 8;
 		
 		private var	sprite:Canvas,
-					arena:Arena;
+					arena:Arena,
+					arrow:AlertArrow;
 		
 		public function Player(x:Number, y:Number, arena:Arena)
 		{
