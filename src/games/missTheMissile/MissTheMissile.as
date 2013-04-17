@@ -4,6 +4,7 @@ package games.missTheMissile
 	import core.Game;
 	import core.Random;
 	import games.missTheMissile.arena.Arena;
+	import games.missTheMissile.arena.EntityCamera;
 	import games.missTheMissile.entities.Asteroid;
 	import games.missTheMissile.entities.Missile;
 	import games.missTheMissile.entities.MissTheMissileEntity;
@@ -22,7 +23,8 @@ package games.missTheMissile
 					arena:Arena;
 					
 		private var	launcher:MisisleLauncher,
-					asteroidSpawner:AsteroidSpawner;
+					asteroidSpawner:AsteroidSpawner,
+					arenaCam:EntityCamera;
 		
 		public function MissTheMissile() 
 		{
@@ -33,6 +35,8 @@ package games.missTheMissile
 			player = new Player(FP.halfWidth, FP.halfHeight, arena);
 			add(player);
 			
+			arenaCam = new EntityCamera(player, arena);
+			
 			launcher		= new MisisleLauncher(this);
 			asteroidSpawner	= new AsteroidSpawner(this);
 		}
@@ -41,6 +45,7 @@ package games.missTheMissile
 		{
 			super.update();
 			launcher.update();
+			arenaCam.update();
 			
 			checkCollisions();
 		}
