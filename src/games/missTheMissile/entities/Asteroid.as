@@ -3,6 +3,7 @@ package games.missTheMissile.entities
 	import core.Random;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
+	import games.missTheMissile.AsteroidSpawner;
 	import games.missTheMissile.MissTheMissile;
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Canvas;
@@ -17,11 +18,11 @@ package games.missTheMissile.entities
 								SPEED:Number			= 200;
 		
 		private var	sprite:Canvas,
-					mtm:MissTheMissile;	
+					spawner:AsteroidSpawner;	
 		
-		public function Asteroid(mtm:MissTheMissile, x:Number, y:Number)
+		public function Asteroid(spawner:AsteroidSpawner, x:Number, y:Number)
 		{
-			this.mtm = mtm;
+			this.spawner = spawner;
 			
 			width	= WIDTH;
 			height	= HEIGHT;
@@ -42,7 +43,7 @@ package games.missTheMissile.entities
 		{
 			super.collided(other);
 			
-			mtm.asteroidDestroyed(this);
+			spawner.asteroidDestroid(this);
 		}
 	}
 

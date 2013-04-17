@@ -19,6 +19,7 @@ package games.missTheMissile
 	{
 		public var player:Player;
 		private var launcher:MisisleLauncher;
+		private var asteroidSpawner:AsteroidSpawner;
 		
 		public function MissTheMissile() 
 		{
@@ -26,9 +27,10 @@ package games.missTheMissile
 			
 			player = new Player(FP.halfWidth, FP.halfHeight);
 			add(player);
-			createNextAsteroid();
 			
-			launcher = new MisisleLauncher(this);
+			
+			launcher		= new MisisleLauncher(this);
+			asteroidSpawner	= new AsteroidSpawner(this);
 		}
 		
 		override public function update():void 
@@ -57,18 +59,6 @@ package games.missTheMissile
 					}
 				}
 			}
-		}
-		
-		public function asteroidDestroyed(asteroid:Asteroid):void {
-			
-			remove(asteroid);
-			createNextAsteroid();
-		}
-		
-		private function createNextAsteroid():void {
-			
-			var asteroid:Asteroid = new Asteroid(this, 0, 0);
-			add(asteroid);
 		}
 	}
 

@@ -9,7 +9,7 @@ package games.missTheMissile.entities
 	public class Missile extends MissTheMissileEntity 
 	{
 		private static const	MAX_SPEED:Number		= 450,
-								ACCELERATION:Number		= 30,
+								ACCELERATION:Number		= 10,
 								WIDTH:Number			= 32,
 								HEIGHT:Number			= 32;
 		
@@ -55,7 +55,22 @@ package games.missTheMissile.entities
 		{
 			super.collided(other);
 			
-			if (!(other is Missile) && world) world.remove(this);
+			var wasHit:Boolean = false;
+			
+			if (other is Missile) {
+				
+				var	velocityDot:Number					= velocity.x * other.velocity.x + velocity.y * other.velocity.y,
+					movingInOppositeDirection:Boolean	= (velocityDot < 0);
+					
+				if (movingInOppositeDirection) wasHit = true;
+			}
+			
+			else {
+				
+				wasHit = true;
+			}
+			
+			if (wasHit && world) world.remove(this);
 		}
 	}
 

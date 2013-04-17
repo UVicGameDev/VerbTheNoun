@@ -35,6 +35,7 @@ package games.missTheMissile
 		
 		private function shootMissile():void {
 			
+			// Copied this wholesale into AsteroidSpawner. Consider moving it into something.
 			var x:Number, y:Number;
 			
 			switch (Random.any(["left", "right", "top", "bottom"])) {

@@ -11,7 +11,7 @@ package games.missTheMissile.entities
 	 */
 	public class MissTheMissileEntity extends Entity 
 	{
-		protected var velocity:Point = new Point(0, 0);	
+		public var velocity:Point = new Point(0, 0);	
 		
 		public function MissTheMissileEntity(x:Number, y:Number, graphic:Graphic) 
 		{
