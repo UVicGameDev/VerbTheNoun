@@ -3,12 +3,16 @@ package games.missTheMissile
 	import core.Debug;
 	import core.Game;
 	import core.Random;
+	import flash.geom.Rectangle;
 	import games.missTheMissile.arena.Arena;
-	import games.missTheMissile.arena.EntityCamera;
 	import games.missTheMissile.entities.Asteroid;
 	import games.missTheMissile.entities.Missile;
 	import games.missTheMissile.entities.MissTheMissileEntity;
 	import games.missTheMissile.entities.Player;
+	import games.missTheMissile.util.camera.BoundedCamera;
+	import games.missTheMissile.util.camera.Camera;
+	import games.missTheMissile.util.camera.EntityCamera;
+	import games.missTheMissile.util.camera.FPCamera;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Text;
@@ -24,7 +28,7 @@ package games.missTheMissile
 					
 		private var	launcher:MisisleLauncher,
 					asteroidSpawner:AsteroidSpawner,
-					arenaCam:EntityCamera;
+					arenaCam:Camera;
 		
 		public function MissTheMissile() 
 		{
@@ -35,7 +39,11 @@ package games.missTheMissile
 			player = new Player(FP.halfWidth, FP.halfHeight, arena);
 			add(player);
 			
-			arenaCam = new EntityCamera(player, arena);
+			arenaCam = new BoundedCamera(
+							new Rectangle(0, 0, arena.width, arena.height),
+							new EntityCamera(
+								player,
+								new FPCamera));
 			
 			launcher		= new MisisleLauncher(this);
 			asteroidSpawner	= new AsteroidSpawner(this);
