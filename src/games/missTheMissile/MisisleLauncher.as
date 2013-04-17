@@ -2,6 +2,8 @@ package games.missTheMissile
 {
 	import core.Random;
 	import core.util.Timer;
+	import flash.geom.Point;
+	import games.missTheMissile.arena.BoundaryPositioner;
 	import games.missTheMissile.entities.Missile;
 	import net.flashpunk.FP;
 	/**
@@ -14,11 +16,13 @@ package games.missTheMissile
 								BOUNDARY:Number				= 100;
 		
 		private var	mtm:MissTheMissile,
-					timer:Timer;
+					timer:Timer,
+					positioner:BoundaryPositioner;
 	
 		public function MisisleLauncher(mtm:MissTheMissile) 
 		{
 			this.mtm = mtm;
+			this.positioner = new BoundaryPositioner(mtm.arena, BOUNDARY);
 			
 			shootMissile();
 			timer = new Timer(TIME_BETWEEN_SHOTS);
@@ -35,33 +39,9 @@ package games.missTheMissile
 		
 		private function shootMissile():void {
 			
-			// Copied this wholesale into AsteroidSpawner. Consider moving it into something.
-			var x:Number, y:Number;
+			var position:Point = positioner.getNextPosition();
 			
-			switch (Random.any(["left", "right", "top", "bottom"])) {
-				
-				case "left":
-					x = -BOUNDARY;
-					y = Random.inRange(0, FP.height);
-					break;
-					
-				case "right":
-					x = FP.width + BOUNDARY;
-					y = Random.inRange(0, FP.height);
-					break;
-					
-				case "top":
-					x = Random.inRange(0, FP.width);
-					y = -BOUNDARY;
-					break;
-					
-				case "bottom":
-					x = Random.inRange(0, FP.width);
-					y = FP.height + BOUNDARY;
-					break;
-			}
-			
-			var missile:Missile = new Missile(x, y, mtm.player);
+			var missile:Missile = new Missile(position.x, position.y, mtm.player);
 			mtm.add(missile);
 		}
 		

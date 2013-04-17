@@ -3,6 +3,7 @@ package games.missTheMissile
 	import core.Debug;
 	import core.Game;
 	import core.Random;
+	import games.missTheMissile.arena.Arena;
 	import games.missTheMissile.entities.Asteroid;
 	import games.missTheMissile.entities.Missile;
 	import games.missTheMissile.entities.MissTheMissileEntity;
@@ -17,9 +18,11 @@ package games.missTheMissile
 	 */
 	public class MissTheMissile extends Game 
 	{
-		public var player:Player;
-		private var launcher:MisisleLauncher;
-		private var asteroidSpawner:AsteroidSpawner;
+		public var	player:Player,
+					arena:Arena;
+					
+		private var	launcher:MisisleLauncher,
+					asteroidSpawner:AsteroidSpawner;
 		
 		public function MissTheMissile() 
 		{
@@ -28,6 +31,7 @@ package games.missTheMissile
 			player = new Player(FP.halfWidth, FP.halfHeight);
 			add(player);
 			
+			arena = new Arena(FP.width * 2, FP.height * 2);
 			
 			launcher		= new MisisleLauncher(this);
 			asteroidSpawner	= new AsteroidSpawner(this);

@@ -1,6 +1,8 @@
 package games.missTheMissile 
 {
 	import core.Random;
+	import flash.geom.Point;
+	import games.missTheMissile.arena.BoundaryPositioner;
 	import games.missTheMissile.entities.Asteroid;
 	import net.flashpunk.FP;
 	/**
@@ -11,44 +13,22 @@ package games.missTheMissile
 	{
 		private static const BOUNDARY:Number = 100;
 		
-		private var mtm:MissTheMissile;
+		private var	mtm:MissTheMissile,
+					positioner:BoundaryPositioner;
 		
 		public function AsteroidSpawner(mtm:MissTheMissile)
 		{
 			this.mtm = mtm;
+			positioner = new BoundaryPositioner(mtm.arena, BOUNDARY);
 			
 			spawnNextAsteroid();
 		}
 		
 		private function spawnNextAsteroid():void {
 			
-			// Copying this wholesale from MissileLauncher. Consider moving it into something.
-			var x:Number, y:Number;
+			var position:Point = positioner.getNextPosition();
 			
-			switch (Random.any(["left", "right", "top", "bottom"])) {
-				
-				case "left":
-					x = -BOUNDARY;
-					y = Random.inRange(0, FP.height);
-					break;
-					
-				case "right":
-					x = FP.width + BOUNDARY;
-					y = Random.inRange(0, FP.height);
-					break;
-					
-				case "top":
-					x = Random.inRange(0, FP.width);
-					y = -BOUNDARY;
-					break;
-					
-				case "bottom":
-					x = Random.inRange(0, FP.width);
-					y = FP.height + BOUNDARY;
-					break;
-			}
-			
-			var asteroid:Asteroid = new Asteroid(this, x, y);
+			var asteroid:Asteroid = new Asteroid(this, position.x, position.y);
 			mtm.add(asteroid);
 		}
 		
