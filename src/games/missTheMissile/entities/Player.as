@@ -4,6 +4,7 @@ package games.missTheMissile.entities
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import games.missTheMissile.arena.Arena;
+	import games.missTheMissile.graphics.PlayerSprite;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Canvas;
@@ -21,23 +22,16 @@ package games.missTheMissile.entities
 								HEIGHT:Number			= 48,
 								FRICTION:Number			= 8;
 		
-		private var	sprite:Canvas,
-					arena:Arena,
-					arrow:AlertArrow;
+		private var	sprite:PlayerSprite,
+					arena:Arena;
 		
 		public function Player(x:Number, y:Number, arena:Arena)
 		{
 			this.arena = arena;
 			
-			sprite		= new Canvas(WIDTH, HEIGHT);
-			sprite.x	= -sprite.width / 2;
-			sprite.y	= -sprite.height / 2;
-			
-			width		= WIDTH;
-			height		= HEIGHT;
-			centerOrigin();
-			
-			sprite.drawRect(new Rectangle(0, 0, width, height), 0xFFFFFF);
+			width	= WIDTH;
+			height	= HEIGHT;
+			sprite	= new PlayerSprite(this);
 			
 			super(x, y, sprite);
 		}
@@ -45,6 +39,7 @@ package games.missTheMissile.entities
 		override public function update():void 
 		{
 			super.update();
+			sprite.update();
 			
 			checkMotion();
 			boundToArena();

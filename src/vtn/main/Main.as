@@ -32,6 +32,8 @@ package vtn.main
 		override public function init():void
 		{
 			trace("FlashPunk has started successfully!");
+			
+			FP.console.enable();
 		}
 	}
 	
