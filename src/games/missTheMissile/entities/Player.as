@@ -4,7 +4,6 @@ package games.missTheMissile.entities
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import games.missTheMissile.arena.Arena;
-	import games.missTheMissile.ui.alert.AlertArrow;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Canvas;

@@ -1,4 +1,4 @@
-package games.missTheMissile.ui.alert 
+package games.missTheMissile.graphics 
 {
 	import flash.display.BitmapData;
 	import flash.display.Graphics;
