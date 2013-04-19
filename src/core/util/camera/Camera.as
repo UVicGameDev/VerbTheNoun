@@ -1,4 +1,4 @@
-package games.missTheMissile.util.camera 
+package core.util.camera 
 {
 	
 	/**

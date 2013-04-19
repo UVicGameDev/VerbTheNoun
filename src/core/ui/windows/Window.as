@@ -1,6 +1,7 @@
 package core.ui.windows 
 {
 	import flash.display.BitmapData;
+	import core.util.camera.Camera
 	
 	/**
 	 * So, I dunno.
@@ -21,6 +22,7 @@ package core.ui.windows
 		function render():void;
 		
 		function get buffer():BitmapData;
+		function get camera():Camera;
 		
 		function get parent():Window;
 		

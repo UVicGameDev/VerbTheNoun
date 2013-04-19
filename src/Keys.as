@@ -13,7 +13,9 @@ package
 								CONFIRM:String	= "confirm",
 								CANCEL:String	= "cancel",
 								ACTION1:String	= "action1",
-								ACTION2:String	= "action2";
+								ACTION2:String	= "action2",
+								START:String	= "start",
+								SELECT:String	= "select";
 	}
 
 }

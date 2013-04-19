@@ -1,10 +1,14 @@
 package core.ui.windows.sub 
 {
 	import core.ui.windows.main.MainWindow;
+	import core.ui.windows.sub.helpers.SubWindowWorld;
 	import core.ui.windows.Window;
+	import core.util.camera.Camera;
+	import core.util.camera.SubWindowCamera;
 	import flash.display.BitmapData;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
+	import net.flashpunk.FP;
 	import net.flashpunk.World;
 	/**
 	 * Cool. This is the guy you'll want to subclass for your own game windows.
@@ -25,7 +29,8 @@ package core.ui.windows.sub
 					_blocksUpdates:Boolean	= false,
 					_buffer:BitmapData,
 					_parent:Window,
-					_world:World			= new World;
+					_world:World,
+					_camera:Camera;
 					
 		// ugh this sucks everything is awful
 		public function get x():Number { return _x; }
@@ -54,8 +59,13 @@ package core.ui.windows.sub
 		
 		public function get world():World { return _world; }
 		
+		public function get camera():Camera { return _camera; }
+		public function set camera(camera:Camera):void { _camera = camera; }
+		
 		public function SubWindow(width:Number, height:Number)
 		{
+			_world	= new SubWindowWorld(this);
+			_camera	= new SubWindowCamera(this);
 			_parent	= new MainWindow;
 			_width	= width;
 			_height	= height;
@@ -77,6 +87,7 @@ package core.ui.windows.sub
 			
 			world.update();
 			world.updateLists();
+			camera.update();
 		}
 		
 		protected function clearBuffer():void {
@@ -87,6 +98,8 @@ package core.ui.windows.sub
 		public function render():void {
 			
 			clearBuffer();
+			
+			world.render();
 			
 			parent.buffer.copyPixels(
 				buffer,

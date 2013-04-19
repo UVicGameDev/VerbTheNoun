@@ -48,7 +48,7 @@ package games.missTheMissile.spawners
 			var missile:Missile = new Missile(position.x, position.y, mtm.player);
 			mtm.world.add(missile);
 			
-			var alert:IncomingAlert = new IncomingAlert("missile", 0xff0000, missile, mtm.arenaCam);
+			var alert:IncomingAlert = new IncomingAlert("missile", 0xff0000, missile, mtm.camera);
 			mtm.world.add(alert);
 		}
 		

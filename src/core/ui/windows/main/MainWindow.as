@@ -1,7 +1,9 @@
 package core.ui.windows.main 
 {
 	import core.ui.windows.Window;
+	import core.util.camera.FPCamera;
 	import flash.display.BitmapData;
+	import core.util.camera.Camera
 	import net.flashpunk.FP;
 	
 	/**
@@ -10,10 +12,12 @@ package core.ui.windows.main
 	 */
 	public class MainWindow implements Window 
 	{
+		private var _camera:Camera;
+		public function get camera():Camera { return _camera; }
 		
 		public function MainWindow() 
 		{
-			
+			_camera = new FPCamera();
 		}
 		
 		/* INTERFACE core.ui.windows.Window */

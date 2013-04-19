@@ -25,15 +25,15 @@ package vtn.main
 			Input.define(Keys.LEFT,		Key.LEFT);
 			Input.define(Keys.RIGHT,	Key.RIGHT);
 			Input.define(Keys.ACTION1,	Key.A);
-			Input.define(Keys.ACTION2,	Key.Z);
+			Input.define(Keys.ACTION2,	Key.S);
 			Input.define(Keys.CONFIRM,	Key.S);
 			Input.define(Keys.CANCEL,	Key.A);
+			Input.define(Keys.START,	Key.ENTER);
+			Input.define(Keys.SELECT,	Key.SPACE);
 		}
 		override public function init():void
 		{
 			trace("FlashPunk has started successfully!");
-			
-			FP.console.enable();
 		}
 	}
 	

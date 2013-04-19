@@ -5,6 +5,7 @@ package games.missTheMissile
 	import games.missTheMissile.windows.PauseWindow;
 	import games.missTheMissile.windows.PlayWindow;
 	import net.flashpunk.graphics.Text;
+	import net.flashpunk.utils.Input;
 	
 	/**
 	 * ...
@@ -17,9 +18,15 @@ package games.missTheMissile
 			if (Debug.isEnabled) addGraphic(new Text("Miss the Missile"));
 			
 			windows.push(
-				new PlayWindow()//,
-				//new PauseWindow()
+				new PlayWindow()
 			);
+		}
+		
+		override public function update():void 
+		{
+			super.update();
+			
+			if (Input.pressed(Keys.START)) windows.push(new PauseWindow(this));
 		}
 	}
 

@@ -1,7 +1,7 @@
 package games.missTheMissile.ui.alert 
 {
+	import core.util.camera.Camera;
 	import games.missTheMissile.graphics.AlertArrow;
-	import games.missTheMissile.util.camera.Camera;
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Graphiclist;
 	import net.flashpunk.graphics.Text;
