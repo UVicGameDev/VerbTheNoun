@@ -5,7 +5,7 @@ package core.ui.windows.main
 	import net.flashpunk.FP;
 	
 	/**
-	 * ...
+	 * This guy is a wrapper for FP/world to make it fit in with the Window system.
 	 * @author beyamor
 	 */
 	public class MainWindow implements Window 

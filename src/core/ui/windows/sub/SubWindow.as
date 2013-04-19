@@ -1,4 +1,4 @@
-package core.ui.windows.regular 
+package core.ui.windows.sub 
 {
 	import core.ui.windows.main.MainWindow;
 	import core.ui.windows.Window;
@@ -12,7 +12,7 @@ package core.ui.windows.regular
 	 * RegularWindow? StandardWindow? WorldfulWindow?
 	 * @author beyamor
 	 */
-	public class RegularWindow implements Window
+	public class SubWindow implements Window
 	{
 		public var clearColor:uint = 0xFF00FF00;
 		
@@ -24,7 +24,8 @@ package core.ui.windows.regular
 					_height:Number,
 					_blocksUpdates:Boolean	= false,
 					_buffer:BitmapData,
-					_parent:Window;
+					_parent:Window,
+					_world:World			= new World;
 					
 		// ugh this sucks everything is awful
 		public function get x():Number { return _x; }
@@ -51,7 +52,9 @@ package core.ui.windows.regular
 		
 		public function get buffer():BitmapData { return _buffer; }
 		
-		public function RegularWindow(width:Number, height:Number)
+		public function get world():World { return _world; }
+		
+		public function SubWindow(width:Number, height:Number)
 		{
 			_parent	= new MainWindow;
 			_width	= width;
@@ -72,7 +75,8 @@ package core.ui.windows.regular
 		
 		public function update():void {
 			
-			// TODO: Update
+			world.update();
+			world.updateLists();
 		}
 		
 		protected function clearBuffer():void {

@@ -3,8 +3,8 @@ package games.missTheMissile.entities
 	import core.Random;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
-	import games.missTheMissile.AsteroidSpawner;
 	import games.missTheMissile.MissTheMissile;
+	import games.missTheMissile.spawners.AsteroidSpawner;
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Canvas;
 	/**

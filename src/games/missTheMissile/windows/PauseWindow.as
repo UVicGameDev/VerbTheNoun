@@ -1,12 +1,12 @@
-package games.missTheMissile.ui.windows 
+package games.missTheMissile.windows 
 {
-	import core.ui.windows.regular.RegularWindow;
+	import core.ui.windows.sub.SubWindow;
 	
 	/**
 	 * ...
 	 * @author beyamor
 	 */
-	public class PauseWindow extends RegularWindow
+	public class PauseWindow extends SubWindow
 	{
 		
 		public function PauseWindow() 

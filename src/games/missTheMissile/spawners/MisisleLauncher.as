@@ -1,11 +1,14 @@
-package games.missTheMissile 
+package games.missTheMissile.spawners 
 {
 	import core.Random;
+	import core.ui.windows.sub.PlayWindowBase;
 	import core.util.Timer;
 	import flash.geom.Point;
 	import games.missTheMissile.arena.BoundaryPositioner;
 	import games.missTheMissile.entities.Missile;
+	import games.missTheMissile.MissTheMissile;
 	import games.missTheMissile.ui.alert.IncomingAlert;
+	import games.missTheMissile.windows.PlayWindow;
 	import net.flashpunk.FP;
 	/**
 	 * ...
@@ -16,11 +19,11 @@ package games.missTheMissile
 		private static const	TIME_BETWEEN_SHOTS:Number	= 2,
 								BOUNDARY:Number				= 100;
 		
-		private var	mtm:MissTheMissile,
+		private var	mtm:PlayWindow,
 					timer:Timer,
 					positioner:BoundaryPositioner;
 	
-		public function MisisleLauncher(mtm:MissTheMissile) 
+		public function MisisleLauncher(mtm:PlayWindow) 
 		{
 			this.mtm = mtm;
 			this.positioner = new BoundaryPositioner(mtm.arena, BOUNDARY);
@@ -43,10 +46,10 @@ package games.missTheMissile
 			var position:Point = positioner.getNextPosition();
 			
 			var missile:Missile = new Missile(position.x, position.y, mtm.player);
-			mtm.add(missile);
+			mtm.world.add(missile);
 			
 			var alert:IncomingAlert = new IncomingAlert("missile", 0xff0000, missile, mtm.arenaCam);
-			mtm.add(alert);
+			mtm.world.add(alert);
 		}
 		
 		public function update():void {
