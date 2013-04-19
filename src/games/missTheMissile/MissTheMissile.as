@@ -9,6 +9,7 @@ package games.missTheMissile
 	import games.missTheMissile.entities.Missile;
 	import games.missTheMissile.entities.MissTheMissileEntity;
 	import games.missTheMissile.entities.Player;
+	import games.missTheMissile.ui.windows.PauseWindow;
 	import games.missTheMissile.util.camera.BoundedCamera;
 	import games.missTheMissile.util.camera.Camera;
 	import games.missTheMissile.util.camera.EntityCamera;
@@ -47,6 +48,8 @@ package games.missTheMissile
 			
 			launcher		= new MisisleLauncher(this);
 			asteroidSpawner	= new AsteroidSpawner(this);
+			
+			windows.push(new PauseWindow);
 		}
 		
 		override public function update():void 
