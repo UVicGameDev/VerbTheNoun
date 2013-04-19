@@ -30,7 +30,9 @@ package core.ui.windows.sub
 					_buffer:BitmapData,
 					_parent:Window,
 					_world:World,
-					_camera:Camera;
+					_camera:Camera,
+					_isFirstUpdate:Boolean			= true,
+					_firstUpdateHasPassed:Boolean	= false;
 					
 		// ugh this sucks everything is awful
 		public function get x():Number { return _x; }
@@ -62,6 +64,8 @@ package core.ui.windows.sub
 		public function get camera():Camera { return _camera; }
 		public function set camera(camera:Camera):void { _camera = camera; }
 		
+		protected function get isFirstUpdate():Boolean { return _isFirstUpdate; }
+		
 		public function SubWindow(width:Number, height:Number)
 		{
 			_world	= new SubWindowWorld(this);
@@ -84,6 +88,9 @@ package core.ui.windows.sub
 		}
 		
 		public function update():void {
+			
+			if (_firstUpdateHasPassed) _isFirstUpdate = false;
+			_firstUpdateHasPassed = true;
 			
 			world.update();
 			world.updateLists();

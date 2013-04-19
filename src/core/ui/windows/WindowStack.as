@@ -48,6 +48,13 @@ package core.ui.windows
 				window.render();
 			}
 		}
+		
+		public function get top():Window {
+			
+			if (windows.length == 0) return null;
+			
+			return windows[windows.length - 1];
+		}
 	}
 
 }

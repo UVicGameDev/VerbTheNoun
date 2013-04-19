@@ -12,7 +12,9 @@ package games.missTheMissile
 	 * @author beyamor
 	 */
 	public class MissTheMissile extends Game 
-	{					
+	{
+		private var pauseMenuUp:Boolean;
+		
 		public function MissTheMissile() 
 		{
 			if (Debug.isEnabled) addGraphic(new Text("Miss the Missile"));
@@ -24,9 +26,12 @@ package games.missTheMissile
 		
 		override public function update():void 
 		{
-			super.update();
+			// Hm.
+			// This has to happen before the pause menu updates so that we don't pop the menu, then immediately push it back.
+			// It's a little awkward. I'll see if I can think of something better.
+			if (Input.pressed(Keys.START) && !(windows.top is PauseMenu)) windows.push(new PauseMenu(this));
 			
-			if (Input.pressed(Keys.START)) windows.push(new PauseMenu(this));
+			super.update();
 		}
 	}
 
