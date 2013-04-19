@@ -26,21 +26,30 @@ package games.missTheMissile.windows
 			
 			this.game = game;
 			
-			clearColor = 0xFFFF0000;
+			clearColor = 0x33FFFFFF;
 			centerOnParent();
 			
 			blocksUpdates = true;
 			
-			var	restart:MenuOption = new MenuOption(100, 40, "restart", function():void {
+			var	resume:MenuOption = new MenuOption(40, 'resume', function():void {
+					close();
+				}),
+			
+				restart:MenuOption = new MenuOption(80, "restart", function():void {
 					FP.world = new MissTheMissile;
 				}),
 				
-				quit:MenuOption = new MenuOption(100, 80, "quit", function():void {
+				quit:MenuOption = new MenuOption(120, "quit", function():void {
 					FP.world = new GalleryPage();
 				});
 				
-			world.addList(restart, quit);			
-			options = new VerticalSelectionList(restart, quit);
+			// Ugh. Do something about positioning.
+			resume.x	= width / 2 - resume.width / 2;
+			restart.x	= width / 2 - restart.width / 2;
+			quit.x		= width / 2 - quit.width / 2;
+				
+			world.addList(resume, restart, quit);			
+			options = new VerticalSelectionList(resume, restart, quit);
 		}
 		
 		override public function update():void 

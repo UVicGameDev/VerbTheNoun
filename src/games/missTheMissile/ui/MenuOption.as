@@ -15,18 +15,18 @@ package games.missTheMissile.ui
 					label:String,
 					text:Text;
 		
-		public function MenuOption(x:Number, y:Number, label:String, onSelection:Function)
+		public function MenuOption(y:Number, label:String, onSelection:Function)
 		{
 			this.onSelection	= onSelection;
 			this.label			= label;
 			
-			text		= new Text(regularLabel, -100, 0, {size:32, align:"center"});
-			text.width	= 200;
+			text	= new Text(regularLabel, 0, 0, { size:32 } );
+			width	= text.width;
 			
-			super(x, y, text);
+			super(0, y, text);
 		}
 		
-		private function get regularLabel():String { return label; }
+		private function get regularLabel():String { return ' ' + label + ' '; }
 		private function get highlightLabel():String { return '-' + label + '-'; }
 		
 		/* INTERFACE core.ui.menus.Selectable */
