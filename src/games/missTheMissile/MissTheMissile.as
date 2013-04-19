@@ -2,7 +2,7 @@ package games.missTheMissile
 {
 	import core.Debug;
 	import core.Game;
-	import games.missTheMissile.windows.PauseWindow;
+	import games.missTheMissile.windows.PauseMenu;
 	import games.missTheMissile.windows.PlayWindow;
 	import net.flashpunk.graphics.Text;
 	import net.flashpunk.utils.Input;
@@ -26,7 +26,7 @@ package games.missTheMissile
 		{
 			super.update();
 			
-			if (Input.pressed(Keys.START)) windows.push(new PauseWindow(this));
+			if (Input.pressed(Keys.START)) windows.push(new PauseMenu(this));
 		}
 	}
 

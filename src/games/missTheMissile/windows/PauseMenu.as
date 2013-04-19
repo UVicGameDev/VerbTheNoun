@@ -7,11 +7,11 @@ package games.missTheMissile.windows
 	 * ...
 	 * @author beyamor
 	 */
-	public class PauseWindow extends SubWindow
+	public class PauseMenu extends SubWindow
 	{
 		private var game:Game;
 		
-		public function PauseWindow(game:Game) 
+		public function PauseMenu(game:Game) 
 		{
 			super(600, 400);
 			
