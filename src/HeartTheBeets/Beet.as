@@ -130,7 +130,7 @@ package HeartTheBeets
 			graphic = graphic_list;
 		}
 		
-		public function pull_stalk()
+		public function pull_stalk():void
 		{
 			for (var i:int; i < stalk_list.length; i++)
 			{
@@ -181,7 +181,7 @@ package HeartTheBeets
 			return result;
 		}
 		
-		public function snuggle()
+		public function snuggle():void
 		{
 			if (happiness < 11)
 			{
@@ -191,7 +191,7 @@ package HeartTheBeets
 			update_graphic_list();
 		}
 		
-		public function drop_beet()
+		public function drop_beet():void
 		{
 			beet_body_color.y += 9.5;
 			beet_body_outline.y += 9.5;
@@ -201,7 +201,7 @@ package HeartTheBeets
 			update_graphic_list();
 		}
 		
-		public function get_rained_on()
+		public function get_rained_on():void
 		{
 			if (beet_body_outline.y < 20)
 			{

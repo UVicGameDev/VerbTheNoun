@@ -13,10 +13,10 @@ package HeartTheBeets
 	 */
 	public class Player extends HeartTheBeetsEntity
 	{
-		const WALKING:int = 0; 
-		const GRABBING:int = 1; 
-		const HOLDING:int = 2;
-		const SNUGGLING:int = 3; 
+		public const WALKING:int = 0; 
+		public const GRABBING:int = 1; 
+		public const HOLDING:int = 2;
+		public const SNUGGLING:int = 3; 
 	
 		[Embed(source = 'HTB_assets/Player_strip9.png')] private const PLAYER_ANIMATION:Class;
 		private var playerSprite:Spritemap = new Spritemap(PLAYER_ANIMATION, 40,80);
@@ -38,7 +38,7 @@ package HeartTheBeets
 			setHitbox(40,80);
 		}
 		
-		public function add_animations()
+		public function add_animations():void
 		{
 			playerSprite.add("walk", [0,1,2],24,true);
 			playerSprite.add("squat", [1,6,7,8],12,false);

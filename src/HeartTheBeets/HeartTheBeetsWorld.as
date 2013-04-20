@@ -85,7 +85,7 @@ package HeartTheBeets
 				{
 					render_list.add(((HeartTheBeetsEntity)(rain_list[i])).get_graphic_list());
 				}
-				for (var i:int = 0; i<cloud_list.length; i++)
+				for (i = 0; i<cloud_list.length; i++)
 				{
 					render_list.add(((HeartTheBeetsEntity)(cloud_list[i])).get_graphic_list());
 				}

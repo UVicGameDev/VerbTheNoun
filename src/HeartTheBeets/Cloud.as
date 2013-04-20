@@ -10,7 +10,7 @@ package HeartTheBeets
 	public class Cloud extends HeartTheBeetsEntity
 	{
 		
-		[Embed(source = 'HTB_assets/Cloud.png')] private const CLOUD:Class;
+		[Embed(source = 'HTB_assets/Cloud.png')] public const CLOUD:Class;
 		
 		private var image:Image = new Image(CLOUD);
 		private var drift_speed:Number;
@@ -21,7 +21,7 @@ package HeartTheBeets
 		public function Cloud() 
 		{
 			super( -80, -60);
-			var start_y = Math.random() * 90;
+			var start_y:int = Math.random() * 90;
 			if (Math.random() * 100 > 50)
 			{
 				x = -90; 
@@ -55,7 +55,7 @@ package HeartTheBeets
 			}
 		}
 		
-		private function die()
+		private function die():void
 		{
 			var index:int = (FP.world as HeartTheBeetsWorld).cloud_list.indexOf(this);
 			(FP.world as HeartTheBeetsWorld).cloud_list.splice(index, 1);

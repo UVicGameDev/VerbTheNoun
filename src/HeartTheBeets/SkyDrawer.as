@@ -14,7 +14,7 @@ package HeartTheBeets
 			super(0, 0);
 		}
 		
-		public function set_graphic(list:Graphiclist)
+		public function set_graphic(list:Graphiclist):void
 		{
 			graphic = list;
 		}

@@ -47,7 +47,7 @@ package HeartTheBeets
 			return new Graphiclist(image);
 		}
 		
-		private function die()
+		private function die():void
 		{
 			var index:int = (FP.world as HeartTheBeetsWorld).rain_list.indexOf(this);
 			(FP.world as HeartTheBeetsWorld).rain_list.splice(index, 1);
