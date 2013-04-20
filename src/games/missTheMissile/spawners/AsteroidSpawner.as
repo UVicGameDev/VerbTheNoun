@@ -31,12 +31,12 @@ package games.missTheMissile.spawners
 			var position:Point = positioner.getNextPosition();
 			
 			var asteroid:Asteroid = new Asteroid(this, position.x, position.y);
-			mtm.world.add(asteroid);
+			mtm.view.add(asteroid);
 		}
 		
 		public function asteroidDestroid(asteroid:Asteroid):void {
 			
-			mtm.world.remove(asteroid);
+			mtm.view.remove(asteroid);
 			spawnNextAsteroid();
 		}
 	}

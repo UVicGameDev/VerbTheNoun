@@ -1,52 +1,49 @@
 package core.util.camera 
 {
-	import core.ui.windows.sub.SubWindow;
-	import core.ui.windows.Window;
+	import core.ui.View
 	/**
 	 * ...
 	 * @author beyamor
 	 */
-	public class SubWindowCamera implements Camera 
+	public class ViewCamera implements Camera 
 	{
-		private var	_x:Number	= 0,
-					_y:Number	= 0,
-					window:SubWindow;
+		private var view:View;
 		
-		public function SubWindowCamera(window:SubWindow)
+		public function ViewCamera(view:View) 
 		{
-			this.window = window;
+			this.view = view;
 		}
 		
 		/* INTERFACE core.util.camera.Camera */
 		
 		public function get x():Number 
 		{
-			return window.world.camera.x;
+			return view.camera.x;
 		}
 		
 		public function get y():Number 
 		{
-			return window.world.camera.y;
+			return view.camera.y;
 		}
 		
 		public function set x(value:Number):void 
 		{
-			window.world.camera.x = value;
+			view.camera.x = value;
 		}
 		
 		public function set y(value:Number):void 
 		{
-			window.world.camera.y = value;
+			view.camera.y = value;
 		}
 		
 		public function get width():Number 
 		{
-			return window.width;
+			return view.buffer.width;
 		}
 		
 		public function get height():Number 
 		{
-			return window.height;
+			return view.buffer.height;
 		}
 		
 		public function get top():Number 

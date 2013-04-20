@@ -33,7 +33,7 @@ package games.missTheMissile.windows
 			arena = new Arena(FP.width * 2, FP.height * 2);
 			
 			player = new Player(FP.halfWidth, FP.halfHeight, gameData, arena);
-			world.add(player);
+			view.add(player);
 			
 			camera = new BoundedCamera(
 							new Rectangle(0, 0, arena.width, arena.height),
@@ -59,7 +59,7 @@ package games.missTheMissile.windows
 		private function checkCollisions():void {
 			
 			var mtmEntities:Vector.<MissTheMissileEntity> = new Vector.<MissTheMissileEntity>;
-			world.getClass(MissTheMissileEntity, mtmEntities);
+			view.getClass(MissTheMissileEntity, mtmEntities);
 			
 			for (var firstIndex:uint = 0; firstIndex < mtmEntities.length; ++firstIndex) {
 				for (var secondIndex:uint = firstIndex + 1; secondIndex < mtmEntities.length; ++secondIndex) {

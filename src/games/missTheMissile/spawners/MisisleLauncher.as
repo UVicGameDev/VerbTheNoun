@@ -49,10 +49,10 @@ package games.missTheMissile.spawners
 			var position:Point = positioner.getNextPosition();
 			
 			var missile:Missile = new Missile(position.x, position.y, mtm.player);
-			mtm.world.add(missile);
+			mtm.view.add(missile);
 			
 			var alert:IncomingAlert = new IncomingAlert("missile", 0xff0000, missile, mtm.camera, alertScreen.camera);
-			alertScreen.world.add(alert);
+			alertScreen.view.add(alert);
 		}
 		
 		public function update():void {
