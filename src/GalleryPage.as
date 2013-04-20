@@ -24,6 +24,7 @@ package
 		public var selector:GallerySelector;
 		public var game_index:int;
 		public var game_list:Game_list;
+		public var games_on_page:Vector.<GameSelectable>;
 		
 		public function GalleryPage() 
 		{
@@ -35,7 +36,7 @@ package
 			num_games = 2;
 			game_list = new Game_list();
 			
-			leftArrow.left_link = rightArrow;
+			/*leftArrow.left_link = rightArrow;
 			leftArrow.up_link = backButton;
 			leftArrow.down_link = backButton;
 			
@@ -45,14 +46,14 @@ package
 			
 			backButton.right_link = rightArrow;
 			backButton.left_link = leftArrow;
-			
+			*/
 			add(leftArrow);
 			add(rightArrow);
 			add(backButton);
 			
 			fill_gallery_page();
 			
-			selector = new GallerySelector(leftArrow);
+			selector = new GallerySelector(games_on_page[0]);
 			add(selector);
 		}
 		
@@ -61,11 +62,17 @@ package
 			//check keys and move selector
 			if (Input.pressed(Key.RIGHT))
 			{
-				selector.move_to(selector.selection.right_link);
+				if (selector.selection.right_link == null)
+					next_page(1);
+				else
+					selector.move_to(selector.selection.right_link);
 			}
 			if (Input.pressed(Key.LEFT))
 			{
-				selector.move_to(selector.selection.left_link);
+				if (selector.selection.left_link == null)
+					next_page(-1);
+				else
+					selector.move_to(selector.selection.left_link);
 			}
 			if (Input.pressed(Key.DOWN))
 			{
@@ -79,6 +86,20 @@ package
 			{
 				take_selection_action();
 			}
+			/*if (selector.selection is GalleryArrow)
+			{
+				if (((GalleryArrow)(selector.selection)).direction > 0)
+				{
+					if (!page_right())
+						return;
+				}
+				else
+				{
+					if (!page_left())
+						return;
+				}
+				
+			}*/
 		}
 		
 		override public function add(subject:Entity):Entity
@@ -90,9 +111,72 @@ package
 			return super.add(subject);
 		}
 		
-		public function fill_gallery_page():void
+		public function get_page_games():void
+		{
+			games_on_page = new Vector.<GameSelectable>;
+			for (var i:int = 0; i < num_games; i++)
+			{
+				games_on_page.push(new GameSelectable(game_list.game_list[(i + game_index)]));
+			}
+		}
+		
+		public function place_page_games():void
 		{
 			for (var i:int = 0; i < num_games; i++)
+			{
+				var next_game:GameSelectable = games_on_page[i];
+				next_game.x = 115 + (i*190);
+				next_game.y = 100;
+				add(next_game);
+			}
+		}
+		
+		public function set_selector_links():void
+		{
+			for (var i:int = 0; i < num_games; i++)
+			{
+				games_on_page[i].up_link = backButton;
+				games_on_page[i].down_link = backButton;
+				if (i==0)
+				{
+					games_on_page[i].left_link = null;
+					//leftArrow.right_link = next_game;
+					
+					//games_on_page[i].up_link = backButton;
+					backButton.down_link = games_on_page[i];
+					backButton.left_link = games_on_page[i];
+					
+					if (i == num_games - 1)//only game left
+					{
+						games_on_page[i].right_link = null;
+						//rightArrow.left_link = games_on_page[i];
+						
+						backButton.up_link = games_on_page[i];
+						backButton.right_link = games_on_page[i];
+					}
+				}
+				else if (i==num_games-1)
+				{
+					games_on_page[i].right_link = null;
+					games_on_page[i].left_link = games_on_page[i-1];
+					games_on_page[i-1].right_link = games_on_page[i];	
+					backButton.up_link = games_on_page[i];
+				}
+				else 
+				{
+					//this case shouldn't occur yet
+					games_on_page[i].left_link = page_games[i-1];
+					page_games[i-1].right_link = games_on_page[i];
+				}
+			}
+		}
+		
+		public function fill_gallery_page():void
+		{
+			get_page_games();
+			place_page_games()
+			set_selector_links();
+			/*for (var i:int = 0; i < num_games; i++)
 			{
 				var next_game:GameSelectable = new GameSelectable(game_list.game_list[(i + game_index)]);
 				next_game.x = 115 + (i*190);
@@ -131,7 +215,31 @@ package
 					next_game.left_link = page_games[0];
 					page_games[0].right_link = next_game;
 				}
-			}
+			}*/
+		}
+		
+		public function next_page(direction:int)
+		{
+			if (direction > 0)
+				{
+					if (!page_right())
+						return;
+				}
+				else
+				{
+					if (!page_left())
+						return;
+				}
+
+				if (game_list.game_list.length - 1 - game_index >= MAX_GAMES_PER_PAGE) 
+				{
+					num_games = MAX_GAMES_PER_PAGE;
+				}
+				else
+				{
+					num_games = game_list.game_list.length - game_index;
+				}
+				fill_gallery_page();
 		}
 		
 		public function take_selection_action():void
