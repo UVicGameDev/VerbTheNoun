@@ -2,6 +2,7 @@ package games.missTheMissile
 {
 	import core.Debug;
 	import core.Game;
+	import games.missTheMissile.windows.GameOverScreen;
 	import games.missTheMissile.windows.PauseMenu;
 	import games.missTheMissile.windows.PlayWindow;
 	import net.flashpunk.graphics.Text;
@@ -20,7 +21,7 @@ package games.missTheMissile
 			if (Debug.isEnabled) addGraphic(new Text("Miss the Missile"));
 			
 			windows.push(
-				new PlayWindow()
+				new PlayWindow(this)
 			);
 		}
 		
@@ -32,6 +33,11 @@ package games.missTheMissile
 			if (Input.pressed(Keys.START) && !(windows.top is PauseMenu)) windows.push(new PauseMenu(this));
 			
 			super.update();
+		}
+		
+		public function playKilled():void {
+			
+			windows.push(new GameOverScreen(this));
 		}
 	}
 

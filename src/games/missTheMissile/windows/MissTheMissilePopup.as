@@ -41,13 +41,13 @@ package games.missTheMissile.windows
 				var option:MenuOption = optionElements[index];
 				
 				option.x = width / 2 - option.width / 2;
-				option.y = 80 + 40 * index;
+				option.y = 100 + 40 * index;
 				
 				world.add(option);
 			}
 			
 			var	titleGraphic:Text	= new Text(title, 0, 0, { size:48 } ),
-				titleElement:Entity	= world.addGraphic(titleGraphic);
+				titleElement:Entity	= world.addGraphic(titleGraphic, 0, 0, 20);
 			
 			titleElement.x = width / 2 - titleGraphic.width / 2;
 		}

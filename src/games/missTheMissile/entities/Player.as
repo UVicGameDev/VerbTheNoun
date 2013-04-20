@@ -5,6 +5,7 @@ package games.missTheMissile.entities
 	import flash.geom.Rectangle;
 	import games.missTheMissile.arena.Arena;
 	import games.missTheMissile.graphics.PlayerSprite;
+	import games.missTheMissile.MissTheMissile;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Canvas;
@@ -23,11 +24,13 @@ package games.missTheMissile.entities
 								FRICTION:Number			= 8;
 		
 		private var	sprite:PlayerSprite,
-					arena:Arena;
+					arena:Arena,
+					mtm:MissTheMissile;
 		
-		public function Player(x:Number, y:Number, arena:Arena)
+		public function Player(x:Number, y:Number, mtm:MissTheMissile, arena:Arena)
 		{
-			this.arena = arena;
+			this.arena	= arena;
+			this.mtm	= mtm; // kind of a suck dependency
 			
 			width	= WIDTH;
 			height	= HEIGHT;
@@ -89,6 +92,13 @@ package games.missTheMissile.entities
 				velocity.x *= clampRatio;
 				velocity.y *= clampRatio;
 			}
+		}
+		
+		override public function collided(other:MissTheMissileEntity):void 
+		{
+			super.collided(other);
+			
+			mtm.playKilled();
 		}
 	}
 
