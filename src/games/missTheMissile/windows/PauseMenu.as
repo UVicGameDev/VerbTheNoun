@@ -6,6 +6,7 @@ package games.missTheMissile.windows
 	import core.ui.windows.sub.Popup;
 	import core.ui.windows.sub.SubWindow;
 	import games.missTheMissile.MissTheMissile;
+	import games.missTheMissile.states.PlayState;
 	import games.missTheMissile.ui.MenuOption;
 	import net.flashpunk.FP;
 	import net.flashpunk.utils.Input;
@@ -17,7 +18,7 @@ package games.missTheMissile.windows
 	 */
 	public class PauseMenu extends MissTheMissilePopup
 	{
-		public function PauseMenu(game:Game) 
+		public function PauseMenu(game:MissTheMissile) 
 		{
 			super("Pause", game)
 		}
@@ -40,6 +41,12 @@ package games.missTheMissile.windows
 			if (isFirstUpdate) return;
 			
 			if (Input.pressed(Keys.START)) close();
+		}
+		
+		override public function close():void 
+		{
+			super.close();
+			game.state = new PlayState(game);
 		}
 	}
 

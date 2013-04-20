@@ -2,6 +2,7 @@ package games.missTheMissile.windows
 {
 	import core.Game;
 	import core.ui.windows.sub.SubWindow;
+	import games.missTheMissile.MissTheMissile;
 	import games.missTheMissile.ui.MenuOption;
 	
 	/**
@@ -11,7 +12,7 @@ package games.missTheMissile.windows
 	public class GameOverScreen extends MissTheMissilePopup 
 	{
 		
-		public function GameOverScreen(game:Game)
+		public function GameOverScreen(game:MissTheMissile)
 		{
 			super("Game Over", game);
 			

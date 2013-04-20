@@ -18,10 +18,10 @@ package games.missTheMissile.windows
 	 */
 	public class MissTheMissilePopup extends Popup 
 	{
-		protected var game:Game,
+		protected var game:MissTheMissile,
 					options:SelectionList;
 		
-		public function MissTheMissilePopup(title:String, game:Game) 
+		public function MissTheMissilePopup(title:String, game:MissTheMissile) 
 		{
 			super(400, 300, game.windows);
 			
