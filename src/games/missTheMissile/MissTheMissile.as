@@ -21,18 +21,17 @@ package games.missTheMissile
 	 */
 	public class MissTheMissile extends Game 
 	{
-		private var gameOverShown:Boolean	= false,
-					_data:GameData			= new GameData,
-					_state:GameState;
+		private var gameOverShown:Boolean		= false,
+					_data:GameData				= new GameData,
+					_state:GameState,
+					pendingNextState:GameState	= null;
 					
 		public function get data():GameData { return _data; }
 		
 		public function get state():GameState { return _state; }
 		public function set state(newState:GameState):void {
 			
-			if (_state) _state.end();
-			_state = newState;
-			_state.begin();
+			pendingNextState = newState;
 		}
 		
 		public function MissTheMissile() 
@@ -55,7 +54,15 @@ package games.missTheMissile
 		{
 			super.update();
 			
-			state.update();
+			if (state) state.update();
+			
+			if (pendingNextState) {
+				
+				if (state) state.end();
+				_state = pendingNextState;
+				pendingNextState = null;
+				state.begin();
+			}
 		}
 	}
 
