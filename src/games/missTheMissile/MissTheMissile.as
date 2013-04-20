@@ -2,13 +2,16 @@ package games.missTheMissile
 {
 	import core.Debug;
 	import core.Game;
+	import core.util.Timer;
 	import games.missTheMissile.states.GameState;
 	import games.missTheMissile.states.PlayState;
+	import games.missTheMissile.ui.ScoreDisplay;
 	import games.missTheMissile.windows.AlertScreen;
 	import games.missTheMissile.windows.GameOverScreen;
 	import games.missTheMissile.windows.MissTheMissilePopup;
 	import games.missTheMissile.windows.PauseMenu;
 	import games.missTheMissile.windows.PlayWindow;
+	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Text;
 	import net.flashpunk.utils.Input;
 	
@@ -20,7 +23,8 @@ package games.missTheMissile
 	{
 		private var gameOverShown:Boolean	= false,
 					_data:GameData			= new GameData,
-					_state:GameState;
+					_state:GameState,
+					scoreIncrementer:Timer;
 					
 		public function get data():GameData { return _data; }
 		
@@ -44,6 +48,14 @@ package games.missTheMissile
 			);
 			
 			state = new PlayState(this);
+			
+			scoreIncrementer = new Timer(1);
+			scoreIncrementer.loops = true;
+			scoreIncrementer.addCallback(function():void {
+				data.incrementScore();
+			});
+			
+			add(new ScoreDisplay(Consts.GAME_WIDTH - 310, 10, data));
 		}
 		
 		override public function update():void 
@@ -51,6 +63,7 @@ package games.missTheMissile
 			super.update();
 			
 			state.update();
+			scoreIncrementer.update();
 		}
 	}
 

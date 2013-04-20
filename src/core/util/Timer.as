@@ -10,6 +10,8 @@ package core.util
 		private var	totalTile:Number,
 					elapsedtime:Number			= 0,
 					callbacks:Vector.<Function>	= new Vector.<Function>;
+					
+		public var loops:Boolean				= false;
 		
 		public function Timer(timeInSeconds:Number)
 		{
@@ -29,7 +31,11 @@ package core.util
 		
 		public function update():void {
 			
-			if (hasFired) return;
+			if (hasFired) {
+				
+				if (loops)	elapsedtime = 0;
+				else		return;
+			};
 			
 			elapsedtime += FP.elapsed;
 			

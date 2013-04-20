@@ -6,11 +6,22 @@ package games.missTheMissile
 	 */
 	public class GameData 
 	{
-		private var	playerKilled:Boolean = false;
+		private var	playerKilled:Boolean	= false,
+					_score:uint				= 0;
 		
 		public function GameData() 
 		{
 			
+		}
+		
+		public function get score():uint {
+			
+			return _score;
+		}
+		
+		public function incrementScore():void {
+			
+			_score += 100;
 		}
 		
 		public function killPlayer():void {
