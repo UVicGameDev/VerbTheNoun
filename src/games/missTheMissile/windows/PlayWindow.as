@@ -26,7 +26,7 @@ package games.missTheMissile.windows
 		private var	launcher:MisisleLauncher,
 					asteroidSpawner:AsteroidSpawner;
 		
-		public function PlayWindow(gameData:GameData) 
+		public function PlayWindow(gameData:GameData, alertScreen:AlertScreen) 
 		{
 			super();
 			
@@ -41,7 +41,7 @@ package games.missTheMissile.windows
 								player,
 								camera));
 			
-			launcher		= new MisisleLauncher(this);
+			launcher		= new MisisleLauncher(this, alertScreen);
 			asteroidSpawner	= new AsteroidSpawner(this);
 			
 			clearColor = 0;

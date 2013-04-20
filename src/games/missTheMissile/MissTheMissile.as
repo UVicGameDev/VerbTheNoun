@@ -4,6 +4,7 @@ package games.missTheMissile
 	import core.Game;
 	import games.missTheMissile.states.GameState;
 	import games.missTheMissile.states.PlayState;
+	import games.missTheMissile.windows.AlertScreen;
 	import games.missTheMissile.windows.GameOverScreen;
 	import games.missTheMissile.windows.MissTheMissilePopup;
 	import games.missTheMissile.windows.PauseMenu;
@@ -35,8 +36,11 @@ package games.missTheMissile
 		{
 			if (Debug.isEnabled) addGraphic(new Text("Miss the Missile"));
 			
+			var alertScreen:AlertScreen = new AlertScreen();
+			
 			windows.push(
-				new PlayWindow(_data)
+				alertScreen,
+				new PlayWindow(_data, alertScreen)
 			);
 			
 			state = new PlayState(this);

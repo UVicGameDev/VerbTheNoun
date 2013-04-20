@@ -8,6 +8,7 @@ package games.missTheMissile.spawners
 	import games.missTheMissile.entities.Missile;
 	import games.missTheMissile.MissTheMissile;
 	import games.missTheMissile.ui.alert.IncomingAlert;
+	import games.missTheMissile.windows.AlertScreen;
 	import games.missTheMissile.windows.PlayWindow;
 	import net.flashpunk.FP;
 	/**
@@ -21,12 +22,14 @@ package games.missTheMissile.spawners
 		
 		private var	mtm:PlayWindow,
 					timer:Timer,
-					positioner:BoundaryPositioner;
+					positioner:BoundaryPositioner,
+					alertScreen:AlertScreen;
 	
-		public function MisisleLauncher(mtm:PlayWindow) 
+		public function MisisleLauncher(mtm:PlayWindow, alertScreen:AlertScreen) 
 		{
-			this.mtm = mtm;
-			this.positioner = new BoundaryPositioner(mtm.arena, BOUNDARY);
+			this.mtm			= mtm;
+			this.alertScreen	= alertScreen;
+			this.positioner		= new BoundaryPositioner(mtm.arena, BOUNDARY);
 			
 			shootMissile();
 			timer = new Timer(TIME_BETWEEN_SHOTS);
@@ -48,8 +51,8 @@ package games.missTheMissile.spawners
 			var missile:Missile = new Missile(position.x, position.y, mtm.player);
 			mtm.world.add(missile);
 			
-			var alert:IncomingAlert = new IncomingAlert("missile", 0xff0000, missile, mtm.camera);
-			mtm.world.add(alert);
+			var alert:IncomingAlert = new IncomingAlert("missile", 0xff0000, missile, mtm.camera, alertScreen.camera);
+			alertScreen.world.add(alert);
 		}
 		
 		public function update():void {

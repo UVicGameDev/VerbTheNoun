@@ -1,5 +1,6 @@
 package games.missTheMissile.ui.alert 
 {
+	import core.ui.windows.Window;
 	import core.util.camera.Camera;
 	import games.missTheMissile.graphics.AlertArrow;
 	import net.flashpunk.Entity;
@@ -15,13 +16,15 @@ package games.missTheMissile.ui.alert
 		private static const MARGIN:Number = 24;
 		
 		private var	entity:Entity,
-					camera:Camera,
+					entityCamera:Camera,
+					ownCamera:Camera,
 					arrow:AlertArrow;
 		
-		public function IncomingAlert(description:String, color:uint, entity:Entity, camera:Camera) 
+		public function IncomingAlert(description:String, color:uint, entity:Entity, entityCamera:Camera, ownCamera:Camera)
 		{
-			this.entity	= entity;
-			this.camera	= camera;
+			this.entity			= entity;
+			this.entityCamera	= entityCamera;
+			this.ownCamera		= ownCamera;
 			
 			arrow = new AlertArrow(color);
 			graphic = new Graphiclist(arrow);
@@ -41,22 +44,22 @@ package games.missTheMissile.ui.alert
 		
 		private function boundVertically():void {
 			
-			if (y < camera.top + MARGIN)	y = camera.top + MARGIN;
-			if (y > camera.bottom - MARGIN)	y = camera.bottom - MARGIN;
+			if (y < ownCamera.top + MARGIN)	y = ownCamera.top + MARGIN;
+			if (y > ownCamera.bottom - MARGIN)	y = ownCamera.bottom - MARGIN;
 		}
 		
 		private function boundHorizontally():void {
 			
-			if (x < camera.left + MARGIN)	x = camera.left + MARGIN;
-			if (x > camera.right - MARGIN)	x = camera.right - MARGIN;
+			if (x < ownCamera.left + MARGIN)	x = ownCamera.left + MARGIN;
+			if (x > ownCamera.right - MARGIN)	x = ownCamera.right - MARGIN;
 		}
 		
 		private function reposition():void {
 			
-			const	belowLeft:Boolean	= (entity.x < camera.left),
-					aboveRight:Boolean	= (entity.x > camera.right),
-					belowTop:Boolean	= (entity.y < camera.top),
-					aboveBottom:Boolean	= (entity.y > camera.bottom),
+			const	belowLeft:Boolean	= (entity.x < entityCamera.left),
+					aboveRight:Boolean	= (entity.x > entityCamera.right),
+					belowTop:Boolean	= (entity.y < entityCamera.top),
+					aboveBottom:Boolean	= (entity.y > entityCamera.bottom),
 					xIsInCamera:Boolean	= !(belowLeft || aboveRight),
 					yIsInCamera:Boolean = !(belowTop || aboveBottom);
 			
@@ -66,18 +69,18 @@ package games.missTheMissile.ui.alert
 				
 				y = entity.y;
 				
-				if (entity.x < camera.left) {
+				if (entity.x < entityCamera.left) {
 					
-					y = entity.y;
-					x = camera.left;
+					y = entity.y - entityCamera.y + ownCamera.y;
+					x = ownCamera.left;
 					arrow.faceLeft();
 					boundVertically();
 				}
 				
 				else {
 					
-					y = entity.y;
-					x = camera.right;
+					y = entity.y - entityCamera.y + ownCamera.y;
+					x = ownCamera.right;
 					arrow.faceRight();
 					boundVertically();					
 				}
@@ -88,18 +91,18 @@ package games.missTheMissile.ui.alert
 				
 				x = entity.x;
 				
-				if (entity.y < camera.top) {
+				if (entity.y < entityCamera.top) {
 					
-					x = entity.x;
-					y = camera.top;
+					x = entity.x - entityCamera.x + ownCamera.x;
+					y = ownCamera.top;
 					arrow.faceUp();
 					boundHorizontally();				
 				}
 				
 				else {
 					
-					x = entity.x
-					y = camera.bottom;
+					x = entity.x - entityCamera.x + ownCamera.x;
+					y = ownCamera.bottom;
 					arrow.faceDown();
 					boundHorizontally();				
 				}
@@ -110,29 +113,29 @@ package games.missTheMissile.ui.alert
 				
 				if (belowLeft && belowTop) {
 					
-					x = camera.left;
-					y = camera.top;
+					x = ownCamera.left;
+					y = ownCamera.top;
 					arrow.faceUpLeft();
 				}
 				
 				else if (aboveRight && belowTop) {
 					
-					x = camera.right;
-					y = camera.top;
+					x = ownCamera.right;
+					y = ownCamera.top;
 					arrow.faceUpRight();
 				}
 				
 				else if (belowLeft && aboveBottom) {
 					
-					x = camera.left;
-					y = camera.bottom;
+					x = ownCamera.left;
+					y = ownCamera.bottom;
 					arrow.faceDownLeft();
 				}
 				
 				else {
 					
-					x = camera.right;
-					y = camera.bottom;
+					x = ownCamera.right;
+					y = ownCamera.bottom;
 					arrow.faceDownRight();
 				}
 			}
@@ -140,10 +143,10 @@ package games.missTheMissile.ui.alert
 		
 		private function get entityIsOnscreen():Boolean {
 			
-			if (entity.x + entity.halfWidth < camera.left ||
-				entity.y + entity.halfHeight < camera.top ||
-				entity.x - entity.halfWidth > camera.right ||
-				entity.y - entity.halfHeight > camera.bottom) return false;
+			if (entity.x + entity.halfWidth < entityCamera.left ||
+				entity.y + entity.halfHeight < entityCamera.top ||
+				entity.x - entity.halfWidth > entityCamera.right ||
+				entity.y - entity.halfHeight > entityCamera.bottom) return false;
 				
 			return true;
 		}
