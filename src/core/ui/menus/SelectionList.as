@@ -27,7 +27,7 @@ package core.ui.menus
 			addAll(selectables);
 		}
 		
-		protected function addAll(selectablesToAdd:Array):void {
+		public function addAll(selectablesToAdd:*):void {
 			
 			var pendingHighlight:Boolean = (selectables.length == 0 && selectablesToAdd.length > 0);
 			

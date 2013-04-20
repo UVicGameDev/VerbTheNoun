@@ -15,7 +15,7 @@ package games.missTheMissile.ui
 					label:String,
 					text:Text;
 		
-		public function MenuOption(y:Number, label:String, onSelection:Function)
+		public function MenuOption(label:String, onSelection:Function)
 		{
 			this.onSelection	= onSelection;
 			this.label			= label;
@@ -23,7 +23,7 @@ package games.missTheMissile.ui
 			text	= new Text(regularLabel, 0, 0, { size:32 } );
 			width	= text.width;
 			
-			super(0, y, text);
+			super(0, 0, text);
 		}
 		
 		private function get regularLabel():String { return ' ' + label + ' '; }
