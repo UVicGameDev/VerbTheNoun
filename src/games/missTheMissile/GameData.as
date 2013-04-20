@@ -4,11 +4,11 @@ package games.missTheMissile
 	 * ...
 	 * @author beyamor
 	 */
-	public class GameState 
+	public class GameData 
 	{
 		private var	playerKilled:Boolean = false;
 		
-		public function GameState() 
+		public function GameData() 
 		{
 			
 		}

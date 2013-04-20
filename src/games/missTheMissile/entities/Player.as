@@ -4,7 +4,7 @@ package games.missTheMissile.entities
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import games.missTheMissile.arena.Arena;
-	import games.missTheMissile.GameState;
+	import games.missTheMissile.GameData;
 	import games.missTheMissile.graphics.PlayerSprite;
 	import games.missTheMissile.MissTheMissile;
 	import net.flashpunk.Entity;
@@ -26,9 +26,9 @@ package games.missTheMissile.entities
 		
 		private var	sprite:PlayerSprite,
 					arena:Arena,
-					game:GameState;
+					game:GameData;
 		
-		public function Player(x:Number, y:Number, game:GameState, arena:Arena)
+		public function Player(x:Number, y:Number, game:GameData, arena:Arena)
 		{
 			this.arena	= arena;
 			this.game	= game;

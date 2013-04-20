@@ -16,14 +16,14 @@ package games.missTheMissile
 	public class MissTheMissile extends Game 
 	{
 		private var gameOverShown:Boolean	= false,
-					state:GameState			= new GameState;
+					data:GameData			= new GameData;
 		
 		public function MissTheMissile() 
 		{
 			if (Debug.isEnabled) addGraphic(new Text("Miss the Missile"));
 			
 			windows.push(
-				new PlayWindow(state)
+				new PlayWindow(data)
 			);
 		}
 		

@@ -8,7 +8,7 @@ package games.missTheMissile.windows
 	import games.missTheMissile.arena.Arena;
 	import games.missTheMissile.entities.MissTheMissileEntity;
 	import games.missTheMissile.entities.Player;
-	import games.missTheMissile.GameState;
+	import games.missTheMissile.GameData;
 	import games.missTheMissile.MissTheMissile;
 	import games.missTheMissile.spawners.AsteroidSpawner;
 	import games.missTheMissile.spawners.MisisleLauncher;
@@ -26,13 +26,13 @@ package games.missTheMissile.windows
 		private var	launcher:MisisleLauncher,
 					asteroidSpawner:AsteroidSpawner;
 		
-		public function PlayWindow(gameState:GameState) 
+		public function PlayWindow(gameData:GameData) 
 		{
 			super();
 			
 			arena = new Arena(FP.width * 2, FP.height * 2);
 			
-			player = new Player(FP.halfWidth, FP.halfHeight, gameState, arena);
+			player = new Player(FP.halfWidth, FP.halfHeight, gameData, arena);
 			world.add(player);
 			
 			camera = new BoundedCamera(
