@@ -21,7 +21,7 @@ package games.missTheMissile
 		
 		public function incrementScore():void {
 			
-			_score += 100;
+			_score += 10;
 		}
 		
 		public function killPlayer():void {

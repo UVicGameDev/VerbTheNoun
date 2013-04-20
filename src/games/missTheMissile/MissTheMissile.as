@@ -23,8 +23,7 @@ package games.missTheMissile
 	{
 		private var gameOverShown:Boolean	= false,
 					_data:GameData			= new GameData,
-					_state:GameState,
-					scoreIncrementer:Timer;
+					_state:GameState;
 					
 		public function get data():GameData { return _data; }
 		
@@ -49,12 +48,6 @@ package games.missTheMissile
 			
 			state = new PlayState(this);
 			
-			scoreIncrementer = new Timer(1);
-			scoreIncrementer.loops = true;
-			scoreIncrementer.addCallback(function():void {
-				data.incrementScore();
-			});
-			
 			add(new ScoreDisplay(Consts.GAME_WIDTH - 310, 10, data));
 		}
 		
@@ -63,7 +56,6 @@ package games.missTheMissile
 			super.update();
 			
 			state.update();
-			scoreIncrementer.update();
 		}
 	}
 
