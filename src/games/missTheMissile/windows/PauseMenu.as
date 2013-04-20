@@ -32,6 +32,15 @@ package games.missTheMissile.windows
 				createQuitOption()
 			];
 		}
+		
+		override public function update():void 
+		{
+			super.update();
+			
+			if (isFirstUpdate) return;
+			
+			if (Input.pressed(Keys.START)) close();
+		}
 	}
 
 }

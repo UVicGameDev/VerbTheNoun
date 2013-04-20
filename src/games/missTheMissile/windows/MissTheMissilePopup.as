@@ -56,10 +56,6 @@ package games.missTheMissile.windows
 		{
 			super.update();
 			
-			if (isFirstUpdate) return;
-			
-			if (Input.pressed(Keys.START)) close();
-			
 			options.update();
 		}
 		

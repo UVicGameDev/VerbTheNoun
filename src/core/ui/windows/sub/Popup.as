@@ -9,7 +9,8 @@ package core.ui.windows.sub
 	 */
 	public class Popup extends SubWindow 
 	{
-		private var stack:WindowStack;
+		private var		stack:WindowStack;
+		protected var	canBeClosed:Boolean	= true;
 		
 		public function Popup(width:Number, height:Number, stack:WindowStack)
 		{
@@ -29,7 +30,7 @@ package core.ui.windows.sub
 		{
 			super.update();
 			
-			if (Input.pressed(Keys.CANCEL)) close();
+			if (canBeClosed && Input.pressed(Keys.CANCEL)) close();
 		}
 	}
 
