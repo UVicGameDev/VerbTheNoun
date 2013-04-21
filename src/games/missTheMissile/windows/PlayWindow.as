@@ -1,5 +1,6 @@
 package games.missTheMissile.windows 
 {
+	import core.Dimensions;
 	import core.ui.windows.sub.PlayWindowBase;
 	import core.util.camera.BoundedCamera;
 	import core.util.camera.EntityCamera;
@@ -32,7 +33,7 @@ package games.missTheMissile.windows
 			
 			arena = new Arena(FP.width * 2, FP.height * 2);
 			
-			player = new Player(FP.halfWidth, FP.halfHeight, gameData, arena);
+			player = new Player(Dimensions.halfWidth(arena), Dimensions.halfHeight(arena), gameData, arena);
 			view.add(player);
 			
 			camera = new BoundedCamera(
