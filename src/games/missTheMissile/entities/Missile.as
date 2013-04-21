@@ -1,5 +1,6 @@
 package games.missTheMissile.entities 
 {
+	import flash.external.ExternalInterface;
 	import flash.geom.Rectangle;
 	import games.missTheMissile.graphics.MissileSprite;
 	/**
@@ -64,7 +65,11 @@ package games.missTheMissile.entities
 				wasHit = true;
 			}
 			
-			if (wasHit && world) world.remove(this);
+			if (wasHit && world) {
+				
+				world.add(new Explosion(x, y));
+				world.remove(this);
+			}
 		}
 	}
 

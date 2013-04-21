@@ -6,6 +6,7 @@ package games.missTheMissile.entities
 	import flash.geom.Rectangle;
 	import games.missTheMissile.arena.Arena;
 	import games.missTheMissile.GameData;
+	import games.missTheMissile.graphics.explosions.ExplosionSprite;
 	import games.missTheMissile.graphics.PlayerSprite;
 	import games.missTheMissile.MissTheMissile;
 	import net.flashpunk.Entity;

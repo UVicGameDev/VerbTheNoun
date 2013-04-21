@@ -11,6 +11,11 @@ package core
 			return min + Math.random() * (max - min);
 		}
 		
+		public static function intInRange(min:int, max:int):int {
+			
+			return min + Math.floor(Math.random() * (max - min));
+		}
+		
 		public static function any(coll:*):* {
 			
 			if (coll.length == 0) return null;
@@ -22,6 +27,11 @@ package core
 		public static function trueOrFalse():Boolean {
 			
 			return (Math.random() < 0.5);
+		}
+		
+		public static function get angle():Number {
+			
+			return inRange(0, Math.PI * 2);
 		}
 	}
 

@@ -4,6 +4,7 @@ package games.missTheMissile.graphics
 	import flash.display.BitmapData;
 	import flash.display.Graphics;
 	import flash.display.Shape;
+	import flash.geom.ColorTransform;
 	import flash.geom.Matrix;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
@@ -16,8 +17,10 @@ package games.missTheMissile.graphics
 	public class FilledPolygon extends Graphic 
 	{
 		private var	buffer:BitmapData,
+					transformedBuffer:BitmapData,
 					width:uint,
-					height:uint;
+					height:uint,
+					oldAlpha:Number = -1;
 					
 					
 		public var	origin:Point		= new Point,
@@ -79,6 +82,8 @@ package games.missTheMissile.graphics
 		{
 			super.render(target, point, camera);
 			
+			var buffer:BitmapData = (this.transformedBuffer)? this.transformedBuffer : this.buffer;
+			
 			var drawMatrix:Matrix = new Matrix;
 			drawMatrix.translate( -origin.x, -origin.y);
 			drawMatrix.rotate(direction);
@@ -95,6 +100,32 @@ package games.missTheMissile.graphics
 		public function get bottom():Number				{ return height - lineWidth; }
 		public function get horizontalCenter():Number	{ return width / 2; }
 		public function get verticalCenter():Number		{ return height / 2; }
+		
+		public function set alpha(newAlpha:Number):void {
+			
+			if (newAlpha != oldAlpha) {
+				
+				oldAlpha = newAlpha;
+			}
+			else {
+				
+				return;
+			}
+			
+			if (newAlpha >= 1) {
+				
+				// Return to untransformed buffer
+				transformedBuffer = null;
+			}
+			
+			else {
+				
+				var tranform:ColorTransform = new ColorTransform;
+				tranform.alphaMultiplier = newAlpha;
+				
+				transformedBuffer = buffer.clone();
+				transformedBuffer.colorTransform(transformedBuffer.rect, tranform);
+			}
+		}
 	}
-
 }
