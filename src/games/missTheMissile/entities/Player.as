@@ -1,5 +1,6 @@
 package games.missTheMissile.entities 
 {
+	import core.Debug;
 	import flash.filters.DisplacementMapFilterMode;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
@@ -98,6 +99,8 @@ package games.missTheMissile.entities
 		override public function collided(other:MissTheMissileEntity):void 
 		{
 			super.collided(other);
+			
+			if (Debug.invincibilityEnabled) return;
 			
 			game.killPlayer();
 		}
