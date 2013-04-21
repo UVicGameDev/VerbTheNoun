@@ -16,7 +16,8 @@ package games.missTheMissile.windows
 		{
 			super("Game Over", game);
 			
-			canBeClosed = false;
+			canBeClosed		= false;
+			blocksUpdates	= false;
 		}
 		
 		override protected function createOptions():Vector.<MenuOption> 

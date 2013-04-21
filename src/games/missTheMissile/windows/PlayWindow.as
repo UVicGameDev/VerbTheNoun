@@ -42,7 +42,7 @@ package games.missTheMissile.windows
 								player,
 								camera));
 			
-			launcher		= new MisisleLauncher(this, alertScreen);
+			launcher		= new MisisleLauncher(this, alertScreen, gameData);
 			asteroidSpawner	= new AsteroidSpawner(this);
 			
 			clearColor = 0;

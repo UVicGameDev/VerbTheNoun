@@ -2,6 +2,7 @@ package games.missTheMissile.entities
 {
 	import flash.external.ExternalInterface;
 	import flash.geom.Rectangle;
+	import games.missTheMissile.GameData;
 	import games.missTheMissile.graphics.MissileSprite;
 	/**
 	 * ...
@@ -14,11 +15,12 @@ package games.missTheMissile.entities
 								WIDTH:Number			= 32,
 								HEIGHT:Number			= 32;
 		
-		private var	player:Player;
+		private var	data:GameData;
+		private function get player():Player { return data.player; }
 		
-		public function Missile(x:Number, y:Number, player:Player)
+		public function Missile(x:Number, y:Number, data:GameData)
 		{
-			this.player = player;
+			this.data = data;
 			
 			width	= WIDTH;
 			height	= HEIGHT;
@@ -39,9 +41,12 @@ package games.missTheMissile.entities
 		{
 			super.update();
 			
-			var intendedDirection:Number = directionToPlayer;
-			velocity.x += ACCELERATION * Math.cos(intendedDirection);
-			velocity.y += ACCELERATION * Math.sin(intendedDirection);
+			if (data.playerIsAlive) {
+				
+				var intendedDirection:Number = directionToPlayer;
+				velocity.x += ACCELERATION * Math.cos(intendedDirection);
+				velocity.y += ACCELERATION * Math.sin(intendedDirection);
+			}
 			
 			speed = Math.min(MAX_SPEED, speed);
 		}

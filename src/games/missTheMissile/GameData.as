@@ -1,13 +1,14 @@
 package games.missTheMissile 
 {
+	import games.missTheMissile.entities.Player;
 	/**
 	 * ...
 	 * @author beyamor
 	 */
 	public class GameData 
 	{
-		private var	playerKilled:Boolean	= false,
-					_score:uint				= 0;
+		private var	_score:uint		= 0;
+		public var	player:Player;
 		
 		public function GameData() 
 		{
@@ -26,13 +27,14 @@ package games.missTheMissile
 		
 		public function killPlayer():void {
 			
-			playerKilled = true;
+			player = null;
 		}
 		
 		public function get playerIsDead():Boolean {
 			
-			return playerKilled;
+			return (player == null);
 		}
+		public function get playerIsAlive():Boolean { return !playerIsDead; } // for readability
 	}
 
 }

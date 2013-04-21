@@ -27,12 +27,14 @@ package games.missTheMissile.entities
 		
 		private var	sprite:PlayerSprite,
 					arena:Arena,
-					game:GameData;
+					data:GameData;
 		
-		public function Player(x:Number, y:Number, game:GameData, arena:Arena)
+		public function Player(x:Number, y:Number, data:GameData, arena:Arena)
 		{
 			this.arena	= arena;
-			this.game	= game;
+			this.data	= data;
+			
+			data.player = this;
 			
 			width	= WIDTH;
 			height	= HEIGHT;
@@ -101,7 +103,12 @@ package games.missTheMissile.entities
 			
 			if (Debug.invincibilityEnabled) return;
 			
-			game.killPlayer();
+			data.killPlayer();
+			if (world) {
+				
+				world.add(new Explosion(x, y));
+				world.remove(this);
+			}
 		}
 	}
 

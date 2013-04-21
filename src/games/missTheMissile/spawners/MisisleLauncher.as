@@ -6,6 +6,7 @@ package games.missTheMissile.spawners
 	import flash.geom.Point;
 	import games.missTheMissile.arena.BoundaryPositioner;
 	import games.missTheMissile.entities.Missile;
+	import games.missTheMissile.GameData;
 	import games.missTheMissile.MissTheMissile;
 	import games.missTheMissile.ui.alert.IncomingAlert;
 	import games.missTheMissile.windows.AlertScreen;
@@ -23,12 +24,14 @@ package games.missTheMissile.spawners
 		private var	mtm:PlayWindow,
 					timer:Timer,
 					positioner:BoundaryPositioner,
-					alertScreen:AlertScreen;
-	
-		public function MisisleLauncher(mtm:PlayWindow, alertScreen:AlertScreen) 
+					alertScreen:AlertScreen,
+					data:GameData;
+
+		public function MisisleLauncher(mtm:PlayWindow, alertScreen:AlertScreen, data:GameData) 
 		{
 			this.mtm			= mtm;
 			this.alertScreen	= alertScreen;
+			this.data			= data;
 			this.positioner		= new BoundaryPositioner(mtm.arena, BOUNDARY);
 			
 			shootMissile();
@@ -36,7 +39,7 @@ package games.missTheMissile.spawners
 			
 			var nextShotCallback:Function = function():void {
 				
-				shootMissile();
+				if (data.playerIsAlive) shootMissile();
 				timer = new Timer(TIME_BETWEEN_SHOTS);
 				timer.addCallback(nextShotCallback);
 			}
@@ -48,7 +51,7 @@ package games.missTheMissile.spawners
 			
 			var position:Point = positioner.getNextPosition();
 			
-			var missile:Missile = new Missile(position.x, position.y, mtm.player);
+			var missile:Missile = new Missile(position.x, position.y, data);
 			mtm.view.add(missile);
 			
 			var alert:IncomingAlert = new IncomingAlert("missile", 0xff0000, missile, mtm.camera, alertScreen.camera);
