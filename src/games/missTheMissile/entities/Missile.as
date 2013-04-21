@@ -1,7 +1,7 @@
 package games.missTheMissile.entities 
 {
 	import flash.geom.Rectangle;
-	import net.flashpunk.graphics.Canvas;
+	import games.missTheMissile.graphics.MissileSprite;
 	/**
 	 * ...
 	 * @author beyamor
@@ -13,8 +13,7 @@ package games.missTheMissile.entities
 								WIDTH:Number			= 32,
 								HEIGHT:Number			= 32;
 		
-		private var	sprite:Canvas,
-					player:Player;
+		private var	player:Player;
 		
 		public function Missile(x:Number, y:Number, player:Player)
 		{
@@ -24,12 +23,7 @@ package games.missTheMissile.entities
 			height	= HEIGHT;
 			centerOrigin();
 			
-			sprite		= new Canvas(width, height);
-			sprite.x	= -sprite.width / 2;
-			sprite.y	= -sprite.height / 2;
-			sprite.drawRect(new Rectangle(0, 0, width, height), 0xFF0000);
-			
-			super(x, y, sprite);
+			super(x, y, new MissileSprite(this));
 			
 			speed		= MAX_SPEED;
 			direction	= directionToPlayer;

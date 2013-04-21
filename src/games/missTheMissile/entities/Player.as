@@ -10,7 +10,6 @@ package games.missTheMissile.entities
 	import games.missTheMissile.MissTheMissile;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
-	import net.flashpunk.graphics.Canvas;
 	import net.flashpunk.utils.Input;
 	
 	/**
@@ -44,7 +43,6 @@ package games.missTheMissile.entities
 		override public function update():void 
 		{
 			super.update();
-			sprite.update();
 			
 			checkMotion();
 			boundToArena();
