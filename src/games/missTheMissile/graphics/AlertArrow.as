@@ -19,67 +19,40 @@ package games.missTheMissile.graphics
 								START_OF_TRIANGLE:Number	= WIDTH * 0.35,
 								TRIANGLE_INDENT:Number		= HEIGHT * 0.25,
 								OUTLINE_THICKNESS:Number	= 3;
-		
-		private var previousDirection:Number = 0,
-					color:uint,
-					buffer:BitmapData,
-					rotationMatrix:Matrix;
+					
+		public var	direction:Number = 0;
+					
+		private var	shape:FilledPolygon;
 		
 		public function AlertArrow(color:uint)
-		{
-			this.color = color;
-			redraw(0);
-		}
-		
-		public function set direction(direction:Number):void {
+		{			
+			this.shape = new FilledPolygon(WIDTH, HEIGHT);
 			
-			if (direction == previousDirection) return;
+			shape.draw(
+				color,
+				
+				// The pointy bit
+				[START_OF_TRIANGLE, shape.verticalCenter - TRIANGLE_INDENT],
+				[START_OF_TRIANGLE, shape.top],
+				[shape.right, shape.verticalCenter],
+				[START_OF_TRIANGLE, shape.bottom],
+				[START_OF_TRIANGLE, shape.verticalCenter + TRIANGLE_INDENT],
+				
+				// The rectangly bit
+				[shape.left, shape.verticalCenter + TRIANGLE_INDENT],
+				[shape.left, shape.verticalCenter - TRIANGLE_INDENT]
+			);
 			
-			previousDirection = direction;
-			redraw(direction);
-		}
-		
-		private function redraw(direction:Number):void {
-			
-			var shape:Shape	= new Shape,
-			gfx:Graphics	= shape.graphics;
-			
-			// So, like the arrow face right, y'know? =>
-			gfx.beginFill(color, 0.2);
-			gfx.lineStyle(OUTLINE_THICKNESS, color, 0.8);
-			
-			// The pointy bit
-			gfx.moveTo(START_OF_TRIANGLE, HEIGHT - TRIANGLE_INDENT);
-			gfx.lineTo(START_OF_TRIANGLE, HEIGHT - OUTLINE_THICKNESS);
-			gfx.lineTo(WIDTH - OUTLINE_THICKNESS, HEIGHT / 2);
-			gfx.lineTo(START_OF_TRIANGLE, OUTLINE_THICKNESS);
-			gfx.lineTo(START_OF_TRIANGLE, TRIANGLE_INDENT);
-			
-			// The rectangly bit
-			gfx.lineTo(OUTLINE_THICKNESS, TRIANGLE_INDENT);
-			gfx.lineTo(OUTLINE_THICKNESS, HEIGHT - TRIANGLE_INDENT);
-			gfx.lineTo(START_OF_TRIANGLE, HEIGHT - TRIANGLE_INDENT);
-			
-			gfx.endFill();
-			
-			rotationMatrix = new Matrix;
-			rotationMatrix.translate(-WIDTH / 2, -HEIGHT / 2);
-			rotationMatrix.rotate(direction);
-			rotationMatrix.translate(WIDTH / 2, HEIGHT / 2);
-			
-			buffer = new BitmapData(WIDTH, HEIGHT, true, 0);
-			buffer.draw(shape, rotationMatrix);
+			shape.origin.x = shape.right;
+			shape.origin.y = shape.verticalCenter;
 		}
 		
 		override public function render(target:BitmapData, point:Point, camera:Point):void 
 		{
 			super.render(target, point, camera);
 			
-			var tip:Point			= rotationMatrix.transformPoint(new Point(WIDTH, HEIGHT / 2)),
-				drawMatrix:Matrix	= new Matrix;
-				
-			drawMatrix.translate(point.x - camera.x - tip.x, point.y - camera.y - tip.y);
-			target.draw(buffer, drawMatrix);
+			shape.direction = this.direction;
+			shape.render(target, point, camera);
 		}
 		
 		public function faceUp():void			{ direction = -Math.PI * 0.5; }
