@@ -2,6 +2,7 @@ package core.ui.windows
 {
 	import flash.display.BitmapData;
 	import core.util.camera.Camera
+	import flash.geom.Point;
 	
 	/**
 	 * So, I dunno.
@@ -15,6 +16,7 @@ package core.ui.windows
 	{
 		function get x():Number;
 		function get y():Number;
+		function get position():Point;
 		function get width():Number;
 		function get height():Number;
 		

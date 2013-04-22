@@ -22,8 +22,7 @@ package core.ui.windows.sub
 		
 		// Public variables don't satisfy interface properties
 		// Which is so great. Just damn. Glad I have to chug through all this crappy boilerplate.
-		private var	_x:Number				= 0,
-					_y:Number				= 0,
+		private var	_position:Point		= new Point,
 					_width:Number,
 					_height:Number,
 					_blocksUpdates:Boolean	= false,
@@ -34,11 +33,14 @@ package core.ui.windows.sub
 					_firstUpdateHasPassed:Boolean	= false;
 					
 		// ugh this sucks everything is awful
-		public function get x():Number { return _x; }
-		public function set x(x:Number):void { _x = x; }
+		public function get position():Point { return _position; }
+		public function set position(newPosition:Point):void { _position = newPosition; }
 		
-		public function get y():Number { return _y; }
-		public function set y(y:Number):void { _y = y; }
+		public function get x():Number { return position.x; }
+		public function set x(x:Number):void { position.x = x; }
+		
+		public function get y():Number { return position.y; }
+		public function set y(y:Number):void { position.y = y; }
 		
 		public function get width():Number { return _width; }
 		public function set width(width:Number):void { _width = width; recreateBuffer(); }
@@ -109,7 +111,7 @@ package core.ui.windows.sub
 			
 			clearBuffer();
 			
-			view.renderTo(parent.buffer, new Point(x, y));
+			view.renderTo(parent.buffer, position);
 		}
 	}
 

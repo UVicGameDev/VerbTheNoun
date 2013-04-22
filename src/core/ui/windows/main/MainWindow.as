@@ -4,6 +4,7 @@ package core.ui.windows.main
 	import core.util.camera.FPCamera;
 	import flash.display.BitmapData;
 	import core.util.camera.Camera
+	import flash.geom.Point;
 	import net.flashpunk.FP;
 	
 	/**
@@ -21,6 +22,10 @@ package core.ui.windows.main
 		}
 		
 		/* INTERFACE core.ui.windows.Window */
+		public function get position():Point
+		{
+			return new Point;
+		}
 		
 		public function get x():Number 
 		{

@@ -71,10 +71,10 @@ package games.missTheMissile.windows
 			
 			for each (var starView:StarView in starViews) {
 				
-				starView.renderTo(parent.buffer);
+				starView.renderTo(buffer);
 			}
 			
-			view.renderTo(parent.buffer, new Point(x, y));
+			view.renderTo(parent.buffer, position);
 		}
 	}
 
