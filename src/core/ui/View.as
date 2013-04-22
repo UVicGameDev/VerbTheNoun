@@ -77,6 +77,12 @@ package core.ui
 			render();
 			copyToBuffer(someBuffer, offset);
 		}
+		
+		override public function update():void 
+		{
+			super.update();
+			updateables.update();
+		}
 	}
 
 }
