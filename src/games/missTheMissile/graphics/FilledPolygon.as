@@ -44,7 +44,8 @@ package games.missTheMissile.graphics
 			var	shape:Shape		= new Shape,
 				gfx:Graphics	= shape.graphics;
 			
-			gfx.beginFill(color, 0.2);
+			//gfx.beginFill(color, 0.2);
+			gfx.beginFill(color, 1);
 			gfx.lineStyle(lineWidth, color, 0.8);
 			
 			var p0:Array = points.shift();

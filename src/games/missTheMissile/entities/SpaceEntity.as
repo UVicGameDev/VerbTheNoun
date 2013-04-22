@@ -9,13 +9,15 @@ package games.missTheMissile.entities
 	 * ...
 	 * @author beyamor
 	 */
-	public class MissTheMissileEntity extends Entity 
+	public class SpaceEntity extends Entity 
 	{
 		public var velocity:Point = new Point(0, 0);	
 		
-		public function MissTheMissileEntity(x:Number, y:Number, graphic:Graphic) 
+		public function SpaceEntity(x:Number, y:Number, graphic:Graphic) 
 		{
 			super(x, y, graphic);
+			
+			type = "spaceEntity";
 		}
 		
 		override public function update():void 
@@ -24,9 +26,20 @@ package games.missTheMissile.entities
 			
 			x += velocity.x * FP.elapsed;
 			y += velocity.y * FP.elapsed;
+			
+			checkCollisions();
 		}
 		
-		public function collided(other:MissTheMissileEntity):void {
+		private function checkCollisions():void {
+			
+			var collisionResult:SpaceEntity = collide("spaceEntity", x, y) as SpaceEntity;
+			
+			if (!collisionResult) return;
+			
+			collided(collisionResult);
+		}
+		
+		public function collided(other:SpaceEntity):void {
 			
 			// Override in subclass
 		}

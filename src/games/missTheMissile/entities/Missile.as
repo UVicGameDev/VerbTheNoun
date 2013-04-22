@@ -8,7 +8,7 @@ package games.missTheMissile.entities
 	 * ...
 	 * @author beyamor
 	 */
-	public class Missile extends MissTheMissileEntity 
+	public class Missile extends SpaceEntity 
 	{
 		private static const	MAX_SPEED:Number		= 450,
 								ACCELERATION:Number		= 10,
@@ -51,7 +51,7 @@ package games.missTheMissile.entities
 			speed = Math.min(MAX_SPEED, speed);
 		}
 		
-		override public function collided(other:MissTheMissileEntity):void 
+		override public function collided(other:SpaceEntity):void 
 		{
 			super.collided(other);
 			

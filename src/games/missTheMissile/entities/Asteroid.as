@@ -11,7 +11,7 @@ package games.missTheMissile.entities
 	 * ...
 	 * @author beyamor
 	 */
-	public class Asteroid extends MissTheMissileEntity 
+	public class Asteroid extends SpaceEntity 
 	{
 		private static const	WIDTH:Number			= 72,
 								HEIGHT:Number			= 72,
@@ -39,7 +39,7 @@ package games.missTheMissile.entities
 			direction = Random.inRange(0, Math.PI * 2);
 		}
 		
-		override public function collided(other:MissTheMissileEntity):void 
+		override public function collided(other:SpaceEntity):void 
 		{
 			super.collided(other);
 			

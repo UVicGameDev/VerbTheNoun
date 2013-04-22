@@ -9,7 +9,7 @@ package games.missTheMissile.windows
 	import flash.geom.Rectangle;
 	import games.missTheMissile.arena.Arena;
 	import games.missTheMissile.arena.StarView;
-	import games.missTheMissile.entities.MissTheMissileEntity;
+	import games.missTheMissile.entities.SpaceEntity;
 	import games.missTheMissile.entities.Player;
 	import games.missTheMissile.GameData;
 	import games.missTheMissile.MissTheMissile;
@@ -63,8 +63,6 @@ package games.missTheMissile.windows
 			for each (var starView:StarView in starViews) starView.update();
 			
 			launcher.update();
-			
-			checkCollisions();
 		}
 		
 		override public function render():void 
@@ -77,26 +75,6 @@ package games.missTheMissile.windows
 			}
 			
 			view.renderTo(parent.buffer, new Point(x, y));
-		}
-		
-		private function checkCollisions():void {
-			
-			var mtmEntities:Vector.<MissTheMissileEntity> = new Vector.<MissTheMissileEntity>;
-			view.getClass(MissTheMissileEntity, mtmEntities);
-			
-			for (var firstIndex:uint = 0; firstIndex < mtmEntities.length; ++firstIndex) {
-				for (var secondIndex:uint = firstIndex + 1; secondIndex < mtmEntities.length; ++secondIndex) {
-					
-					var	first:MissTheMissileEntity	= mtmEntities[firstIndex],
-						second:MissTheMissileEntity	= mtmEntities[secondIndex];
-						
-					if (first.collideWith(second, first.x, first.y)) {
-						
-						first.collided(second);
-						second.collided(first);
-					}
-				}
-			}
 		}
 	}
 
