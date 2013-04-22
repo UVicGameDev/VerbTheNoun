@@ -20,8 +20,8 @@ package core.util.camera
 		{
 			super.update();
 			
-			cam.x = entity.x - cam.width / 2;
-			cam.y = entity.y - cam.height / 2;
+			baseCamera.x = entity.x - baseCamera.width / 2;
+			baseCamera.y = entity.y - baseCamera.height / 2;
 		}
 	}
 

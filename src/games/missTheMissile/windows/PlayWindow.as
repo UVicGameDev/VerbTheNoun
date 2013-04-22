@@ -2,11 +2,14 @@ package games.missTheMissile.windows
 {
 	import core.Dimensions;
 	import core.ui.windows.sub.PlayWindowBase;
+	import core.ui.windows.sub.Popup;
 	import core.util.camera.BoundedCamera;
 	import core.util.camera.EntityCamera;
 	import core.util.camera.FPCamera;
+	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import games.missTheMissile.arena.Arena;
+	import games.missTheMissile.arena.StarView;
 	import games.missTheMissile.entities.MissTheMissileEntity;
 	import games.missTheMissile.entities.Player;
 	import games.missTheMissile.GameData;
@@ -25,7 +28,8 @@ package games.missTheMissile.windows
 					arena:Arena;
 					
 		private var	launcher:MisisleLauncher,
-					asteroidSpawner:AsteroidSpawner;
+					asteroidSpawner:AsteroidSpawner,
+					starViews:Vector.<StarView>			= new Vector.<StarView>
 		
 		public function PlayWindow(gameData:GameData, alertScreen:AlertScreen) 
 		{
@@ -45,6 +49,11 @@ package games.missTheMissile.windows
 			launcher		= new MisisleLauncher(this, alertScreen, gameData);
 			asteroidSpawner	= new AsteroidSpawner(this);
 			
+			for (var distance:uint = 1; distance <= 4; ++distance) {
+				
+				starViews.push(new StarView(arena, camera, distance));
+			}
+			
 			clearColor = 0;
 		}
 		
@@ -52,9 +61,33 @@ package games.missTheMissile.windows
 		{
 			super.update();
 			
+			for each (var starView:StarView in starViews) starView.update();
+			
 			launcher.update();
 			
 			checkCollisions();
+		}
+		
+		override public function render():void 
+		{			
+			clearBuffer();
+			
+			for each (var starView:StarView in starViews) {
+				
+				starView.render();
+				buffer.copyPixels(
+					starView.buffer,
+					new Rectangle(0, 0, width, height),
+					new Point(0, 0),
+					starView.buffer, null, true);
+			}
+			
+			view.render();
+			
+			parent.buffer.copyPixels(
+				buffer,
+				new Rectangle(0, 0, width, height),
+				new Point(x, y));
 		}
 		
 		private function checkCollisions():void {

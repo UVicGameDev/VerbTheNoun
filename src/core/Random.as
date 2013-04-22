@@ -33,6 +33,11 @@ package core
 			
 			return inRange(0, Math.PI * 2);
 		}
+		
+		public static function choose(... options):* {
+			
+			return any(options);
+		}
 	}
 
 }

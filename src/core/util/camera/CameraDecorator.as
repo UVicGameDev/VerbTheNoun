@@ -7,7 +7,7 @@ package core.util.camera
 	public class CameraDecorator implements Camera 
 	{
 		private var _cam:Camera;
-		protected function get cam():Camera { return _cam; }
+		protected function get baseCamera():Camera { return _cam; }
 		
 		public function CameraDecorator(cam:Camera)
 		{
@@ -18,43 +18,43 @@ package core.util.camera
 		
 		public function get x():Number 
 		{
-			return cam.x;
+			return baseCamera.x;
 		}
 		
 		public function get y():Number 
 		{
-			return cam.y;
+			return baseCamera.y;
 		}
 		
 		public function set x(value:Number):void 
 		{
-			cam.x = value;
+			baseCamera.x = value;
 		}
 		
 		public function set y(value:Number):void 
 		{
-			cam.y = value;
+			baseCamera.y = value;
 		}
 		
 		public function get width():Number 
 		{
-			return cam.width;
+			return baseCamera.width;
 		}
 		
 		public function get height():Number 
 		{
-			return cam.height;
+			return baseCamera.height;
 		}
 		
 		public function update():void 
 		{
-			cam.update();
+			baseCamera.update();
 		}
 		
-		public function get top():Number { return cam.top; }
-		public function get bottom():Number { return cam.bottom; }
-		public function get left():Number { return cam.left; }
-		public function get right():Number { return cam.right; }
+		public function get top():Number { return baseCamera.top; }
+		public function get bottom():Number { return baseCamera.bottom; }
+		public function get left():Number { return baseCamera.left; }
+		public function get right():Number { return baseCamera.right; }
 	}
 
 }

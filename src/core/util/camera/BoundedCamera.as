@@ -20,10 +20,10 @@ package core.util.camera
 		{
 			super.update();
 			
-			if (cam.x < bounds.left)				cam.x = bounds.left;
-			if (cam.y < bounds.top)					cam.y = bounds.top;
-			if (cam.x + cam.width > bounds.right)	cam.x = bounds.right - cam.width;
-			if (cam.y + cam.height > bounds.bottom)	cam.y = bounds.bottom - cam.height;
+			if (baseCamera.x < bounds.left)				baseCamera.x = bounds.left;
+			if (baseCamera.y < bounds.top)					baseCamera.y = bounds.top;
+			if (baseCamera.x + baseCamera.width > bounds.right)	baseCamera.x = bounds.right - baseCamera.width;
+			if (baseCamera.y + baseCamera.height > bounds.bottom)	baseCamera.y = bounds.bottom - baseCamera.height;
 		}
 	}
 
