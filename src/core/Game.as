@@ -1,6 +1,7 @@
 package core 
 {
 	import core.ui.windows.WindowStack;
+	import core.util.UpdateList;
 	import net.flashpunk.World;
 	
 	/**
@@ -9,8 +10,12 @@ package core
 	 */
 	public class Game extends World 
 	{
-		private var _windows:WindowStack = new WindowStack;
+		private var _windows:WindowStack	= new WindowStack,
+					_updateables:UpdateList	= new UpdateList;
+					
 		public function get windows():WindowStack { return _windows; }
+		
+		public function get updateables():UpdateList { return _updateables; }
 		
 		public function Game() 
 		{
@@ -20,6 +25,7 @@ package core
 		override public function update():void 
 		{
 			windows.update();
+			updateables.update();
 			super.update();
 		}
 		

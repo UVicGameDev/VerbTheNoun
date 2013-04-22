@@ -26,9 +26,7 @@ package games.missTheMissile.windows
 		public var	player:Player,
 					arena:Arena;
 					
-		private var	launcher:MisisleLauncher,
-					asteroidSpawner:AsteroidSpawner,
-					starViews:Vector.<StarView>			= new Vector.<StarView>
+		private var	starViews:Vector.<StarView>			= new Vector.<StarView>
 		
 		public function PlayWindow(gameData:GameData, alertScreen:AlertScreen) 
 		{
@@ -45,24 +43,17 @@ package games.missTheMissile.windows
 								player,
 								camera));
 			
-			launcher		= new MisisleLauncher(this, alertScreen, gameData);
-			asteroidSpawner	= new AsteroidSpawner(this);
+			updateables.add(new MisisleLauncher(this, alertScreen, gameData));
+			new AsteroidSpawner(this);
 			
 			for (var distance:uint = 1; distance <= 4; ++distance) {
 				
-				starViews.push(new StarView(arena, camera, distance));
+				var starView:StarView = new StarView(arena, camera, distance);
+				updateables.add(starView);
+				starViews.push(starView);
 			}
 			
 			clearColor = 0;
-		}
-		
-		override public function update():void 
-		{
-			super.update();
-			
-			for each (var starView:StarView in starViews) starView.update();
-			
-			launcher.update();
 		}
 		
 		override public function render():void 

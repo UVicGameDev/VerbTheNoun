@@ -1,11 +1,12 @@
 package core.util.camera 
 {
+	import core.util.Updateable;
 	
 	/**
 	 * ...
 	 * @author beyamor
 	 */
-	public interface Camera 
+	public interface Camera extends Updateable
 	{
 		function get x():Number;
 		function get y():Number;
@@ -20,8 +21,6 @@ package core.util.camera
 		function get bottom():Number;
 		function get left():Number;
 		function get right():Number;
-		
-		function update():void;
 	}
 	
 }

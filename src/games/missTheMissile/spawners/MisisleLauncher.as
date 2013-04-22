@@ -3,6 +3,7 @@ package games.missTheMissile.spawners
 	import core.Random;
 	import core.ui.windows.sub.PlayWindowBase;
 	import core.util.Timer;
+	import core.util.Updateable;
 	import flash.geom.Point;
 	import games.missTheMissile.arena.BoundaryPositioner;
 	import games.missTheMissile.entities.Missile;
@@ -16,7 +17,7 @@ package games.missTheMissile.spawners
 	 * ...
 	 * @author beyamor
 	 */
-	public class MisisleLauncher 
+	public class MisisleLauncher implements Updateable
 	{
 		private static const	TIME_BETWEEN_SHOTS:Number	= 2,
 								BOUNDARY:Number				= 100;

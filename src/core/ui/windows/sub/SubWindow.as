@@ -5,6 +5,7 @@ package core.ui.windows.sub
 	import core.ui.windows.Window;
 	import core.util.camera.Camera;
 	import core.util.camera.ViewCamera;
+	import core.util.UpdateList;
 	import flash.display.BitmapData;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
@@ -30,7 +31,8 @@ package core.ui.windows.sub
 					_view:View,
 					_camera:Camera,
 					_isFirstUpdate:Boolean			= true,
-					_firstUpdateHasPassed:Boolean	= false;
+					_firstUpdateHasPassed:Boolean	= false,
+					_updateables:UpdateList			= new UpdateList;
 					
 		// ugh this sucks everything is awful
 		public function get position():Point { return _position; }
@@ -67,6 +69,8 @@ package core.ui.windows.sub
 		
 		protected function get isFirstUpdate():Boolean { return _isFirstUpdate; }
 		
+		public function get updateables():UpdateList { return _updateables; }
+		
 		public function SubWindow(width:Number, height:Number)
 		{
 			_parent	= new MainWindow;
@@ -99,6 +103,7 @@ package core.ui.windows.sub
 			
 			view.update();
 			view.updateLists();
+			updateables.update();
 			camera.update();
 		}
 		

@@ -15,9 +15,7 @@ package games.missTheMissile.arena
 	 * @author beyamor
 	 */
 	public class StarView extends View 
-	{
-		private var parallaxCamera:Camera;
-		
+	{		
 		public function StarView(arena:Arena, mainCamera:Camera, distance:Number)
 		{			
 			super(new BitmapData(Consts.GAME_WIDTH, Consts.GAME_HEIGHT, true, 0));
@@ -25,7 +23,7 @@ package games.missTheMissile.arena
 			var distanceFalloff:Number = Math.pow(Math.E, -distance);
 			
 			var followSpeed:Number	= (distanceFalloff + 2) / 3;
-			parallaxCamera			= new ParallaxCamera(mainCamera, followSpeed, new ViewCamera(this));
+			updateables.add(new ParallaxCamera(mainCamera, followSpeed, new ViewCamera(this)));
 			
 			var minNumberOfStars:uint	= 100 + distanceFalloff * 100,
 				maxNumberOfStars:uint	= 200 + distanceFalloff * 200,
@@ -40,12 +38,6 @@ package games.missTheMissile.arena
 			}
 			
 			updateLists();
-		}
-		
-		override public function update():void 
-		{
-			super.update();
-			parallaxCamera.update();
 		}
 		
 		override public function render():void 

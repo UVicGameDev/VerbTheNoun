@@ -1,5 +1,7 @@
 package core.ui 
 {
+	import core.util.Updateable;
+	import core.util.UpdateList;
 	import flash.display.BitmapData;
 	import flash.geom.Matrix;
 	import flash.geom.Point;
@@ -13,13 +15,19 @@ package core.ui
 	 * A window, as an example, has a view.
 	 * @author beyamor
 	 */
-	public class View extends World 
+	public class View extends World implements Updateable
 	{
-		private var _buffer:BitmapData;
+		private var _buffer:BitmapData,
+					_updateables:UpdateList = new UpdateList;
 		
 		public function View(initialBuffer:BitmapData) 
 		{
 			buffer = initialBuffer;
+		}
+		
+		public function get updateables():UpdateList {
+			
+			return _updateables;
 		}
 		
 		public function get buffer():BitmapData {
