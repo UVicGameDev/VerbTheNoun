@@ -63,7 +63,7 @@ package games.missTheMissile.entities
 			
 			if (speed == 0) return;
 			
-			speed	= Math.max(0, speed - FRICTION);
+			speed = Math.max(0, speed - FRICTION);
 		}
 		
 		private function checkMotion():void {

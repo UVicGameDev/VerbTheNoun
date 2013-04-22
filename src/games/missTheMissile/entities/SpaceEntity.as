@@ -11,6 +11,8 @@ package games.missTheMissile.entities
 	 */
 	public class SpaceEntity extends Entity 
 	{
+		private var _direction:Number = 0;
+		
 		public var velocity:Point = new Point(0, 0);	
 		
 		public function SpaceEntity(x:Number, y:Number, graphic:Graphic) 
@@ -46,11 +48,16 @@ package games.missTheMissile.entities
 		
 		public function get direction():Number {
 			
-			return Math.atan2(velocity.y, velocity.x);
+			if (velocity.x != 0 || velocity.y != 0) {
+				
+				_direction = Math.atan2(velocity.y, velocity.x);
+			}
+			return _direction;
 		}
 		
 		public function set direction(direction:Number):void {
 			
+			_direction = direction;
 			var speed:Number = velocity.length;
 			
 			velocity.x = speed * Math.cos(direction);
