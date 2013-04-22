@@ -109,12 +109,7 @@ package core.ui.windows.sub
 			
 			clearBuffer();
 			
-			view.render();
-			
-			parent.buffer.copyPixels(
-				buffer,
-				new Rectangle(0, 0, width, height),
-				new Point(x, y));
+			view.renderTo(parent.buffer, new Point(x, y));
 		}
 	}
 

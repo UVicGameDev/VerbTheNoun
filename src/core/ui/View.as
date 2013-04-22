@@ -1,6 +1,8 @@
 package core.ui 
 {
 	import flash.display.BitmapData;
+	import flash.geom.Matrix;
+	import flash.geom.Point;
 	import net.flashpunk.Entity;
 	import net.flashpunk.World;
 	
@@ -47,6 +49,25 @@ package core.ui
 			super.remove(e);
 			if (e.renderTarget == buffer) e.renderTarget = null;
 			return e;
+		}
+		
+		public function copyToBuffer(someBuffer:BitmapData, offset:Point = null):void {
+			
+			if (!offset) offset = new Point;
+			
+			someBuffer.copyPixels(
+				buffer,
+				buffer.rect,
+				offset,
+				buffer,
+				null,
+				true);
+		}
+		
+		public function renderTo(someBuffer:BitmapData, offset:Point = null):void {
+			
+			render();
+			copyToBuffer(someBuffer, offset);
 		}
 	}
 

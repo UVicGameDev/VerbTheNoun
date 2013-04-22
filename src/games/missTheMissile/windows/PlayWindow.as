@@ -2,7 +2,6 @@ package games.missTheMissile.windows
 {
 	import core.Dimensions;
 	import core.ui.windows.sub.PlayWindowBase;
-	import core.ui.windows.sub.Popup;
 	import core.util.camera.BoundedCamera;
 	import core.util.camera.EntityCamera;
 	import core.util.camera.FPCamera;
@@ -74,20 +73,10 @@ package games.missTheMissile.windows
 			
 			for each (var starView:StarView in starViews) {
 				
-				starView.render();
-				buffer.copyPixels(
-					starView.buffer,
-					new Rectangle(0, 0, width, height),
-					new Point(0, 0),
-					starView.buffer, null, true);
+				starView.renderTo(parent.buffer);
 			}
 			
-			view.render();
-			
-			parent.buffer.copyPixels(
-				buffer,
-				new Rectangle(0, 0, width, height),
-				new Point(x, y));
+			view.renderTo(parent.buffer, new Point(x, y));
 		}
 		
 		private function checkCollisions():void {
