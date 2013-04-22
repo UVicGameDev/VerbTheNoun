@@ -19,7 +19,7 @@ package games.missTheMissile.entities
 	 */
 	public class Player extends SpaceEntity 
 	{
-		private static const	MAX_VELOCITY:Number		= 400,
+		private static const	MAX_SPEED:Number		= 400,
 								ACCELERATION:Number		= 80,
 								WIDTH:Number			= 48,
 								HEIGHT:Number			= 48,
@@ -88,13 +88,7 @@ package games.missTheMissile.entities
 			velocity.x += dx * ACCELERATION;
 			velocity.y += dy * ACCELERATION;
 			
-			if (velocity.length > MAX_VELOCITY) {
-				
-				var clampRatio:Number = MAX_VELOCITY / velocity.length;
-				
-				velocity.x *= clampRatio;
-				velocity.y *= clampRatio;
-			}
+			if (speed > MAX_SPEED) speed = MAX_SPEED;
 		}
 		
 		override public function collided(other:SpaceEntity):void 

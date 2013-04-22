@@ -46,8 +46,6 @@ package games.missTheMissile.entities
 		
 		public function get direction():Number {
 			
-			if (!velocity) return 0;
-			
 			return Math.atan2(velocity.y, velocity.x);
 		}
 		
