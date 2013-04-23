@@ -27,8 +27,7 @@ package games.missTheMissile.windows
 			
 			this.game = game;
 			
-			//clearColor = 0x33FFFFFF;
-			clearColor = 0xFFFF0000;
+			clearColor = 0x33FFFFFF;
 			centerOnParent();
 			
 			blocksUpdates = true;
