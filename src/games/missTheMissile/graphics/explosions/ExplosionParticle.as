@@ -35,9 +35,12 @@ package games.missTheMissile.graphics.explosions
 			shape = new FilledPolygon(16, 12);
 			shape.draw(color,
 				[shape.left, shape.top],
+				[shape.right, shape.verticalCenter],
+				[shape.left, shape.bottom]
+				/*[shape.left, shape.top],
 				[shape.right, shape.top],
 				[shape.right, shape.bottom],
-				[shape.left, shape.bottom]
+				[shape.left, shape.bottom]*/
 			);
 			shape.direction = direction;
 			shape.centerOO();
