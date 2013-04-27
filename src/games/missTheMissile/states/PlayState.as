@@ -16,10 +16,6 @@ package games.missTheMissile.states
 		public function PlayState(game:MissTheMissile) 
 		{
 			this.game = game;
-		}
-		
-		/* INTERFACE games.missTheMissile.states.GameState */
-		public function enter():void {
 			
 			scoreIncrementer = new Timer(0.5);
 			scoreIncrementer.loops = true;
@@ -28,12 +24,18 @@ package games.missTheMissile.states
 			});
 		}
 		
+		/* INTERFACE games.missTheMissile.states.GameState */
+		public function enter():void {
+			
+			// Eh.
+		}
+		
 		public function update():void 
 		{
 			game.viewSystem.update();
 			
-			if (game.data.playerIsDead)			game.state = new GameOverState(game);
-			else if (Input.pressed(Keys.START))	game.state = new PausedState(game);
+			if (game.data.playerIsDead)			game.switchTo(game.gameOverState);
+			else if (Input.pressed(Keys.START))	game.switchTo(game.pausedState);
 			
 			scoreIncrementer.update();
 		}

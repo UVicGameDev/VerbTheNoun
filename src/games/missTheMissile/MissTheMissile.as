@@ -5,6 +5,8 @@ package games.missTheMissile
 	import core.util.Timer;
 	import games.missTheMissile.arena.Arena;
 	import games.missTheMissile.entities.Player;
+	import games.missTheMissile.states.GameOverState;
+	import games.missTheMissile.states.PausedState;
 	import games.missTheMissile.views.ViewSystem
 	import games.missTheMissile.spawners.MisisleLauncher;
 	import games.missTheMissile.states.GameState;
@@ -24,27 +26,25 @@ package games.missTheMissile
 	public class MissTheMissile extends Game 
 	{
 		private var _data:GameData,
-					_state:GameState,
+					state:GameState,
 					pendingNextState:GameState	= null,
 					_viewSystem:ViewSystem;
 					
-		public function get data():GameData { return _data; }
-		
-		public function get state():GameState { return _state; }
-		public function set state(newState:GameState):void {
-			
-			pendingNextState = newState;
-		}
-		
-		public function get viewSystem():ViewSystem { return _viewSystem; }
+		public var	playState:PlayState,
+					pausedState:PausedState,
+					gameOverState:GameOverState;
 		
 		public function MissTheMissile() 
 		{
 			if (Debug.isEnabled) addGraphic(new Text("Miss the Missile"));
 			
 			_data = new GameData;			
-			state = new PlayState(this);
 			setUp();
+			
+			playState		= new PlayState(this);
+			pausedState		= new PausedState(this);
+			gameOverState	= new GameOverState(this);
+			switchTo(playState);
 		}
 		
 		private function setUp():void {
@@ -79,7 +79,7 @@ package games.missTheMissile
 			if (pendingNextState) {
 				
 				if (state) state.leave();
-				_state = pendingNextState;
+				state = pendingNextState;
 				pendingNextState = null;
 				state.enter();
 			}
@@ -90,6 +90,20 @@ package games.missTheMissile
 			viewSystem.render();
 			super.render();
 		}
+		
+		public function switchTo(nextState:GameState):void {
+			
+			pendingNextState = nextState;
+		}
+		
+		//
+		//
+		//		ACCESSORS
+		//
+		//
+		public function get data():GameData { return _data; }
+		
+		public function get viewSystem():ViewSystem { return _viewSystem; }
 	}
 
 }
