@@ -24,12 +24,12 @@ package games.missTheMissile.states
 		
 		public function update():void 
 		{
-			// Whatever.
+			game.viewSystem.update();
 		}
 		
 		public function end():void 
 		{
-			// Double whatever.
+			// Whatever.
 		}
 		
 	}

@@ -5,10 +5,7 @@ package core.ui.windows
 	import flash.geom.Point;
 	
 	/**
-	 * So, I dunno.
-	 * Window? Display? View? Subworld?
-	 * This guy represents a discrete section of the game interface,
-	 * full of its own entities and complete with its own updating/rendering.
+	 * Windows describe the idea of nested views.
 	 * 
 	 * @author beyamor
 	 */

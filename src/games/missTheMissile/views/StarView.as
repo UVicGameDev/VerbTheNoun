@@ -1,4 +1,4 @@
-package games.missTheMissile.arena 
+package games.missTheMissile.views 
 {
 	import core.Random;
 	import core.ui.View;
@@ -7,6 +7,7 @@ package games.missTheMissile.arena
 	import core.util.camera.ViewCamera;
 	import flash.display.BitmapData;
 	import flash.geom.Rectangle;
+	import games.missTheMissile.arena.Arena;
 	import games.missTheMissile.entities.Star;
 	import net.flashpunk.FP;
 	
@@ -18,7 +19,7 @@ package games.missTheMissile.arena
 	{		
 		public function StarView(arena:Arena, mainCamera:Camera, distance:Number)
 		{			
-			super(new BitmapData(Consts.GAME_WIDTH, Consts.GAME_HEIGHT, true, 0));
+			super(Consts.GAME_WIDTH, Consts.GAME_HEIGHT);
 			
 			var distanceFalloff:Number = Math.pow(Math.E, -distance);
 			

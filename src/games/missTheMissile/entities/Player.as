@@ -34,8 +34,6 @@ package games.missTheMissile.entities
 			this.arena	= arena;
 			this.data	= data;
 			
-			data.player = this;
-			
 			width	= WIDTH;
 			height	= HEIGHT;
 			sprite	= new PlayerSprite(this);

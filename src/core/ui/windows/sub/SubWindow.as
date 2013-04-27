@@ -18,14 +18,10 @@ package core.ui.windows.sub
 	 * @author beyamor
 	 */
 	public class SubWindow implements Window
-	{
-		public var clearColor:uint = 0xFF00FF00;
-		
+	{		
 		// Public variables don't satisfy interface properties
 		// Which is so great. Just damn. Glad I have to chug through all this crappy boilerplate.
 		private var	_position:Point		= new Point,
-					_width:Number,
-					_height:Number,
 					_blocksUpdates:Boolean	= false,
 					_parent:Window,
 					_view:View,
@@ -44,11 +40,11 @@ package core.ui.windows.sub
 		public function get y():Number { return position.y; }
 		public function set y(y:Number):void { position.y = y; }
 		
-		public function get width():Number { return _width; }
-		public function set width(width:Number):void { _width = width; recreateBuffer(); }
+		public function get width():Number { return view.width; }
+		public function set width(width:Number):void { view.width = width;  }
 		
-		public function get height():Number { return _height; }
-		public function set height(height:Number):void { _height = height; recreateBuffer(); }
+		public function get height():Number { return view.height; }
+		public function set height(height:Number):void { view.height = height; }
 		
 		public function get blocksUpdates():Boolean { return _blocksUpdates; }
 		public function set blocksUpdates(blocksUpdates:Boolean):void { _blocksUpdates = blocksUpdates; }
@@ -71,23 +67,11 @@ package core.ui.windows.sub
 		
 		public function get updateables():UpdateList { return _updateables; }
 		
-		public function SubWindow(width:Number, height:Number)
+		public function SubWindow(width:int, height:int)
 		{
 			_parent	= new MainWindow;
-			_width	= width;
-			_height	= height;
-			_view	= new View(createBuffer());
+			_view	= new View(width, height);
 			_camera	= new ViewCamera(view);
-		}
-		
-		private function createBuffer():BitmapData {
-			
-			return new BitmapData(width, height, true, clearColor);
-		}
-		
-		private function recreateBuffer():void {
-			
-			view.buffer = createBuffer();
 		}
 		
 		public function centerOnParent():void {
@@ -107,14 +91,7 @@ package core.ui.windows.sub
 			camera.update();
 		}
 		
-		protected function clearBuffer():void {
-			
-			buffer.fillRect(new Rectangle(0, 0, width, height), clearColor);
-		}
-		
 		public function render():void {
-			
-			clearBuffer();
 			
 			view.renderTo(parent.buffer, position);
 		}
