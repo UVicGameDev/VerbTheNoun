@@ -24,8 +24,8 @@ package games.missTheMissile.views
 	 */
 	public class ViewSystem
 	{
-		public var	gameView:View,
-					gameCamera:Camera,
+		public var	playView:View,
+					playCamera:Camera,
 					hudView:View,
 					hudCamera:Camera;
 					
@@ -35,15 +35,15 @@ package games.missTheMissile.views
 		public function ViewSystem(arena:Arena, player:Player)
 		{
 			// Game view
-			gameView	= new View(Consts.GAME_WIDTH, Consts.GAME_HEIGHT);
-			gameCamera	= new BoundedCamera(
+			playView	= new PlayView(Consts.GAME_WIDTH, Consts.GAME_HEIGHT);
+			playCamera	= new BoundedCamera(
 							arena.bounds,
 							new EntityCamera(
 								player,
-								new ViewCamera(gameView)));
+								new ViewCamera(playView)));
 			
-			updateables.add(gameView.updater);
-			updateables.add(gameCamera);
+			updateables.add(playView.updater);
+			updateables.add(playCamera);
 			
 			// Hud view
 			hudView		= new View(Consts.GAME_WIDTH, Consts.GAME_HEIGHT);
@@ -55,7 +55,7 @@ package games.missTheMissile.views
 			// Star views
 			for (var distance:int = 1; distance <= 4; ++distance) {
 				
-				var starView:StarView = new StarView(arena, gameCamera, distance);
+				var starView:StarView = new StarView(arena, playCamera, distance);
 				
 				starViews.push(starView);
 				updateables.add(starView.updater);
@@ -70,7 +70,7 @@ package games.missTheMissile.views
 		public function render():void {
 			
 			for each (var starView:StarView in starViews) starView.renderTo(FP.buffer);
-			gameView.renderTo(FP.buffer);
+			playView.renderTo(FP.buffer);
 			hudView.renderTo(FP.buffer);
 		}
 	}

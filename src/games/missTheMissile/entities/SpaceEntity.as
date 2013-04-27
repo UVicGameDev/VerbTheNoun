@@ -28,17 +28,6 @@ package games.missTheMissile.entities
 			
 			x += velocity.x * FP.elapsed;
 			y += velocity.y * FP.elapsed;
-			
-			checkCollisions();
-		}
-		
-		private function checkCollisions():void {
-			
-			var collisionResult:SpaceEntity = collide("spaceEntity", x, y) as SpaceEntity;
-			
-			if (!collisionResult) return;
-			
-			collided(collisionResult);
 		}
 		
 		public function collided(other:SpaceEntity):void {

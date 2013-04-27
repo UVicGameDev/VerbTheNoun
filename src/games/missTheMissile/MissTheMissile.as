@@ -60,13 +60,13 @@ package games.missTheMissile
 			_viewSystem = new ViewSystem(arena, player);
 			
 			// Additional game things
-			viewSystem.gameView.updateables.add(
+			viewSystem.playView.updateables.add(
 				new MisisleLauncher(
-					viewSystem.gameView, viewSystem.gameCamera,
+					viewSystem.playView, viewSystem.playCamera,
 					viewSystem.hudView, viewSystem.hudCamera,
 					data, arena));
 					
-			viewSystem.gameView.add(player);
+			viewSystem.playView.add(player);
 			viewSystem.hudView.add(new ScoreDisplay(Consts.GAME_WIDTH - 310, 10, data));
 		}
 		
