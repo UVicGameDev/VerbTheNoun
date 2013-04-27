@@ -17,7 +17,7 @@ package games.missTheMissile.states
 		
 		/* INTERFACE games.missTheMissile.states.GameState */
 		
-		public function begin():void 
+		public function enter():void 
 		{
 			game.windows.push(new GameOverScreen(game));
 		}
@@ -27,7 +27,7 @@ package games.missTheMissile.states
 			game.viewSystem.update();
 		}
 		
-		public function end():void 
+		public function leave():void 
 		{
 			// Whatever.
 		}

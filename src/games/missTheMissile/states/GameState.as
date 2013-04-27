@@ -7,9 +7,9 @@ package games.missTheMissile.states
 	 */
 	public interface GameState 
 	{
-		function begin():void;
+		function enter():void;
 		function update():void;
-		function end():void;
+		function leave():void;
 	}
 	
 }

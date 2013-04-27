@@ -19,7 +19,7 @@ package games.missTheMissile.states
 		}
 		
 		/* INTERFACE games.missTheMissile.states.GameState */
-		public function begin():void {
+		public function enter():void {
 			
 			scoreIncrementer = new Timer(0.5);
 			scoreIncrementer.loops = true;
@@ -38,7 +38,7 @@ package games.missTheMissile.states
 			scoreIncrementer.update();
 		}
 		
-		public function end():void {
+		public function leave():void {
 			
 			// Ehhh.
 		}

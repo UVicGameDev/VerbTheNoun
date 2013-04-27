@@ -78,10 +78,10 @@ package games.missTheMissile
 			
 			if (pendingNextState) {
 				
-				if (state) state.end();
+				if (state) state.leave();
 				_state = pendingNextState;
 				pendingNextState = null;
-				state.begin();
+				state.enter();
 			}
 		}
 		

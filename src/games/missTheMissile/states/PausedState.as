@@ -17,7 +17,7 @@ package games.missTheMissile.states
 		
 		/* INTERFACE games.missTheMissile.states.GameState */
 		
-		public function begin():void 
+		public function enter():void 
 		{
 			game.windows.push(new PauseMenu(game));
 		}
@@ -27,7 +27,7 @@ package games.missTheMissile.states
 			// Shwatevs
 		}
 		
-		public function end():void 
+		public function leave():void 
 		{
 			// Just going to let the closing of the pause menu take us back to the play state.
 		}
