@@ -36,7 +36,7 @@ package games.missTheMissile.ui.alert
 			
 			reposition();
 			
-			if (entityIsOnscreen) {
+			if (entityIsOnscreen || entityIsDead) {
 				
 				if (world) world.remove(this);
 			}
@@ -139,6 +139,11 @@ package games.missTheMissile.ui.alert
 					arrow.faceDownRight();
 				}
 			}
+		}
+		
+		private function get entityIsDead():Boolean {
+			
+			return entity.world == null;
 		}
 		
 		private function get entityIsOnscreen():Boolean {
