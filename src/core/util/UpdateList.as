@@ -16,16 +16,25 @@ package core.util
 	{
 		private var updateables:Vector.<Updateable> = new Vector.<Updateable>;
 		
+		/**
+		 * Creates a new update list with items to update.
+		 */
 		public function UpdateList(... updateablesToAdd)
 		{
 			for each (var updateable:Updateable in updateablesToAdd) updateables.push(updateable);
 		}
 		
+		/**
+		 * Adds items to the update list.
+		 */
 		public function add(... updateablesToAdd):void {
 			
 			for each (var updateable:Updateable in updateablesToAdd) updateables.push(updateable);
 		}
 		
+		/**
+		 * Removes some time from the update list.
+		 */
 		public function remove(updateable:Updateable):void {
 			
 			var indexOfUpdateable:int = updateables.indexOf(updateable);
@@ -35,6 +44,9 @@ package core.util
 			updateables.splice(indexOfUpdateable, 1);
 		}
 		
+		/**
+		 * Updates all of the updateables in the list.
+		 */
 		public function update():void {
 			
 			// Defensively copying here we can modify the updateable list while iterating through it

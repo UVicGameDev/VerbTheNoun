@@ -9,6 +9,10 @@ package core.ui.windows.main
 	
 	/**
 	 * This guy is a wrapper for FP/world to make it fit in with the Window system.
+	 * 
+	 * You should never have to deal with this window directly.
+	 * Where necessary, subwindows will default to the main window as their parent.
+	 * 
 	 * @author beyamor
 	 */
 	public class MainWindow implements Window 

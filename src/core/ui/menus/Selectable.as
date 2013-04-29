@@ -2,7 +2,7 @@ package core.ui.menus
 {
 	
 	/**
-	 * ...
+	 * Something which can be selected.
 	 * @author beyamor
 	 */
 	public interface Selectable 

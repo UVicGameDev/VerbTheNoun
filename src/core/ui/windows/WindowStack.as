@@ -1,23 +1,33 @@
 package core.ui.windows 
 {
 	/**
-	 * ...
+	 * You might end up with windows on top of windows.
+	 * In this case, employ a window stack to manage them.
 	 * @author beyamor
 	 */
 	public class WindowStack 
 	{
 		private var windows:Vector.<Window> = new Vector.<Window>;
 		
+		/**
+		 * Creates a new window stack with some windows.
+		 */
 		public function WindowStack(... windows)
 		{
 			for each (var window:Window in windows) push(window);
 		}
 		
+		/**
+		 * Pushes some windows onto the stack.
+		 */
 		public function push(... windowsToAdd):void {
 			
 			for each (var window:Window in windowsToAdd) windows.push(window);
 		}
 		
+		/**
+		 * 	Pops the top off the stack.
+		 */
 		public function pop():Window {
 			
 			return windows.pop();
@@ -49,6 +59,9 @@ package core.ui.windows
 			}
 		}
 		
+		/**
+		 * Returns the top of the stack, supplying null if the are no windows.
+		 */
 		public function get top():Window {
 			
 			if (windows.length == 0) return null;

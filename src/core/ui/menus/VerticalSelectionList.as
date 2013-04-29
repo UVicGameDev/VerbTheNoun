@@ -3,7 +3,7 @@ package core.ui.menus
 	import core.Keys;
 	import net.flashpunk.utils.Input;
 	/**
-	 * ...
+	 * Moves through a selection list with the up and down keys.
 	 * @author beyamor
 	 */
 	public class VerticalSelectionList extends SelectionList 

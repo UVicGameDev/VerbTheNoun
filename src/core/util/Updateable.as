@@ -7,6 +7,9 @@ package core.util
 	 */
 	public interface Updateable 
 	{
+		/**
+		 * Updates the thingamajigger
+		 */
 		function update():void;
 	}
 	

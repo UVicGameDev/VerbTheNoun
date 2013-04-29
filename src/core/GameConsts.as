@@ -1,7 +1,7 @@
 package core
 {
 	/**
-	 * Universal constatns
+	 * Universal constants.
 	 * @author beyamor
 	 */
 	public class GameConsts 

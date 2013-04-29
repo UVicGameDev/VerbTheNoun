@@ -3,7 +3,7 @@ package core.util.camera.concrete
 	import core.ui.View
 	import core.util.camera.Camera;
 	/**
-	 * ...
+	 * The ViewCamera wraps a view's camera.
 	 * @author beyamor
 	 */
 	public class ViewCamera implements Camera 

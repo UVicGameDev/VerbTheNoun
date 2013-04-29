@@ -3,7 +3,7 @@ package core.util.camera.concrete
 	import core.util.camera.Camera;
 	import net.flashpunk.FP;
 	/**
-	 * ...
+	 * The FP camera wraps FP's camera.
 	 * @author beyamor
 	 */
 	public class FPCamera implements Camera

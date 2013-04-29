@@ -1,7 +1,12 @@
 package core.util.camera 
 {
 	/**
-	 * ...
+	 * A lot of the time, we just want to add behaviour to a camera.
+	 * For example, we might want a view's camera to follow a particular entity or move relative to another camera.
+	 * We can do this by decorating cameras, thereby extending their behaviour.
+	 * 
+	 * When writing a camera decorator, it should only be necessary to override the update method.
+	 * 
 	 * @author beyamor
 	 */
 	public class CameraDecorator implements Camera 
@@ -9,9 +14,12 @@ package core.util.camera
 		private var _cam:Camera;
 		protected function get baseCamera():Camera { return _cam; }
 		
-		public function CameraDecorator(cam:Camera)
+		/**
+		 * Creates a camera which decorates the supplied base camera.
+		 */
+		public function CameraDecorator(baseCamera:Camera)
 		{
-			this._cam = cam;
+			this._cam = baseCamera;
 		}
 		
 		/* INTERFACE games.missTheMissile.util.camera.Camera */

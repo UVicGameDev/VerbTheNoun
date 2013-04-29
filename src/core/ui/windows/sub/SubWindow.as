@@ -11,18 +11,21 @@ package core.ui.windows.sub
 	import flash.geom.Rectangle;
 	import net.flashpunk.FP;
 	import net.flashpunk.World;
+	
 	/**
-	 * Cool. This is the guy you'll want to subclass for your own game windows.
-	 * It comes complete with its own world, so throw entities in there.
-	 * RegularWindow? StandardWindow? WorldfulWindow?
+	 * Subwindows are, well, windows which are not the main window.
+	 * This includes, for example, popups or even dialogue boxes maybe?
+	 * 
+	 * A subwindow has its own view to which entities can be added.
+	 * 
 	 * @author beyamor
 	 */
 	public class SubWindow implements Window
 	{		
 		// Public variables don't satisfy interface properties
 		// Which is so great. Just damn. Glad I have to chug through all this crappy boilerplate.
-		private var	_position:Point		= new Point,
-					_blocksUpdates:Boolean	= false,
+		private var	_position:Point					= new Point,
+					_blocksUpdates:Boolean			= false,
 					_parent:Window,
 					_view:View,
 					_camera:Camera,
@@ -58,6 +61,9 @@ package core.ui.windows.sub
 		
 		public function get buffer():BitmapData { return view.buffer; }
 		
+		/**
+		 * This subwindow's view.
+		 */
 		public function get view():View { return _view; }
 		
 		public function get camera():Camera { return _camera; }

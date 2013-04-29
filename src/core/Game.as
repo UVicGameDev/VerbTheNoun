@@ -6,6 +6,10 @@ package core
 	
 	/**
 	 * Make games, make games.
+	 * 
+	 * Each Game represents its own self-contained VtN minigame.
+	 * Minigames should therefore subclass Game.
+	 * 
 	 * @author beyamor
 	 */
 	public class Game extends World 
@@ -13,8 +17,14 @@ package core
 		private var _windows:WindowStack	= new WindowStack,
 					_updateables:UpdateList	= new UpdateList;
 					
+		/**
+		 * The game's window stack.
+		 */
 		public function get windows():WindowStack { return _windows; }
 		
+		/**
+		 * The game's updateables. These are updated on every update call.
+		 */
 		public function get updateables():UpdateList { return _updateables; }
 		
 		public function Game() 
@@ -22,6 +32,9 @@ package core
 			
 		}
 		
+		/**
+		 * Updates windows, updateables, and then entities.
+		 */
 		override public function update():void 
 		{
 			windows.update();
@@ -29,6 +42,9 @@ package core
 			super.update();
 		}
 		
+		/**
+		 * Renders windows, then entities.
+		 */
 		override public function render():void 
 		{
 			windows.render();

@@ -7,6 +7,8 @@ package core.ui.windows
 	/**
 	 * Windows describe the idea of nested views.
 	 * 
+	 * Windows are aware of their parents and will render their views with respect to them.
+	 * 
 	 * @author beyamor
 	 */
 	public interface Window 
