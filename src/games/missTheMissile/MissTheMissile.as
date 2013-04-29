@@ -2,6 +2,7 @@ package games.missTheMissile
 {
 	import core.Debug;
 	import core.Game;
+	import core.GameConsts;
 	import core.util.Timer;
 	import games.missTheMissile.arena.Arena;
 	import games.missTheMissile.entities.Player;
@@ -50,7 +51,7 @@ package games.missTheMissile
 		private function setUp():void {
 			
 			// Creating the core game objects
-			var arena:Arena = new Arena(Consts.GAME_WIDTH * 2, Consts.GAME_HEIGHT * 2);
+			var arena:Arena = new Arena(GameConsts.WIDTH * 2, GameConsts.HEIGHT * 2);
 			
 			var player:Player = new Player(arena.width / 2, arena.height / 2, data, arena);
 			data.player = player;
@@ -64,7 +65,7 @@ package games.missTheMissile
 			
 			// Setting up the views				
 			viewSystem.playView.add(player);
-			viewSystem.hudView.add(new ScoreDisplay(Consts.GAME_WIDTH - 310, 10, data));
+			viewSystem.hudView.add(new ScoreDisplay(viewSystem.hudView.width - 310, 10, data));
 		}
 		
 		override public function update():void 

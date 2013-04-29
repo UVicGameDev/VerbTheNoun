@@ -1,5 +1,6 @@
 package vtn.common
 {
+	import core.GameConsts;
 	import net.flashpunk.World;
 	import net.flashpunk.Entity;
 	import net.flashpunk.utils.Input;
@@ -11,8 +12,8 @@ package vtn.common
 	 */
 	public class MenuWorld extends World
 	{
-		protected function get WIDTH():uint { return Consts.GAME_WIDTH; }
-		protected function get HEIGHT():uint { return Consts.GAME_HEIGHT; }
+		protected function get WIDTH():uint { return GameConsts.WIDTH; }
+		protected function get HEIGHT():uint { return GameConsts.HEIGHT; }
 		
 		private var entityList:Array = new Array();
 		

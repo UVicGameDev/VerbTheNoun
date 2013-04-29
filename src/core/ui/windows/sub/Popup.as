@@ -1,6 +1,7 @@
 package core.ui.windows.sub 
 {
 	import core.Game;
+	import core.Keys;
 	import core.ui.windows.WindowStack;
 	import net.flashpunk.utils.Input;
 	/**

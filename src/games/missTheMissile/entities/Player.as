@@ -1,6 +1,7 @@
 package games.missTheMissile.entities 
 {
 	import core.Debug;
+	import core.Keys;
 	import flash.filters.DisplacementMapFilterMode;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;

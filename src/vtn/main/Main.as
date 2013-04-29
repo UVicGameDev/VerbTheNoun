@@ -1,5 +1,7 @@
 package vtn.main
 {
+	import core.GameConsts;
+	import core.Keys;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import net.flashpunk.Engine;
@@ -16,7 +18,7 @@ package vtn.main
 		public function Main()
 		{
 
-			super(Consts.GAME_WIDTH, Consts.GAME_HEIGHT, 60, false);
+			super(GameConsts.WIDTH, GameConsts.HEIGHT, 60, false);
 			FP.world = new MainMenuWorld;
 			
 			// TODO: Make these configurable

@@ -1,5 +1,6 @@
 package games.missTheMissile.views 
 {
+	import core.GameConsts;
 	import core.Random;
 	import core.ui.View;
 	import core.util.camera.Camera;
@@ -19,7 +20,7 @@ package games.missTheMissile.views
 	{		
 		public function StarView(arena:Arena, mainCamera:Camera, distance:Number)
 		{			
-			super(Consts.GAME_WIDTH, Consts.GAME_HEIGHT);
+			super(GameConsts.WIDTH, GameConsts.HEIGHT);
 			
 			var distanceFalloff:Number = Math.pow(Math.E, -distance);
 			
@@ -39,12 +40,6 @@ package games.missTheMissile.views
 			}
 			
 			updateLists();
-		}
-		
-		override public function render():void 
-		{
-			buffer.fillRect(new Rectangle(0, 0, Consts.GAME_WIDTH, Consts.GAME_HEIGHT), 0);
-			super.render();
 		}
 	}
 

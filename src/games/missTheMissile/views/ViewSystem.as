@@ -1,5 +1,6 @@
 package games.missTheMissile.views 
 {
+	import core.GameConsts;
 	import core.ui.View;
 	import core.util.camera.decorators.BoundedCamera;
 	import core.util.camera.Camera;
@@ -35,7 +36,7 @@ package games.missTheMissile.views
 		public function ViewSystem(arena:Arena, player:Player)
 		{
 			// Game view
-			playView	= new PlayView(Consts.GAME_WIDTH, Consts.GAME_HEIGHT);
+			playView	= new PlayView(GameConsts.WIDTH, GameConsts.HEIGHT);
 			playCamera	= new BoundedCamera(
 							arena.bounds,
 							new EntityCamera(
@@ -46,7 +47,7 @@ package games.missTheMissile.views
 			updateables.add(playCamera);
 			
 			// Hud view
-			hudView		= new View(Consts.GAME_WIDTH, Consts.GAME_HEIGHT);
+			hudView		= new View(GameConsts.WIDTH, GameConsts.HEIGHT);
 			hudCamera	= new ViewCamera(hudView);
 			
 			updateables.add(hudView.updater);

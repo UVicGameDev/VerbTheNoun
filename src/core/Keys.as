@@ -1,4 +1,4 @@
-package  
+package core
 {
 	/**
 	 * The keys used by the games
