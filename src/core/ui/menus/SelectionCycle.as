@@ -5,7 +5,7 @@ package core.ui.menus
 	 * The list can be traversed backwards and forwards in a cycle.
 	 * @author beyamor
 	 */
-	public class SelectionList
+	public class SelectionCycle
 	{
 		private var	selectables:Vector.<Selectable> = new Vector.<Selectable>,
 					_currentIndex:uint				= 0;
@@ -26,7 +26,7 @@ package core.ui.menus
 		/**
 		 * Creates a new selection list containing the given selectables.
 		 */
-		public function SelectionList(... selectables)
+		public function SelectionCycle(... selectables)
 		{
 			addAll(selectables);
 		}

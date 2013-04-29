@@ -1,7 +1,6 @@
 package games.missTheMissile.windows 
 {
 	import core.Game;
-	import core.ui.menus.SelectionList;
 	import core.ui.menus.VerticalSelectionList;
 	import core.ui.windows.sub.Popup;
 	import games.missTheMissile.MissTheMissile;
@@ -18,8 +17,7 @@ package games.missTheMissile.windows
 	 */
 	public class MissTheMissilePopup extends Popup 
 	{
-		protected var game:MissTheMissile,
-					options:SelectionList;
+		protected var game:MissTheMissile;
 		
 		public function MissTheMissilePopup(title:String, game:MissTheMissile) 
 		{
@@ -32,9 +30,10 @@ package games.missTheMissile.windows
 			
 			blocksUpdates = true;
 			
-			options = new VerticalSelectionList;
-			var optionElements:Vector.<MenuOption> = createOptions();
+			var	options:VerticalSelectionList		= new VerticalSelectionList,
+				optionElements:Vector.<MenuOption>	= createOptions();
 			options.addAll(optionElements);
+			updateables.add(options);
 			
 			for (var index:uint = 0; index < optionElements.length; ++index) {
 				
@@ -50,13 +49,6 @@ package games.missTheMissile.windows
 				titleElement:Entity	= view.addGraphic(titleGraphic, 0, 0, 20);
 			
 			titleElement.x = width / 2 - titleGraphic.width / 2;
-		}
-		
-		override public function update():void 
-		{
-			super.update();
-			
-			options.update();
 		}
 		
 		protected function createRestartOption():MenuOption {

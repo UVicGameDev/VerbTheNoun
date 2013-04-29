@@ -2,7 +2,6 @@ package games.missTheMissile.windows
 {
 	import core.Game;
 	import core.Keys;
-	import core.ui.menus.SelectionList;
 	import core.ui.menus.VerticalSelectionList;
 	import core.ui.windows.sub.Popup;
 	import core.ui.windows.sub.SubWindow;

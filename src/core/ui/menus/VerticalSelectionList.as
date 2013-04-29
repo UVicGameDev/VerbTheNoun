@@ -1,27 +1,31 @@
 package core.ui.menus 
 {
 	import core.Keys;
+	import core.util.Updateable;
 	import net.flashpunk.utils.Input;
 	/**
 	 * Moves through a selection list with the up and down keys.
 	 * @author beyamor
 	 */
-	public class VerticalSelectionList extends SelectionList 
+	public class VerticalSelectionList implements Updateable
 	{
+		private var selectables:SelectionCycle = new SelectionCycle;
 		
-		public function VerticalSelectionList(... selectables)
+		public function VerticalSelectionList(... initialSelectables)
 		{
-			super();
-			addAll(selectables);
+			selectables.addAll(initialSelectables);
 		}
 		
-		override public function update():void 
-		{
-			super.update();
+		public function addAll(selectablesToAdd:*):void {
 			
-			if (Input.pressed(Keys.DOWN))		moveToNext();
-			if (Input.pressed(Keys.UP))			moveToPrevious();
-			if (Input.pressed(Keys.CONFIRM))	selectCurrent();
+			selectables.addAll(selectablesToAdd);
+		}
+		
+		public function update():void 
+		{
+			if (Input.pressed(Keys.DOWN))		selectables.moveToNext();
+			if (Input.pressed(Keys.UP))			selectables.moveToPrevious();
+			if (Input.pressed(Keys.CONFIRM))	selectables.selectCurrent();
 		}
 	}
 
