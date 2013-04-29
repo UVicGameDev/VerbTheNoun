@@ -2,7 +2,6 @@ package games.missTheMissile.spawners
 {
 	import core.Random;
 	import core.ui.View;
-	import core.ui.windows.sub.PlayWindowBase;
 	import core.util.camera.Camera;
 	import core.util.Timer;
 	import core.util.Updateable;
