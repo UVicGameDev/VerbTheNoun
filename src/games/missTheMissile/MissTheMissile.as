@@ -55,13 +55,14 @@ package games.missTheMissile
 			var player:Player = new Player(arena.width / 2, arena.height / 2, data, arena);
 			data.player = player;
 			
+			_viewSystem = new ViewSystem(arena, player);
+			
 			var missileLauncher:MisisleLauncher = new MisisleLauncher(
 													viewSystem.playView, viewSystem.playCamera,
 													viewSystem.hudView, viewSystem.hudCamera,
 													data, arena);
 			
-			// Setting up the views
-			_viewSystem = new ViewSystem(arena, player);					
+			// Setting up the views				
 			viewSystem.playView.add(player);
 			viewSystem.hudView.add(new ScoreDisplay(Consts.GAME_WIDTH - 310, 10, data));
 		}
