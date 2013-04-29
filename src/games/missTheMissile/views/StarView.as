@@ -3,8 +3,8 @@ package games.missTheMissile.views
 	import core.Random;
 	import core.ui.View;
 	import core.util.camera.Camera;
-	import core.util.camera.ParallaxCamera;
-	import core.util.camera.ViewCamera;
+	import core.util.camera.decorators.ParallaxCamera;
+	import core.util.camera.concrete.ViewCamera;
 	import flash.display.BitmapData;
 	import flash.geom.Rectangle;
 	import games.missTheMissile.arena.Arena;

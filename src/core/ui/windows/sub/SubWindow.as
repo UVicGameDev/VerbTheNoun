@@ -4,7 +4,7 @@ package core.ui.windows.sub
 	import core.ui.windows.main.MainWindow;
 	import core.ui.windows.Window;
 	import core.util.camera.Camera;
-	import core.util.camera.ViewCamera;
+	import core.util.camera.concrete.ViewCamera;
 	import core.util.UpdateList;
 	import flash.display.BitmapData;
 	import flash.geom.Point;

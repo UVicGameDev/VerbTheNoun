@@ -1,5 +1,7 @@
-package core.util.camera 
+package core.util.camera.decorators 
 {
+	import core.util.camera.Camera;
+	import core.util.camera.CameraDecorator;
 	import flash.geom.Rectangle;
 	/**
 	 * ...

@@ -1,11 +1,13 @@
-package core.util.camera 
+package core.util.camera.decorators 
 {
+	import core.util.camera.Camera;
+	import core.util.camera.CameraDecorator;
 	import net.flashpunk.Entity;
 	/**
 	 * ...
 	 * @author beyamor
 	 */
-	public class EntityCamera extends CameraDecorator 
+	public class EntityCamera extends CameraDecorator
 	{
 		private var entity:Entity;
 		

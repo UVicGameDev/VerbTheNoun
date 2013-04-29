@@ -1,6 +1,7 @@
-package core.util.camera 
+package core.util.camera.concrete 
 {
 	import core.ui.View
+	import core.util.camera.Camera;
 	/**
 	 * ...
 	 * @author beyamor

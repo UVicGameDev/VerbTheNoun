@@ -1,11 +1,12 @@
-package core.util.camera 
+package core.util.camera.concrete 
 {
+	import core.util.camera.Camera;
 	import net.flashpunk.FP;
 	/**
 	 * ...
 	 * @author beyamor
 	 */
-	public class FPCamera implements Camera 
+	public class FPCamera implements Camera
 	{
 		
 		public function FPCamera() 

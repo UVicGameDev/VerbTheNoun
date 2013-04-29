@@ -1,10 +1,10 @@
 package games.missTheMissile.views 
 {
 	import core.ui.View;
-	import core.util.camera.BoundedCamera;
+	import core.util.camera.decorators.BoundedCamera;
 	import core.util.camera.Camera;
-	import core.util.camera.EntityCamera;
-	import core.util.camera.ViewCamera;
+	import core.util.camera.decorators.EntityCamera;
+	import core.util.camera.concrete.ViewCamera;
 	import core.util.Updateable;
 	import core.util.UpdateList;
 	import flash.display.BitmapData;

@@ -1,7 +1,7 @@
 package core.ui.windows.main 
 {
 	import core.ui.windows.Window;
-	import core.util.camera.FPCamera;
+	import core.util.camera.concrete.FPCamera;
 	import flash.display.BitmapData;
 	import core.util.camera.Camera
 	import flash.geom.Point;
