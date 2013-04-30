@@ -17,6 +17,14 @@ package core
 		 * Whether player invincibility is enabled (i.e., the game cannot be lost)
 		 */
 		public static function get invincibilityEnabled():Boolean { return isEnabled && false; }
+		
+		/**
+		 * Prints something to the console if debugging is enabled.
+		 */
+		public static function log(text:String):void { 
+			
+			if (isEnabled) trace(text);
+		}
 	}
 
 }

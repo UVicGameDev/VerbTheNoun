@@ -6,6 +6,7 @@ package games.dialThePhone
 	import core.ui.View;
 	import flash.geom.Point;
 	import games.dialThePhone.entities.Finger;
+	import games.dialThePhone.entities.keys.Key;
 	import games.dialThePhone.states.DialState;
 	import games.dialThePhone.states.GameState;
 	import net.flashpunk.FP;
@@ -36,7 +37,8 @@ package games.dialThePhone
 			
 			_currentState			= new DialState(this);
 			
-			phoneView.add(new Finger(GameConsts.WIDTH - 50, 50));
+			phoneView.add(new Finger(phoneView.width - 50, 50));			
+			phoneView.add(new Key("0", phoneView.width / 2, phoneView.height / 2));
 		}
 		
 		override public function update():void 
