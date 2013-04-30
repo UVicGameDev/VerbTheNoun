@@ -18,16 +18,34 @@ package games.dialThePhone.entities
 					MAX_SPEED:Number	= 600,
 					FRICTION:Number		= 7;
 		
-		private var	velocity:Point	= new Point;
+		private var	velocity:Point		= new Point,
+					sprite:FingerSprite;
 		
 		public function Finger(initialX:Number, initialY:Number) 
 		{
-			super(initialX, initialY, new FingerSprite);
+			sprite = new FingerSprite;
+			
+			super(initialX, initialY, sprite);
 		}
 		
 		override public function update():void 
 		{
-			super.update();
+			super.update();			
+			
+			if (Input.pressed(Keys.ACTION1)) sprite.tap();
+			
+			if (!sprite.isTapping) {
+				
+				move();
+			}
+			
+			else {
+				
+				velocity.x = velocity.y = 0;
+			}
+		}
+		
+		private function move():void {
 			
 			// I'm copying this almost wholesale from missTheMissile's Player.
 			// Consider factoring it out into something.

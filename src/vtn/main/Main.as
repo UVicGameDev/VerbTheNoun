@@ -26,8 +26,8 @@ package vtn.main
 			Input.define(Keys.DOWN,		Key.DOWN);
 			Input.define(Keys.LEFT,		Key.LEFT);
 			Input.define(Keys.RIGHT,	Key.RIGHT);
-			Input.define(Keys.ACTION1,	Key.A);
-			Input.define(Keys.ACTION2,	Key.S);
+			Input.define(Keys.ACTION1,	Key.S);
+			Input.define(Keys.ACTION2,	Key.A);
 			Input.define(Keys.CONFIRM,	Key.S);
 			Input.define(Keys.CANCEL,	Key.A);
 			Input.define(Keys.START,	Key.ENTER);
