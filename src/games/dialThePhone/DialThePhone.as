@@ -5,7 +5,7 @@ package games.dialThePhone
 	import core.GameConsts;
 	import core.ui.View;
 	import flash.geom.Point;
-	import games.dialThePhone.entities.Finger;
+	import games.dialThePhone.entities.finger.Finger;
 	import games.dialThePhone.entities.keys.Key;
 	import games.dialThePhone.states.DialState;
 	import games.dialThePhone.states.GameState;

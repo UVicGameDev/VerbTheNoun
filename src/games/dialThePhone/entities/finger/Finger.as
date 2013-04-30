@@ -1,8 +1,11 @@
-package games.dialThePhone.entities 
+package games.dialThePhone.entities.finger 
 {
 	import core.GameConsts;
 	import core.Keys;
 	import flash.geom.Point;
+	import games.dialThePhone.entities.finger.states.MoveState;
+	import games.dialThePhone.entities.finger.states.TapDownState;
+	import games.dialThePhone.entities.finger.states.TapUpState;
 	import games.dialThePhone.entities.keys.Key;
 	import games.dialThePhone.graphics.FingerSprite;
 	import net.flashpunk.Entity;
@@ -19,17 +22,29 @@ package games.dialThePhone.entities
 					MAX_SPEED:Number	= 600,
 					FRICTION:Number		= 7;
 		
-		private var	velocity:Point		= new Point,
-					sprite:FingerSprite;
+		private var	_sprite:FingerSprite,
+					currentState:FingerState;
+					
+		public var	moveState:FingerState,
+					tapDownState:FingerState,
+					tapUpState:FingerState,
+					velocity:Point				= new Point;
+					
+		public function get sprite():FingerSprite { return _sprite; }
 		
 		public function Finger(initialX:Number, initialY:Number) 
 		{
-			sprite = new FingerSprite;
+			_sprite = new FingerSprite;
 			
-			super(initialX, initialY, sprite);
+			super(initialX, initialY, _sprite);
+			
+			moveState		= new MoveState(this);
+			tapDownState	= new TapDownState(this);
+			tapUpState		= new TapUpState(this);
+			currentState	= moveState;
 		}
 		
-		private function tryKeyPress():void {
+		public function tryKeyPress():void {
 			
 			var	pressedKey:Key = collide("key", x, y) as Key;
 			
@@ -42,26 +57,10 @@ package games.dialThePhone.entities
 		{
 			super.update();			
 			
-			if (Input.pressed(Keys.ACTION1)) {
-				
-				sprite.tap(function():void {
-					
-					tryKeyPress();
-				});
-			}
-			
-			if (!sprite.isTapping) {
-				
-				move();
-			}
-			
-			else {
-				
-				velocity.x = velocity.y = 0;
-			}
+			currentState.update();
 		}
 		
-		private function move():void {
+		public function move():void {
 			
 			// I'm copying this almost wholesale from missTheMissile's Player.
 			// Consider factoring it out into something.
@@ -101,6 +100,13 @@ package games.dialThePhone.entities
 			if (x > GameConsts.WIDTH)		{ x = GameConsts.WIDTH;			velocity.x = 0; }
 			if (y < 0)						{ y = 0;						velocity.y = 0; }
 			if (y > GameConsts.HALF_HEIGHT)	{ y = GameConsts.HALF_HEIGHT;	velocity.y = 0; }
+		}
+		
+		public function switchTo(nextState:FingerState):void {
+			
+			if (currentState) currentState.leave();
+			currentState = nextState;
+			currentState.enter();
 		}
 	}
 

@@ -10,7 +10,7 @@ package core.util
 	 */
 	public class Timer implements Updateable
 	{
-		private var	totalTile:Number,
+		private var	totalTime:Number,
 					elapsedtime:Number			= 0,
 					callbacks:Vector.<Function>	= new Vector.<Function>;
 		
@@ -26,7 +26,7 @@ package core.util
 		 */
 		public function Timer(timeInSeconds:Number)
 		{
-			totalTile = timeInSeconds;
+			totalTime = timeInSeconds;
 		}
 		
 		/**
@@ -43,7 +43,7 @@ package core.util
 		 */
 		public function get hasFired():Boolean {
 			
-			return elapsedtime >= totalTile;
+			return elapsedtime >= totalTime;
 		}
 		
 		/**
@@ -53,7 +53,7 @@ package core.util
 			
 			if (hasFired) {
 				
-				if (loops)	elapsedtime -= totalTile;
+				if (loops)	elapsedtime -= totalTime;
 				else		return;
 			};
 			
@@ -66,6 +66,15 @@ package core.util
 					callback();
 				}
 			}
+		}
+		
+		/**
+		 * The percent elapsed as a number between 0 and 1.
+		 * Clamps to 1.
+		 */
+		public function get percentElapsed():Number {
+			
+			return Math.min(1, elapsedtime / totalTime);
 		}
 	}
 

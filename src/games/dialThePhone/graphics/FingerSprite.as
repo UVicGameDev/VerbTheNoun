@@ -43,49 +43,6 @@ package games.dialThePhone.graphics
 			reticule	= new Image(RETICULE_IMAGE);
 			reticule.x	= -16;
 			reticule.y	= -16;
-			
-			active = true;
-		}
-		
-		override public function update():void 
-		{
-			super.update();
-			
-			
-			// A lot of state-y stuff for a graphic,
-			// but I'm doing the animation programmatically, so suck it
-			if (isTapping) tapTime += FP.elapsed;
-			
-			if (tapState == TAPPING_DOWN) {
-				
-				if (tapTime < TAP_DOWN_TIME) {
-					
-					fingerHeight = (1 - Ease.cubeOut(tapTime / TAP_DOWN_TIME)) * MAXIMUM_FINGER_HEIGHT;
-				}
-				
-				else {
-				
-					fingerHeight	= 0;
-					tapState		= TAPPING_UP;
-					tapTime			= 0;
-					
-					if (onTapDown != null) onTapDown();
-				}
-			}
-			
-			else if (tapState == TAPPING_UP) {
-				
-				if (tapTime < TAP_UP_TIME) {
-					
-					fingerHeight = (Ease.cubeOut(tapTime / TAP_UP_TIME)) * MAXIMUM_FINGER_HEIGHT;
-				}
-				
-				else {
-				
-					fingerHeight	= MAXIMUM_FINGER_HEIGHT;
-					tapState		= NOT_TAPPING;
-				}
-			}
 		}
 		
 		override public function render(target:BitmapData, point:Point, camera:Point):void 
@@ -95,18 +52,9 @@ package games.dialThePhone.graphics
 			finger.render(target, point.subtract(new Point(0, fingerHeight)), camera);
 		}
 		
-		public function tap(onTapDown:Function = null):void {
+		public function set fingerHeightPercent(percentBetween0And1:Number):void {
 			
-			if (isTapping) return;
-			
-			tapState		= TAPPING_DOWN;
-			tapTime			= 0;
-			this.onTapDown	= onTapDown;
-		}
-		
-		public function get isTapping():Boolean {
-			
-			return tapState != NOT_TAPPING;
+			fingerHeight = percentBetween0And1 * MAXIMUM_FINGER_HEIGHT;
 		}
 	}
 
