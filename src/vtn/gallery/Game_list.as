@@ -1,5 +1,6 @@
 package vtn.gallery
 {
+	import games.dialThePhone.DialThePhone;
 	import games.missTheMissile.MissTheMissile;
 	import HeartTheBeets.HeartTheBeetsWorld;
 	import HeartTheBeets.Cloud;
@@ -26,7 +27,7 @@ package vtn.gallery
 			game_list = new Array();
 			game_list.push((new GamePortal(function():World { return new MissTheMissile; }, REDSTANDIN)));
 			game_list.push((new GamePortal(function():World { return new HeartTheBeetsWorld; }, CLOUD)));
-			game_list.push((new GamePortal(function():World {return new TestWorld(YELLOWSTANDIN)}, YELLOWSTANDIN)));
+			game_list.push((new GamePortal(function():World { return new DialThePhone; }, YELLOWSTANDIN)));
 			game_list.push((new GamePortal(function():World {return new TestWorld(BLUESTANDIN)}, BLUESTANDIN)));
 			game_list.push((new GamePortal(function():World {return new TestWorld(VIOLETSTANDIN)}, VIOLETSTANDIN)));
 		}	
