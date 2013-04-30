@@ -1,6 +1,7 @@
 package games.missTheMissile.entities 
 {
 	import core.Debug;
+	import core.input.TopDownKeyInterpreter;
 	import core.Keys;
 	import flash.filters.DisplacementMapFilterMode;
 	import flash.geom.Point;
@@ -28,7 +29,8 @@ package games.missTheMissile.entities
 		
 		private var	sprite:PlayerSprite,
 					arena:Arena,
-					data:GameData;
+					data:GameData,
+					moveIntention:TopDownKeyInterpreter	= new TopDownKeyInterpreter;
 		
 		public function Player(x:Number, y:Number, data:GameData, arena:Arena)
 		{
@@ -67,27 +69,12 @@ package games.missTheMissile.entities
 		
 		private function checkMotion():void {
 			
-			// I copied this almost wholesale into dialThePhone's Finger.
-			// Consider factoring it out into something.
-			var	dx:Number	= 0,
-				dy:Number	= 0,
-				tryingToMove:Boolean = false;
-				
-			if (Input.check(Keys.LEFT))		{ dx -= 1; tryingToMove = true; }
-			if (Input.check(Keys.RIGHT))	{ dx += 1; tryingToMove = true; }
-			if (Input.check(Keys.UP))		{ dy -= 1; tryingToMove = true; }
-			if (Input.check(Keys.DOWN))		{ dy += 1; tryingToMove = true; }
+			moveIntention.update();
 			
-			if (dx != 0 && dy != 0) {
-				
-				dx *= Math.SQRT1_2;
-				dy *= Math.SQRT1_2;
-			}
+			if (!moveIntention.tryingToMove) applyFriction();
 			
-			if (!tryingToMove) applyFriction();
-			
-			velocity.x += dx * ACCELERATION;
-			velocity.y += dy * ACCELERATION;
+			velocity.x += moveIntention.dx * ACCELERATION;
+			velocity.y += moveIntention.dy * ACCELERATION;
 			
 			if (speed > MAX_SPEED) speed = MAX_SPEED;
 		}

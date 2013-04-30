@@ -1,6 +1,7 @@
 package games.dialThePhone.entities.finger 
 {
 	import core.GameConsts;
+	import core.input.TopDownKeyInterpreter;
 	import core.Keys;
 	import flash.geom.Point;
 	import games.dialThePhone.entities.finger.states.MoveState;
@@ -23,7 +24,8 @@ package games.dialThePhone.entities.finger
 					FRICTION:Number		= 7;
 		
 		private var	_sprite:FingerSprite,
-					currentState:FingerState;
+					currentState:FingerState,
+					moveIntention:TopDownKeyInterpreter	= new TopDownKeyInterpreter;
 					
 		public var	moveState:FingerState,
 					tapDownState:FingerState,
@@ -57,6 +59,7 @@ package games.dialThePhone.entities.finger
 		{
 			super.update();			
 			
+			moveIntention.update();
 			currentState.update();
 		}
 		
@@ -64,22 +67,8 @@ package games.dialThePhone.entities.finger
 			
 			// I'm copying this almost wholesale from missTheMissile's Player.
 			// Consider factoring it out into something.
-			var	dx:Number				= 0,
-				dy:Number				= 0,
-				tryingToMove:Boolean	= false;
-				
-			if (Input.check(Keys.LEFT))		{ dx -= 1; tryingToMove = true; }
-			if (Input.check(Keys.RIGHT))	{ dx += 1; tryingToMove = true; }
-			if (Input.check(Keys.UP))		{ dy -= 1; tryingToMove = true; }
-			if (Input.check(Keys.DOWN))		{ dy += 1; tryingToMove = true; }
 			
-			if (dx != 0 && dy != 0) {
-				
-				dx *= Math.SQRT1_2;
-				dy *= Math.SQRT1_2;
-			}
-			
-			if (!tryingToMove) {
+			if (!moveIntention.tryingToMove) {
 				
 				var	speed:Number		= Math.sqrt(velocity.x * velocity.x + velocity.y * velocity.y),
 					reducedSpeed:Number = Math.max(0, speed - FRICTION),
@@ -89,8 +78,8 @@ package games.dialThePhone.entities.finger
 				velocity.y = Math.sin(direction) * reducedSpeed;
 			}
 			
-			velocity.x += dx * ACCELERATION;
-			velocity.y += dy * ACCELERATION;
+			velocity.x += moveIntention.dx * ACCELERATION;
+			velocity.y += moveIntention.dy * ACCELERATION;
 			
 			x += velocity.x * FP.elapsed;
 			y += velocity.y * FP.elapsed;
