@@ -67,6 +67,8 @@ package games.missTheMissile.entities
 		
 		private function checkMotion():void {
 			
+			// I copied this almost wholesale into dialThePhone's Finger.
+			// Consider factoring it out into something.
 			var	dx:Number	= 0,
 				dy:Number	= 0,
 				tryingToMove:Boolean = false;
