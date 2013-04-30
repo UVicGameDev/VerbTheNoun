@@ -22,7 +22,8 @@ package games.dialThePhone.entities.keys
 			width = 32;
 			height = 32;
 			
-			layer = 10;
+			layer	= 10;
+			type	= "key";
 		}
 		
 		public function press():void {

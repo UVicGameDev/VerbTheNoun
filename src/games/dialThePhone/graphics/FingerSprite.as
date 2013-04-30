@@ -31,7 +31,8 @@ package games.dialThePhone.graphics
 					reticule:Image,
 					fingerHeight:Number	= MAXIMUM_FINGER_HEIGHT,
 					tapState:uint		= NOT_TAPPING,
-					tapTime:Number		= 0;
+					tapTime:Number		= 0,
+					onTapDown:Function;
 		
 		public function FingerSprite() 
 		{
@@ -67,6 +68,8 @@ package games.dialThePhone.graphics
 					fingerHeight	= 0;
 					tapState		= TAPPING_UP;
 					tapTime			= 0;
+					
+					if (onTapDown != null) onTapDown();
 				}
 			}
 			
@@ -92,12 +95,13 @@ package games.dialThePhone.graphics
 			finger.render(target, point.subtract(new Point(0, fingerHeight)), camera);
 		}
 		
-		public function tap():void {
+		public function tap(onTapDown:Function = null):void {
 			
 			if (isTapping) return;
 			
-			tapState	= TAPPING_DOWN;
-			tapTime		= 0;
+			tapState		= TAPPING_DOWN;
+			tapTime			= 0;
+			this.onTapDown	= onTapDown;
 		}
 		
 		public function get isTapping():Boolean {

@@ -3,6 +3,7 @@ package games.dialThePhone.entities
 	import core.GameConsts;
 	import core.Keys;
 	import flash.geom.Point;
+	import games.dialThePhone.entities.keys.Key;
 	import games.dialThePhone.graphics.FingerSprite;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
@@ -28,11 +29,26 @@ package games.dialThePhone.entities
 			super(initialX, initialY, sprite);
 		}
 		
+		private function tryKeyPress():void {
+			
+			var	pressedKey:Key = collide("key", x, y) as Key;
+			
+			if (!pressedKey) return;
+			
+			pressedKey.press();
+		}
+		
 		override public function update():void 
 		{
 			super.update();			
 			
-			if (Input.pressed(Keys.ACTION1)) sprite.tap();
+			if (Input.pressed(Keys.ACTION1)) {
+				
+				sprite.tap(function():void {
+					
+					tryKeyPress();
+				});
+			}
 			
 			if (!sprite.isTapping) {
 				
