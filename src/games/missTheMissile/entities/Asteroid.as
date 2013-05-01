@@ -1,5 +1,6 @@
 package games.missTheMissile.entities 
 {
+	import core.motion.UnboundedVelocity;
 	import core.Random;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
@@ -35,8 +36,7 @@ package games.missTheMissile.entities
 			
 			super(x, y, sprite);
 			
-			speed = SPEED;
-			direction = Random.inRange(0, Math.PI * 2);
+			velocity = new UnboundedVelocity(SPEED, Random.angle);
 		}
 		
 		override public function collided(other:SpaceEntity):void 

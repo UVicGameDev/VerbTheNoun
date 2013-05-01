@@ -1,5 +1,7 @@
 package games.missTheMissile.entities 
 {
+	import core.motion.BoundedVelocity;
+	import core.motion.Velocity;
 	import flash.external.ExternalInterface;
 	import flash.geom.Rectangle;
 	import games.missTheMissile.GameData;
@@ -28,8 +30,7 @@ package games.missTheMissile.entities
 			
 			super(x, y, new MissileSprite(this));
 			
-			speed		= MAX_SPEED;
-			direction	= directionToPlayer;
+			velocity = new BoundedVelocity(MAX_SPEED, directionToPlayer, MAX_SPEED);
 		}
 		
 		private function get directionToPlayer():Number {
@@ -43,12 +44,8 @@ package games.missTheMissile.entities
 			
 			if (data.playerIsAlive) {
 				
-				var intendedDirection:Number = directionToPlayer;
-				velocity.x += ACCELERATION * Math.cos(intendedDirection);
-				velocity.y += ACCELERATION * Math.sin(intendedDirection);
+				velocity.accelerate(directionToPlayer, ACCELERATION);
 			}
-			
-			speed = Math.min(MAX_SPEED, speed);
 		}
 		
 		override public function collided(other:SpaceEntity):void 

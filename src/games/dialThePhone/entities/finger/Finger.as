@@ -3,6 +3,8 @@ package games.dialThePhone.entities.finger
 	import core.GameConsts;
 	import core.input.TopDownKeyInterpreter;
 	import core.Keys;
+	import core.motion.BoundedVelocity;
+	import core.motion.Velocity;
 	import flash.geom.Point;
 	import games.dialThePhone.entities.finger.states.MoveState;
 	import games.dialThePhone.entities.finger.states.TapDownState;
@@ -30,7 +32,7 @@ package games.dialThePhone.entities.finger
 		public var	moveState:FingerState,
 					tapDownState:FingerState,
 					tapUpState:FingerState,
-					velocity:Point				= new Point;
+					velocity:Velocity;
 					
 		public function get sprite():FingerSprite { return _sprite; }
 		
@@ -44,6 +46,8 @@ package games.dialThePhone.entities.finger
 			tapDownState	= new TapDownState(this);
 			tapUpState		= new TapUpState(this);
 			currentState	= moveState;
+			
+			velocity = new BoundedVelocity(0, 0, MAX_SPEED);
 		}
 		
 		public function tryKeyPress():void {
@@ -57,7 +61,7 @@ package games.dialThePhone.entities.finger
 		
 		override public function update():void 
 		{
-			super.update();			
+			super.update();
 			
 			moveIntention.update();
 			currentState.update();
@@ -70,19 +74,16 @@ package games.dialThePhone.entities.finger
 			
 			if (!moveIntention.tryingToMove) {
 				
-				var	speed:Number		= Math.sqrt(velocity.x * velocity.x + velocity.y * velocity.y),
-					reducedSpeed:Number = Math.max(0, speed - FRICTION),
-					direction:Number	= Math.atan2(velocity.y, velocity.x);
-					
-				velocity.x = Math.cos(direction) * reducedSpeed;
-				velocity.y = Math.sin(direction) * reducedSpeed;
+				velocity.applyFriction(FRICTION);
 			}
 			
-			velocity.x += moveIntention.dx * ACCELERATION;
-			velocity.y += moveIntention.dy * ACCELERATION;
+			else {
 			
-			x += velocity.x * FP.elapsed;
-			y += velocity.y * FP.elapsed;
+				velocity.accelerate(moveIntention.direction, ACCELERATION);
+			}
+			
+			x += velocity.dx;
+			y += velocity.dy;
 			
 			// Probably also want to factor out this bounding logic.
 			if (x < 0)						{ x = 0;						velocity.x = 0; }

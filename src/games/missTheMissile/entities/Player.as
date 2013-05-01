@@ -3,6 +3,7 @@ package games.missTheMissile.entities
 	import core.Debug;
 	import core.input.TopDownKeyInterpreter;
 	import core.Keys;
+	import core.motion.BoundedVelocity;
 	import flash.filters.DisplacementMapFilterMode;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
@@ -42,6 +43,8 @@ package games.missTheMissile.entities
 			sprite	= new PlayerSprite(this);
 			
 			super(x, y, sprite);
+			
+			velocity = new BoundedVelocity(0, 0, MAX_SPEED);
 		}
 		
 		override public function update():void 
@@ -60,23 +63,19 @@ package games.missTheMissile.entities
 			if (y + halfHeight > arena.height)	{ y = arena.height - halfHeight;	velocity.y = 0; }
 		}
 		
-		private function applyFriction():void {
-			
-			if (speed == 0) return;
-			
-			speed = Math.max(0, speed - FRICTION);
-		}
-		
 		private function checkMotion():void {
 			
 			moveIntention.update();
 			
-			if (!moveIntention.tryingToMove) applyFriction();
+			if (!moveIntention.tryingToMove) {
+				
+				velocity.applyFriction(FRICTION);
+			}
 			
-			velocity.x += moveIntention.dx * ACCELERATION;
-			velocity.y += moveIntention.dy * ACCELERATION;
-			
-			if (speed > MAX_SPEED) speed = MAX_SPEED;
+			else {
+				
+				velocity.accelerate(moveIntention.direction, ACCELERATION);
+			}
 		}
 		
 		override public function collided(other:SpaceEntity):void 

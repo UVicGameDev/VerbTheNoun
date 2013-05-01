@@ -65,6 +65,7 @@ package games.missTheMissile
 			
 			// Setting up the views				
 			viewSystem.playView.add(player);
+			viewSystem.playView.updateables.add(missileLauncher);
 			viewSystem.hudView.add(new ScoreDisplay(viewSystem.hudView.width - 310, 10, data));
 		}
 		

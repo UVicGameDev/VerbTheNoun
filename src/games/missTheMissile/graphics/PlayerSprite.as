@@ -36,7 +36,7 @@ package games.missTheMissile.graphics
 		
 		override public function render(target:BitmapData, point:Point, camera:Point):void 
 		{
-			shape.direction = player.direction;
+			shape.direction = player.velocity.direction;
 			shape.render(target, point, camera);
 		}
 	}
