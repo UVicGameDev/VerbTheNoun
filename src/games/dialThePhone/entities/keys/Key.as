@@ -12,15 +12,11 @@ package games.dialThePhone.entities.keys
 	{
 		private var	label:String
 		
-		public function Key(label:String, x:Number, y:Number)
+		public function Key(label:String, keySource:*, x:Number, y:Number)
 		{
 			this.label = label;
 			
-			super(x, y, new KeySprite(label));
-			
-			// TODO: Make these values less arbitrary
-			width = 32;
-			height = 32;
+			super(x, y, new KeySprite(label, keySource));
 			
 			layer	= 10;
 			type	= "key";

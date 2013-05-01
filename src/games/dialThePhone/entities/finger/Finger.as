@@ -12,6 +12,7 @@ package games.dialThePhone.entities.finger
 	import games.dialThePhone.entities.finger.states.TapUpState;
 	import games.dialThePhone.entities.keys.Key;
 	import games.dialThePhone.graphics.FingerSprite;
+	import games.dialThePhone.util.ColorBounds;
 	import net.flashpunk.Entity;
 	import net.flashpunk.FP;
 	import net.flashpunk.utils.Input;
@@ -27,16 +28,18 @@ package games.dialThePhone.entities.finger
 					FRICTION:Number		= 7;
 		
 		private var	_sprite:FingerSprite,
-					moveIntention:TopDownKeyInterpreter	= new TopDownKeyInterpreter;
+					moveIntention:TopDownKeyInterpreter	= new TopDownKeyInterpreter,
+					bounds:ColorBounds;
 					
 		public var	state:ELUStateMachine,
 					velocity:Velocity;
 					
 		public function get sprite():FingerSprite { return _sprite; }
 		
-		public function Finger(initialX:Number, initialY:Number) 
+		public function Finger(initialX:Number, initialY:Number, bounds:ColorBounds) 
 		{
-			_sprite = new FingerSprite;
+			this.bounds	= bounds;
+			_sprite		= new FingerSprite;
 			
 			super(initialX, initialY, _sprite);
 			
@@ -69,24 +72,13 @@ package games.dialThePhone.entities.finger
 		
 		public function move():void {
 			
-			if (!moveIntention.tryingToMove) {
-				
-				velocity.applyFriction(FRICTION);
-			}
+			if (!moveIntention.tryingToMove)	velocity.applyFriction(FRICTION);
+			else								velocity.accelerate(moveIntention.direction, ACCELERATION);
 			
-			else {
-			
-				velocity.accelerate(moveIntention.direction, ACCELERATION);
-			}
-			
-			x += velocity.dx;
-			y += velocity.dy;
-			
-			// Probably also want to factor out this bounding logic.
-			if (x < 0)						{ x = 0;						velocity.x = 0; }
-			if (x > GameConsts.WIDTH)		{ x = GameConsts.WIDTH;			velocity.x = 0; }
-			if (y < 0)						{ y = 0;						velocity.y = 0; }
-			if (y > GameConsts.HALF_HEIGHT)	{ y = GameConsts.HALF_HEIGHT;	velocity.y = 0; }
+			if (bounds.contains(x + velocity.dx, y))	x += velocity.dx;
+			else										velocity.x = 0;
+			if (bounds.contains(x, y + velocity.dy))	y += velocity.dy;
+			else										velocity.y = 0;
 		}
 	}
 

@@ -8,8 +8,11 @@ package games.dialThePhone
 	import flash.geom.Point;
 	import games.dialThePhone.entities.finger.Finger;
 	import games.dialThePhone.entities.keys.Key;
+	import games.dialThePhone.entities.keys.NumericKey;
 	import games.dialThePhone.states.DialState;
+	import games.dialThePhone.util.ColorBounds;
 	import net.flashpunk.FP;
+	import net.flashpunk.graphics.Backdrop;
 	import net.flashpunk.graphics.Text;
 	
 	/**
@@ -18,22 +21,16 @@ package games.dialThePhone
 	 */
 	public class DialThePhone extends Game 
 	{
-		private var	_phoneView:View,
-					_guyView:View,
-					_state:ELUStateMachine;
-					
-		public function get phoneView():View { return _phoneView; }
-		public function get guyView():View { return _guyView; }
+		[Embed(source = '/games/dialThePhone/assets/background.png')]
+		private static const BACKDROP:Class;
+		
+		private var	_state:ELUStateMachine;
 		
 		public function DialThePhone() 
 		{
 			if (Debug.isEnabled) addGraphic(new Text("Dial the Phone"));
 			
-			_phoneView				= new View(GameConsts.WIDTH, GameConsts.HALF_HEIGHT);
-			phoneView.clearColor	= 0xFF23182E;
-			
-			_guyView				= new View(GameConsts.WIDTH, GameConsts.HALF_HEIGHT);
-			guyView.clearColor		= 0xFF96DEF2;
+			addGraphic(new Backdrop(BACKDROP), 100);
 			
 			_state = new ELUStateMachine(
 				"dial", {
@@ -41,16 +38,8 @@ package games.dialThePhone
 			});
 			updateables.add(_state);
 			
-			phoneView.add(new Finger(phoneView.width - 50, 50));			
-			phoneView.add(new Key("0", phoneView.width / 2, phoneView.height / 2));
-		}
-		
-		override public function render():void 
-		{
-			_phoneView.renderTo(FP.buffer);
-			_guyView.renderTo(FP.buffer, new Point(0, GameConsts.HALF_HEIGHT));
-			
-			super.render();
+			add(new Finger(745, 95, new ColorBounds(0xB0B9C6, BACKDROP)));			
+			add(new NumericKey("0", GameConsts.HALF_WIDTH, GameConsts.HALF_HEIGHT));
 		}
 	}
 

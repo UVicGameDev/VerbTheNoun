@@ -15,11 +15,7 @@ package games.dialThePhone.states
 		public function DialState(game:DialThePhone) 
 		{
 			this.game = game;
-			
-			updateables = new UpdateList(
-				game.phoneView.updater,
-				game.guyView.updater
-			);
+			updateables = new UpdateList;
 		}
 		
 		/* INTERFACE games.dialThePhone.states.GameState */
