@@ -1,6 +1,7 @@
 package games.dialThePhone.entities.keys 
 {
 	import core.Debug;
+	import games.dialThePhone.entities.InputDisplay;
 	import games.dialThePhone.graphics.NumericKeySprite;
 	/**
 	 * ...
@@ -8,13 +9,15 @@ package games.dialThePhone.entities.keys
 	 */
 	public class NumericKey extends Key 
 	{	
-		private var number:uint;
+		private var digit:uint,
+					inputDisplay:InputDisplay;
 		
-		public function NumericKey(number:uint, x:Number, y:Number) 
+		public function NumericKey(digit:uint, x:Number, y:Number, inputDisplay:InputDisplay) 
 		{
-			this.number = number;
+			this.digit 			= digit;
+			this.inputDisplay	= inputDisplay;
 			
-			super(x, y, new NumericKeySprite(number));
+			super(x, y, new NumericKeySprite(digit));
 			
 			width	= 48;
 			height	= 48;
@@ -24,7 +27,9 @@ package games.dialThePhone.entities.keys
 		{
 			super.press();
 			
-			Debug.log("Pressed number " + number);
+			inputDisplay.addDigit(digit);
+			
+			Debug.log("Pressed number: " + digit);
 		}
 	}
 

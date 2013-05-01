@@ -7,6 +7,7 @@ package games.dialThePhone
 	import core.ui.View;
 	import flash.geom.Point;
 	import games.dialThePhone.entities.finger.Finger;
+	import games.dialThePhone.entities.InputDisplay;
 	import games.dialThePhone.entities.keys.Key;
 	import games.dialThePhone.entities.keys.NumericKey;
 	import games.dialThePhone.states.DialState;
@@ -38,8 +39,11 @@ package games.dialThePhone
 			});
 			updateables.add(_state);
 			
+			var inputDisplay:InputDisplay = new InputDisplay(65, 25);
+			add(inputDisplay);
+			
 			add(new Finger(745, 95, new ColorBounds(0xB0B9C6, BACKDROP)));			
-			add(new NumericKey(0, GameConsts.HALF_WIDTH, GameConsts.HALF_HEIGHT));
+			add(new NumericKey(0, GameConsts.HALF_WIDTH, GameConsts.HALF_HEIGHT, inputDisplay));
 		}
 	}
 
