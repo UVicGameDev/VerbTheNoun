@@ -1,15 +1,15 @@
 package games.dialThePhone.entities.finger.states 
 {
+	import core.context.ELUState;
 	import core.Keys;
 	import games.dialThePhone.entities.finger.Finger;
-	import games.dialThePhone.entities.finger.FingerState;
 	import net.flashpunk.utils.Input;
 	
 	/**
 	 * ...
 	 * @author beyamor
 	 */
-	public class MoveState implements FingerState 
+	public class MoveState implements ELUState 
 	{
 		private var finger:Finger;
 		
@@ -34,7 +34,7 @@ package games.dialThePhone.entities.finger.states
 		{
 			finger.move();
 			
-			if (Input.pressed(Keys.ACTION1)) finger.switchTo(finger.tapDownState);
+			if (Input.pressed(Keys.ACTION1)) finger.state.switchTo("tapDown");
 		}
 		
 	}

@@ -1,12 +1,13 @@
 package games.missTheMissile.states 
 {
+	import core.context.ELUState;
 	import games.missTheMissile.MissTheMissile;
 	import games.missTheMissile.windows.GameOverScreen;
 	/**
 	 * ...
 	 * @author beyamor
 	 */
-	public class GameOverState implements GameState 
+	public class GameOverState implements ELUState 
 	{
 		private var game:MissTheMissile;
 		

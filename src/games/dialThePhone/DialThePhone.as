@@ -1,5 +1,6 @@
 package games.dialThePhone 
 {
+	import core.context.ELUStateMachine;
 	import core.Debug;
 	import core.Game;
 	import core.GameConsts;
@@ -8,7 +9,6 @@ package games.dialThePhone
 	import games.dialThePhone.entities.finger.Finger;
 	import games.dialThePhone.entities.keys.Key;
 	import games.dialThePhone.states.DialState;
-	import games.dialThePhone.states.GameState;
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Text;
 	
@@ -20,7 +20,7 @@ package games.dialThePhone
 	{
 		private var	_phoneView:View,
 					_guyView:View,
-					_currentState:GameState;
+					_state:ELUStateMachine;
 					
 		public function get phoneView():View { return _phoneView; }
 		public function get guyView():View { return _guyView; }
@@ -35,17 +35,14 @@ package games.dialThePhone
 			_guyView				= new View(GameConsts.WIDTH, GameConsts.HALF_HEIGHT);
 			guyView.clearColor		= 0xFF96DEF2;
 			
-			_currentState			= new DialState(this);
+			_state = new ELUStateMachine(
+				"dial", {
+				dial:	new DialState(this)
+			});
+			updateables.add(_state);
 			
 			phoneView.add(new Finger(phoneView.width - 50, 50));			
 			phoneView.add(new Key("0", phoneView.width / 2, phoneView.height / 2));
-		}
-		
-		override public function update():void 
-		{
-			super.update();
-			
-			_currentState.update();
 		}
 		
 		override public function render():void 

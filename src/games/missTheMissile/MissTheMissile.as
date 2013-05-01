@@ -1,5 +1,6 @@
 package games.missTheMissile 
 {
+	import core.context.ELUStateMachine;
 	import core.Debug;
 	import core.Game;
 	import core.GameConsts;
@@ -10,7 +11,6 @@ package games.missTheMissile
 	import games.missTheMissile.states.PausedState;
 	import games.missTheMissile.views.ViewSystem
 	import games.missTheMissile.spawners.MisisleLauncher;
-	import games.missTheMissile.states.GameState;
 	import games.missTheMissile.states.PlayState;
 	import games.missTheMissile.ui.ScoreDisplay;
 	import games.missTheMissile.windows.GameOverScreen;
@@ -27,13 +27,9 @@ package games.missTheMissile
 	public class MissTheMissile extends Game 
 	{
 		private var _data:GameData,
-					state:GameState,
-					pendingNextState:GameState	= null,
 					_viewSystem:ViewSystem;
 					
-		public var	playState:PlayState,
-					pausedState:PausedState,
-					gameOverState:GameOverState;
+		public var	state:ELUStateMachine;
 		
 		public function MissTheMissile() 
 		{
@@ -42,10 +38,13 @@ package games.missTheMissile
 			_data = new GameData;			
 			setUp();
 			
-			playState		= new PlayState(this);
-			pausedState		= new PausedState(this);
-			gameOverState	= new GameOverState(this);
-			switchTo(playState);
+			state = new ELUStateMachine(
+				"play", {
+				play:		new PlayState(this),
+				paused:		new PausedState(this),
+				gameOver:	new GameOverState(this)
+			});
+			updateables.add(state);
 		}
 		
 		private function setUp():void {
@@ -69,30 +68,10 @@ package games.missTheMissile
 			viewSystem.hudView.add(new ScoreDisplay(viewSystem.hudView.width - 310, 10, data));
 		}
 		
-		override public function update():void 
-		{
-			super.update();
-			
-			if (state) state.update();
-			
-			if (pendingNextState) {
-				
-				if (state) state.leave();
-				state = pendingNextState;
-				pendingNextState = null;
-				state.enter();
-			}
-		}
-		
 		override public function render():void 
 		{
 			viewSystem.render();
 			super.render();
-		}
-		
-		public function switchTo(nextState:GameState):void {
-			
-			pendingNextState = nextState;
 		}
 		
 		//

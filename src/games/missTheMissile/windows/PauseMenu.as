@@ -46,7 +46,7 @@ package games.missTheMissile.windows
 		override public function close():void 
 		{
 			super.close();
-			game.switchTo(game.playState);
+			game.state.switchTo("play");
 		}
 	}
 

@@ -1,12 +1,13 @@
 package games.dialThePhone.states 
 {
+	import core.context.ELUState;
 	import core.util.UpdateList;
 	import games.dialThePhone.DialThePhone;
 	/**
 	 * ...
 	 * @author beyamor
 	 */
-	public class DialState implements GameState 
+	public class DialState implements ELUState 
 	{
 		private var	game:DialThePhone,
 					updateables:UpdateList;

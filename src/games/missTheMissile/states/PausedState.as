@@ -1,12 +1,13 @@
 package games.missTheMissile.states 
 {
+	import core.context.ELUState;
 	import games.missTheMissile.MissTheMissile;
 	import games.missTheMissile.windows.PauseMenu;
 	/**
 	 * ...
 	 * @author beyamor
 	 */
-	public class PausedState implements GameState 
+	public class PausedState implements ELUState 
 	{
 		private var game:MissTheMissile;
 		

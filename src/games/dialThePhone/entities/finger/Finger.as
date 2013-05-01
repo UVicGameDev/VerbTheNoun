@@ -1,5 +1,6 @@
 package games.dialThePhone.entities.finger 
 {
+	import core.context.ELUStateMachine;
 	import core.GameConsts;
 	import core.input.TopDownKeyInterpreter;
 	import core.Keys;
@@ -26,12 +27,9 @@ package games.dialThePhone.entities.finger
 					FRICTION:Number		= 7;
 		
 		private var	_sprite:FingerSprite,
-					currentState:FingerState,
 					moveIntention:TopDownKeyInterpreter	= new TopDownKeyInterpreter;
 					
-		public var	moveState:FingerState,
-					tapDownState:FingerState,
-					tapUpState:FingerState,
+		public var	state:ELUStateMachine,
 					velocity:Velocity;
 					
 		public function get sprite():FingerSprite { return _sprite; }
@@ -42,10 +40,12 @@ package games.dialThePhone.entities.finger
 			
 			super(initialX, initialY, _sprite);
 			
-			moveState		= new MoveState(this);
-			tapDownState	= new TapDownState(this);
-			tapUpState		= new TapUpState(this);
-			currentState	= moveState;
+			state = new ELUStateMachine(
+				"move", {
+				move:		new MoveState(this),
+				tapDown:	new TapDownState(this),
+				tapUp:		new TapUpState(this)
+			});
 			
 			velocity = new BoundedVelocity(0, 0, MAX_SPEED);
 		}
@@ -64,13 +64,10 @@ package games.dialThePhone.entities.finger
 			super.update();
 			
 			moveIntention.update();
-			currentState.update();
+			state.update();
 		}
 		
 		public function move():void {
-			
-			// I'm copying this almost wholesale from missTheMissile's Player.
-			// Consider factoring it out into something.
 			
 			if (!moveIntention.tryingToMove) {
 				
@@ -90,13 +87,6 @@ package games.dialThePhone.entities.finger
 			if (x > GameConsts.WIDTH)		{ x = GameConsts.WIDTH;			velocity.x = 0; }
 			if (y < 0)						{ y = 0;						velocity.y = 0; }
 			if (y > GameConsts.HALF_HEIGHT)	{ y = GameConsts.HALF_HEIGHT;	velocity.y = 0; }
-		}
-		
-		public function switchTo(nextState:FingerState):void {
-			
-			if (currentState) currentState.leave();
-			currentState = nextState;
-			currentState.enter();
 		}
 	}
 

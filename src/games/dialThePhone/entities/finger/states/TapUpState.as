@@ -1,8 +1,8 @@
 package games.dialThePhone.entities.finger.states 
 {
+	import core.context.ELUState;
 	import core.util.Timer;
 	import games.dialThePhone.entities.finger.Finger;
-	import games.dialThePhone.entities.finger.FingerState;
 	import games.dialThePhone.graphics.FingerSprite;
 	import net.flashpunk.utils.Ease;
 	
@@ -10,7 +10,7 @@ package games.dialThePhone.entities.finger.states
 	 * ...
 	 * @author beyamor
 	 */
-	public class TapUpState implements FingerState 
+	public class TapUpState implements ELUState 
 	{
 		private static const DURATION:Number = 0.1;
 		
@@ -31,7 +31,7 @@ package games.dialThePhone.entities.finger.states
 			timer = new Timer(DURATION);
 			timer.addCallback(function():void {
 				
-				finger.switchTo(finger.moveState);
+				finger.state.switchTo("move");
 			});
 		}
 		

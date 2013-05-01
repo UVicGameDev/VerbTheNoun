@@ -1,5 +1,6 @@
 package games.missTheMissile.states 
 {
+	import core.context.ELUState;
 	import core.Keys;
 	import core.util.Timer;
 	import games.missTheMissile.GameData;
@@ -9,7 +10,7 @@ package games.missTheMissile.states
 	 * ...
 	 * @author beyamor
 	 */
-	public class PlayState implements GameState 
+	public class PlayState implements ELUState 
 	{
 		private var game:MissTheMissile,
 					scoreIncrementer:Timer;
@@ -35,8 +36,8 @@ package games.missTheMissile.states
 		{
 			game.viewSystem.update();
 			
-			if (game.data.playerIsDead)			game.switchTo(game.gameOverState);
-			else if (Input.pressed(Keys.START))	game.switchTo(game.pausedState);
+			if (game.data.playerIsDead)			game.state.switchTo("gameOver");
+			else if (Input.pressed(Keys.START))	game.state.switchTo("paused");
 			
 			scoreIncrementer.update();
 		}
