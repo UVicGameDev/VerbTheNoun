@@ -10,15 +10,18 @@ package games.dialThePhone.graphics
 	 * ...
 	 * @author beyamor
 	 */
-	public class KeySprite extends Graphic 
+	public class NumericKeySprite extends Graphic 
 	{
+		[Embed(source = '/games/dialThePhone/assets/numeric-key.png')]
+		private static const NUMERIC_KEY_SPRITE:Class;
+		
 		private var label:Text;
 		private var key:Image;
 		
-		public function KeySprite(label:String, keySource:*) 
+		public function NumericKeySprite(number:uint) 
 		{
-			this.label	= new Text(label, 0, 0, {size: 32});
-			this.key	= new Image(keySource);
+			this.label	= new Text(number.toString(), 0, 0, {size: 32});
+			this.key	= new Image(NUMERIC_KEY_SPRITE);
 			
 			this.label.x = (this.key.width - this.label.width) / 2;
 			this.label.y = (this.key.height - this.label.height) / 2;

@@ -39,7 +39,7 @@ package games.dialThePhone
 			updateables.add(_state);
 			
 			add(new Finger(745, 95, new ColorBounds(0xB0B9C6, BACKDROP)));			
-			add(new NumericKey("0", GameConsts.HALF_WIDTH, GameConsts.HALF_HEIGHT));
+			add(new NumericKey(0, GameConsts.HALF_WIDTH, GameConsts.HALF_HEIGHT));
 		}
 	}
 

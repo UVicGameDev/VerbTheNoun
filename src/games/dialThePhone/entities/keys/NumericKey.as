@@ -1,22 +1,31 @@
 package games.dialThePhone.entities.keys 
 {
+	import core.Debug;
+	import games.dialThePhone.graphics.NumericKeySprite;
 	/**
 	 * ...
 	 * @author beyamor
 	 */
 	public class NumericKey extends Key 
-	{
-		[Embed(source = '/games/dialThePhone/assets/numeric-key.png')]
-		private static const KEY:Class;
+	{	
+		private var number:uint;
 		
-		public function NumericKey(label:String, x:Number, y:Number) 
+		public function NumericKey(number:uint, x:Number, y:Number) 
 		{
-			super(label, KEY, x, y);
+			this.number = number;
+			
+			super(x, y, new NumericKeySprite(number));
 			
 			width	= 48;
 			height	= 48;
 		}
 		
+		override public function press():void 
+		{
+			super.press();
+			
+			Debug.log("Pressed number " + number);
+		}
 	}
 
 }

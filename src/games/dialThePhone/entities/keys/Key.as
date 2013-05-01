@@ -1,22 +1,17 @@
 package games.dialThePhone.entities.keys 
 {
-	import core.Debug;
-	import games.dialThePhone.graphics.KeySprite;
 	import net.flashpunk.Entity;
+	import net.flashpunk.Graphic;
 	
 	/**
 	 * ...
 	 * @author beyamor
 	 */
-	public class Key extends Entity 
-	{
-		private var	label:String
-		
-		public function Key(label:String, keySource:*, x:Number, y:Number)
-		{
-			this.label = label;
-			
-			super(x, y, new KeySprite(label, keySource));
+	public class Key extends Entity
+	{		
+		public function Key(x:Number, y:Number, graphic:Graphic)
+		{			
+			super(x, y, graphic);
 			
 			layer	= 10;
 			type	= "key";
@@ -25,7 +20,6 @@ package games.dialThePhone.entities.keys
 		public function press():void {
 			
 			// Override in subclasses
-			Debug.log("Pressed " + label);
 		}
 	}
 
