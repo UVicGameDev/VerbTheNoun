@@ -50,8 +50,25 @@ package games.dialThePhone
 			var inputDisplay:InputDisplay = new InputDisplay(65, 25);
 			phoneView.add(inputDisplay);
 			
-			phoneView.add(new Finger(745, 95, new ColorBounds(0xB0B9C6, PHONE_BACKDROP)));			
-			phoneView.add(new NumericKey(0, GameConsts.HALF_WIDTH, GameConsts.HALF_HEIGHT, inputDisplay));
+			phoneView.add(new Finger(745, 95, new ColorBounds(0xB0B9C6, PHONE_BACKDROP)));
+			
+			//
+			//	Number keys. Positioned pretty arbitrarily, so I'm not going to worry about making it clean.
+			//
+			phoneView.add(new NumericKey(0, GameConsts.HALF_WIDTH, 170 + 150, inputDisplay));
+			for (var digit:int = 1; digit <= 9; ++digit) {
+			
+				var	dx:Number	= -1 + ((digit-1) % 3),
+					dy:Number	= -1 + (Math.floor((digit-1) / 3) % 3);
+					
+				phoneView.add(
+					new NumericKey(
+						digit,
+						GameConsts.HALF_WIDTH + dx * 150,
+						170 + dy * 75,
+						inputDisplay
+				));
+			}
 		}
 		
 		override public function render():void 
