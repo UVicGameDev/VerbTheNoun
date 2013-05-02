@@ -13,7 +13,7 @@ package games.dialThePhone
 	import games.dialThePhone.states.DialState;
 	import games.dialThePhone.util.ColorBounds;
 	import net.flashpunk.FP;
-	import net.flashpunk.graphics.Backdrop;
+	import net.flashpunk.graphics.Image;
 	import net.flashpunk.graphics.Text;
 	
 	/**
@@ -22,16 +22,17 @@ package games.dialThePhone
 	 */
 	public class DialThePhone extends Game 
 	{
-		[Embed(source = '/games/dialThePhone/assets/background.png')]
-		private static const BACKDROP:Class;
+		[Embed(source = '/games/dialThePhone/assets/phone-background.png')]
+		private static const PHONE_BACKDROP:Class;
 		
-		private var	_state:ELUStateMachine;
+		private var	_state:ELUStateMachine,
+					phoneView:View;
 		
 		public function DialThePhone() 
 		{
-			if (Debug.isEnabled) addGraphic(new Text("Dial the Phone"));
+			FP.screen.color = 0xd6ae76;
 			
-			addGraphic(new Backdrop(BACKDROP), 100);
+			if (Debug.isEnabled) addGraphic(new Text("Dial the Phone"));
 			
 			_state = new ELUStateMachine(
 				"dial", {
@@ -39,11 +40,24 @@ package games.dialThePhone
 			});
 			updateables.add(_state);
 			
-			var inputDisplay:InputDisplay = new InputDisplay(65, 25);
-			add(inputDisplay);
+			var phoneBackdrop:Image = new Image(PHONE_BACKDROP);
 			
-			add(new Finger(745, 95, new ColorBounds(0xB0B9C6, BACKDROP)));			
-			add(new NumericKey(0, GameConsts.HALF_WIDTH, GameConsts.HALF_HEIGHT, inputDisplay));
+			phoneView = new View(phoneBackdrop.width, phoneBackdrop.height);
+			updateables.add(phoneView.updater);
+	
+			phoneView.addGraphic(phoneBackdrop, 100);
+			
+			var inputDisplay:InputDisplay = new InputDisplay(65, 25);
+			phoneView.add(inputDisplay);
+			
+			phoneView.add(new Finger(745, 95, new ColorBounds(0xB0B9C6, PHONE_BACKDROP)));			
+			phoneView.add(new NumericKey(0, GameConsts.HALF_WIDTH, GameConsts.HALF_HEIGHT, inputDisplay));
+		}
+		
+		override public function render():void 
+		{
+			super.render();
+			phoneView.renderTo(FP.buffer, new Point(0, GameConsts.HEIGHT - phoneView.height));
 		}
 	}
 
