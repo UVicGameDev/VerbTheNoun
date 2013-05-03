@@ -22,7 +22,7 @@ package games.dialThePhone.entities.finger.states
 		
 		public function enter():void 
 		{
-			finger.sprite.fingerHeightPercent = 1;
+			finger.overHeight = 1;
 		}
 		
 		public function leave():void 

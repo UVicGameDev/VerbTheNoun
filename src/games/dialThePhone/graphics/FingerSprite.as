@@ -2,6 +2,7 @@ package games.dialThePhone.graphics
 {
 	import flash.geom.Point;
 	import flash.display.BitmapData;
+	import games.dialThePhone.entities.finger.Finger;
 	import net.flashpunk.FP;
 	import net.flashpunk.Graphic;
 	import net.flashpunk.graphics.Image;
@@ -27,18 +28,21 @@ package games.dialThePhone.graphics
 		[Embed(source = '/games/dialThePhone/assets/reticule.png')]
 		private const RETICULE_IMAGE:Class;
 		
-		private var finger:Image,
+		private var fingerImage:Image,
 					reticule:Image,
 					fingerHeight:Number	= MAXIMUM_FINGER_HEIGHT,
 					tapState:uint		= NOT_TAPPING,
 					tapTime:Number		= 0,
-					onTapDown:Function;
+					onTapDown:Function,
+					finger:Finger;
 		
-		public function FingerSprite() 
+		public function FingerSprite(finger:Finger) 
 		{
-			finger	= new Image(FINGER_IMAGE);
-			finger.x	= -85;
-			finger.y	= -475;
+			this.finger = finger;
+			
+			fingerImage		= new Image(FINGER_IMAGE);
+			fingerImage.x	= -85;
+			fingerImage.y	= -475;
 			
 			reticule	= new Image(RETICULE_IMAGE);
 			reticule.x	= -16;
@@ -49,12 +53,7 @@ package games.dialThePhone.graphics
 		{
 			super.render(target, point, camera);
 			reticule.render(target, point, camera);
-			finger.render(target, point.subtract(new Point(0, fingerHeight)), camera);
-		}
-		
-		public function set fingerHeightPercent(percentBetween0And1:Number):void {
-			
-			fingerHeight = percentBetween0And1 * MAXIMUM_FINGER_HEIGHT;
+			fingerImage.render(target, point.subtract(new Point(0, finger.overHeight * MAXIMUM_FINGER_HEIGHT)), camera);
 		}
 	}
 

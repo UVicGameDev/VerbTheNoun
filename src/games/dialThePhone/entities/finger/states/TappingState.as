@@ -33,7 +33,7 @@ package games.dialThePhone.entities.finger.states
 				finger.state.switchTo("tapUp");
 			});
 			
-			finger.sprite.fingerHeightPercent = 0;
+			finger.overHeight = 0;
 		}
 		
 		public function leave():void 

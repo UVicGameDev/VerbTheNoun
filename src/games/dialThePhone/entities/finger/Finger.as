@@ -33,14 +33,13 @@ package games.dialThePhone.entities.finger
 					velocity:Velocity;
 					
 		public var	state:ELUStateMachine,
-					moveIntention:TopDownKeyInterpreter	= new TopDownKeyInterpreter;;
-					
-		public function get sprite():FingerSprite { return _sprite; }
+					moveIntention:TopDownKeyInterpreter	= new TopDownKeyInterpreter,
+					overHeight:Number = 1;
 		
 		public function Finger(initialX:Number, initialY:Number, bounds:ColorBounds) 
 		{
 			this.bounds	= bounds;
-			_sprite		= new FingerSprite;
+			_sprite		= new FingerSprite(this);
 			
 			super(initialX, initialY, _sprite);
 			

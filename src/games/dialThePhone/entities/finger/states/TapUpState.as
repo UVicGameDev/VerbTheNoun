@@ -3,7 +3,6 @@ package games.dialThePhone.entities.finger.states
 	import core.context.ELUState;
 	import core.util.Timer;
 	import games.dialThePhone.entities.finger.Finger;
-	import games.dialThePhone.graphics.FingerSprite;
 	import net.flashpunk.utils.Ease;
 	
 	/**
@@ -14,14 +13,12 @@ package games.dialThePhone.entities.finger.states
 	{
 		private static const DURATION:Number = 0.1;
 		
-		private var	sprite:FingerSprite,
-					finger:Finger,
+		private var	finger:Finger,
 					timer:Timer;
 		
 		public function TapUpState(finger:Finger) 
 		{
 			this.finger	= finger;
-			this.sprite	= finger.sprite;
 		}
 		
 		/* INTERFACE games.dialThePhone.entities.finger.FingerState */
@@ -46,7 +43,7 @@ package games.dialThePhone.entities.finger.states
 			
 			timer.update();
 			
-			sprite.fingerHeightPercent = Ease.cubeOut(timer.percentElapsed);
+			finger.overHeight = Ease.cubeOut(timer.percentElapsed);
 		}
 		
 	}
