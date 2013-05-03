@@ -5,11 +5,13 @@ package games.dialThePhone
 	import core.Game;
 	import core.GameConsts;
 	import core.ui.View;
+	import core.util.Timer;
 	import flash.geom.Point;
 	import games.dialThePhone.entities.finger.Finger;
 	import games.dialThePhone.entities.InputDisplay;
 	import games.dialThePhone.entities.keys.Key;
 	import games.dialThePhone.entities.keys.NumericKey;
+	import games.dialThePhone.graphics.ClockSprite;
 	import games.dialThePhone.states.DialState;
 	import games.dialThePhone.util.ColorBounds;
 	import net.flashpunk.FP;
@@ -22,11 +24,14 @@ package games.dialThePhone
 	 */
 	public class DialThePhone extends Game 
 	{
+		private var DURATION:Number = 30;
+		
 		[Embed(source = '/games/dialThePhone/assets/phone-background.png')]
 		private static const PHONE_BACKDROP:Class;
 		
 		private var	_state:ELUStateMachine,
-					phoneView:View;
+					phoneView:View,
+					timeLimit:Timer;
 		
 		public function DialThePhone() 
 		{
@@ -69,6 +74,11 @@ package games.dialThePhone
 						inputDisplay
 				));
 			}
+			
+			timeLimit = new Timer(DURATION);
+			updateables.add(timeLimit);
+			
+			addGraphic(new ClockSprite(timeLimit), 0, GameConsts.WIDTH - 70, 10);
 		}
 		
 		override public function render():void 
