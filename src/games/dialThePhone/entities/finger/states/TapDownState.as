@@ -28,13 +28,10 @@ package games.dialThePhone.entities.finger.states
 		
 		public function enter():void 
 		{
-			finger.velocity.x = finger.velocity.y = 0;
-			
 			timer = new Timer(DURATION);
 			timer.addCallback(function():void {
 				
-				finger.tryKeyPress();
-				finger.state.switchTo("tapUp");
+				finger.state.switchTo("tapping");
 			});
 		}
 		
@@ -45,6 +42,8 @@ package games.dialThePhone.entities.finger.states
 		
 		public function update():void 
 		{
+			finger.applyFriction();
+			
 			timer.update();
 			
 			sprite.fingerHeightPercent = (1 - Ease.cubeOut(timer.percentElapsed));

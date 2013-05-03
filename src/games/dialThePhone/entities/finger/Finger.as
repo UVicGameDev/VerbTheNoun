@@ -9,6 +9,7 @@ package games.dialThePhone.entities.finger
 	import flash.geom.Point;
 	import games.dialThePhone.entities.finger.states.MoveState;
 	import games.dialThePhone.entities.finger.states.TapDownState;
+	import games.dialThePhone.entities.finger.states.TappingState;
 	import games.dialThePhone.entities.finger.states.TapUpState;
 	import games.dialThePhone.entities.keys.Key;
 	import games.dialThePhone.graphics.FingerSprite;
@@ -28,11 +29,11 @@ package games.dialThePhone.entities.finger
 					FRICTION:Number		= 7;
 		
 		private var	_sprite:FingerSprite,
-					moveIntention:TopDownKeyInterpreter	= new TopDownKeyInterpreter,
-					bounds:ColorBounds;
+					bounds:ColorBounds,
+					velocity:Velocity;
 					
 		public var	state:ELUStateMachine,
-					velocity:Velocity;
+					moveIntention:TopDownKeyInterpreter	= new TopDownKeyInterpreter;;
 					
 		public function get sprite():FingerSprite { return _sprite; }
 		
@@ -47,19 +48,11 @@ package games.dialThePhone.entities.finger
 				"move", {
 				move:		new MoveState(this),
 				tapDown:	new TapDownState(this),
+				tapping:	new TappingState(this),
 				tapUp:		new TapUpState(this)
 			});
 			
 			velocity = new BoundedVelocity(0, 0, MAX_SPEED);
-		}
-		
-		public function tryKeyPress():void {
-			
-			var	pressedKey:Key = collide("key", x, y) as Key;
-			
-			if (!pressedKey) return;
-			
-			pressedKey.press();
 		}
 		
 		override public function update():void 
@@ -68,17 +61,21 @@ package games.dialThePhone.entities.finger
 			
 			moveIntention.update();
 			state.update();
-		}
-		
-		public function move():void {
-			
-			if (!moveIntention.tryingToMove)	velocity.applyFriction(FRICTION);
-			else								velocity.accelerate(moveIntention.direction, ACCELERATION);
 			
 			if (bounds.contains(x + velocity.dx, y))	x += velocity.dx;
 			else										velocity.x = 0;
 			if (bounds.contains(x, y + velocity.dy))	y += velocity.dy;
 			else										velocity.y = 0;
+		}
+		
+		public function accelerate():void {
+			
+			velocity.accelerate(moveIntention.direction, ACCELERATION);
+		}
+		
+		public function applyFriction():void {
+			
+			velocity.applyFriction(FRICTION);
 		}
 	}
 

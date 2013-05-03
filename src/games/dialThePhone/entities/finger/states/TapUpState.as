@@ -42,6 +42,8 @@ package games.dialThePhone.entities.finger.states
 		
 		public function update():void 
 		{
+			finger.applyFriction();
+			
 			timer.update();
 			
 			sprite.fingerHeightPercent = Ease.cubeOut(timer.percentElapsed);
