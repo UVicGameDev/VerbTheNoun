@@ -59,6 +59,26 @@ package core
 			
 			return any(options);
 		}
+		
+		/**
+		 * Shuffles the given collection, returning a new one whose elements are in a random order.
+		 */
+		public static function shuffle(coll:*):* {
+			
+			var	shuffledColl:* = coll.concat();
+			
+			for (var index:uint = 0; index < shuffledColl.length; ++index) {
+				
+				var	randomIndex:uint = Math.floor(Math.random() * shuffledColl.length),
+					swap:*;
+					
+				swap						= shuffledColl[index];
+				shuffledColl[index]			= shuffledColl[randomIndex];
+				shuffledColl[randomIndex]	= swap;
+			}
+			
+			return shuffledColl;
+		}
 	}
 
 }

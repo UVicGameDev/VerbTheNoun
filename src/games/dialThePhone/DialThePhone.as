@@ -12,6 +12,7 @@ package games.dialThePhone
 	import games.dialThePhone.entities.keys.Key;
 	import games.dialThePhone.entities.keys.NumericKey;
 	import games.dialThePhone.graphics.ClockSprite;
+	import games.dialThePhone.numbers.NumberGenerator;
 	import games.dialThePhone.states.DialState;
 	import games.dialThePhone.util.ColorBounds;
 	import net.flashpunk.FP;
@@ -79,6 +80,9 @@ package games.dialThePhone
 			updateables.add(timeLimit);
 			
 			addGraphic(new ClockSprite(timeLimit), 0, GameConsts.WIDTH - 70, 10);
+			
+			var numberGenerator:NumberGenerator = new NumberGenerator;
+			for each (var testDigit:uint in numberGenerator.next()) Debug.log(testDigit);
 		}
 		
 		override public function render():void 

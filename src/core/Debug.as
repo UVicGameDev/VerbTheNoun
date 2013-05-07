@@ -21,9 +21,9 @@ package core
 		/**
 		 * Prints something to the console if debugging is enabled.
 		 */
-		public static function log(text:String):void { 
+		public static function log(something:*):void { 
 			
-			if (isEnabled) trace(text);
+			if (isEnabled) trace(something.toString());
 		}
 	}
 
