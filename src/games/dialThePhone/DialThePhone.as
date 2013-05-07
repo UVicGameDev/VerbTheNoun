@@ -12,6 +12,7 @@ package games.dialThePhone
 	import games.dialThePhone.entities.keys.Key;
 	import games.dialThePhone.entities.keys.NumericKey;
 	import games.dialThePhone.graphics.ClockSprite;
+	import games.dialThePhone.numbers.Entry;
 	import games.dialThePhone.numbers.NumberGenerator;
 	import games.dialThePhone.states.DialState;
 	import games.dialThePhone.util.ColorBounds;
@@ -53,7 +54,9 @@ package games.dialThePhone
 	
 			phoneView.addGraphic(phoneBackdrop, 100);
 			
-			var inputDisplay:InputDisplay = new InputDisplay(65, 25);
+			var entry:Entry = new Entry;
+			
+			var inputDisplay:InputDisplay = new InputDisplay(65, 25, entry);
 			phoneView.add(inputDisplay);
 			
 			phoneView.add(new Finger(745, 95, new ColorBounds(0xB0B9C6, PHONE_BACKDROP)));
@@ -61,7 +64,7 @@ package games.dialThePhone
 			//
 			//	Number keys. Positioned pretty arbitrarily, so I'm not going to worry about making it clean.
 			//
-			phoneView.add(new NumericKey(0, GameConsts.HALF_WIDTH, 170 + 150, inputDisplay));
+			phoneView.add(new NumericKey(0, GameConsts.HALF_WIDTH, 170 + 150, entry));
 			for (var digit:int = 1; digit <= 9; ++digit) {
 			
 				var	dx:Number	= -1 + ((digit-1) % 3),
@@ -72,7 +75,7 @@ package games.dialThePhone
 						digit,
 						GameConsts.HALF_WIDTH + dx * 150,
 						170 + dy * 75,
-						inputDisplay
+						entry
 				));
 			}
 			

@@ -3,6 +3,7 @@ package games.dialThePhone.entities.keys
 	import core.Debug;
 	import games.dialThePhone.entities.InputDisplay;
 	import games.dialThePhone.graphics.NumericKeySprite;
+	import games.dialThePhone.numbers.Entry;
 	/**
 	 * ...
 	 * @author beyamor
@@ -10,12 +11,12 @@ package games.dialThePhone.entities.keys
 	public class NumericKey extends Key 
 	{	
 		private var digit:uint,
-					inputDisplay:InputDisplay;
+					entry:Entry;
 		
-		public function NumericKey(digit:uint, x:Number, y:Number, inputDisplay:InputDisplay) 
+		public function NumericKey(digit:uint, x:Number, y:Number, entry:Entry) 
 		{
-			this.digit 			= digit;
-			this.inputDisplay	= inputDisplay;
+			this.digit 	= digit;
+			this.entry	= entry;;
 			
 			super(x, y, new NumericKeySprite(digit));
 			
@@ -27,7 +28,7 @@ package games.dialThePhone.entities.keys
 		{
 			super.press();
 			
-			inputDisplay.addDigit(digit);
+			entry.addDigit(digit);
 			
 			Debug.log("Pressed number: " + digit);
 		}

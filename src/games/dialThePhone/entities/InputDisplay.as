@@ -1,6 +1,7 @@
 package games.dialThePhone.entities 
 {
 	import core.Debug;
+	import games.dialThePhone.numbers.Entry;
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Text;
 	
@@ -9,27 +10,35 @@ package games.dialThePhone.entities
 	 * @author beyamor
 	 */
 	public class InputDisplay extends Entity 
-	{
-		private static const MAX_NUMBER_OF_DIGITS:uint = 13;
+	{		
+		private var	display:Text,
+					entry:Entry,
+					lastKnownLength:uint;
 		
-		private var	digits:Vector.<uint> = new Vector.<uint>,
-					display:Text;
-		
-		public function InputDisplay(x:Number, y:Number)
+		public function InputDisplay(x:Number, y:Number, entry:Entry)
 		{
+			this.entry		= entry;
+			lastKnownLength	= entry.digits.length;
+			
 			display = new Text("", 0, 0, { size: 32 } );
 			super(x, y, display);
 		}
 		
-		public function addDigit(digit:uint):void {
+		override public function update():void 
+		{
+			super.update();
 			
-			if (digits.length >= MAX_NUMBER_OF_DIGITS) return;
+			var digits:Vector.<uint> = entry.digits;
 			
-			digits.push(digit);
-			updateDisplay();
+			// Save us recaclulating the string every step
+			if (digits.length != lastKnownLength) {
+				
+				lastKnownLength = digits.length;
+				updateDisplay(digits);
+			}
 		}
 		
-		private function updateDisplay():void {
+		private function updateDisplay(digits:Vector.<uint>):void {
 			
 			var	i:uint			= 0,
 				areaCode:String	= "",
