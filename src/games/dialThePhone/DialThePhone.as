@@ -9,11 +9,13 @@ package games.dialThePhone
 	import flash.geom.Point;
 	import games.dialThePhone.entities.finger.Finger;
 	import games.dialThePhone.entities.InputDisplay;
+	import games.dialThePhone.entities.keys.EnterKey;
 	import games.dialThePhone.entities.keys.Key;
 	import games.dialThePhone.entities.keys.NumericKey;
 	import games.dialThePhone.graphics.ClockSprite;
 	import games.dialThePhone.numbers.Entry;
 	import games.dialThePhone.numbers.NumberGenerator;
+	import games.dialThePhone.states.CheckState;
 	import games.dialThePhone.states.DialState;
 	import games.dialThePhone.util.ColorBounds;
 	import net.flashpunk.FP;
@@ -41,12 +43,6 @@ package games.dialThePhone
 			
 			if (Debug.isEnabled) addGraphic(new Text("Dial the Phone"));
 			
-			_state = new ELUStateMachine(
-				"dial", {
-				dial:	new DialState(this)
-			});
-			updateables.add(_state);
-			
 			var phoneBackdrop:Image = new Image(PHONE_BACKDROP);
 			
 			phoneView = new View(phoneBackdrop.width, phoneBackdrop.height);
@@ -59,7 +55,8 @@ package games.dialThePhone
 			var inputDisplay:InputDisplay = new InputDisplay(65, 25, entry);
 			phoneView.add(inputDisplay);
 			
-			phoneView.add(new Finger(745, 95, new ColorBounds(0xB0B9C6, PHONE_BACKDROP)));
+			var finger:Finger = new Finger(745, 95, new ColorBounds(0xB0B9C6, PHONE_BACKDROP));
+			phoneView.add(finger);
 			
 			//
 			//	Number keys. Positioned pretty arbitrarily, so I'm not going to worry about making it clean.
@@ -79,13 +76,21 @@ package games.dialThePhone
 				));
 			}
 			
+			phoneView.add(new EnterKey(GameConsts.WIDTH - 130, GameConsts.HALF_HEIGHT - 20));
+			
 			timeLimit = new Timer(DURATION);
 			updateables.add(timeLimit);
 			
 			addGraphic(new ClockSprite(timeLimit), 0, GameConsts.WIDTH - 70, 10);
 			
-			var numberGenerator:NumberGenerator = new NumberGenerator;
-			for each (var testDigit:uint in numberGenerator.next()) Debug.log(testDigit);
+			var numberGenerator:NumberGenerator = new NumberGenerator();
+			
+			_state = new ELUStateMachine(
+				"dial", {
+				dial:		new DialState(this),
+				validate:	new CheckState(this, finger, numberGenerator, entry)
+			});
+			updateables.add(_state);
 		}
 		
 		override public function render():void 

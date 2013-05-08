@@ -34,7 +34,8 @@ package games.dialThePhone.entities.finger
 					
 		public var	state:ELUStateMachine,
 					moveIntention:TopDownKeyInterpreter	= new TopDownKeyInterpreter,
-					overHeight:Number = 1;
+					overHeight:Number = 1,
+					tappingIsEnabled:Boolean			= true;
 		
 		public function Finger(initialX:Number, initialY:Number, bounds:ColorBounds) 
 		{
@@ -76,6 +77,9 @@ package games.dialThePhone.entities.finger
 			
 			velocity.applyFriction(FRICTION);
 		}
+		
+		public function enableTapping():void { tappingIsEnabled = true; }
+		public function disableTapping():void { tappingIsEnabled = false; }
 	}
 
 }
