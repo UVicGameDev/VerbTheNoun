@@ -1,5 +1,6 @@
 package games.repeatTheLevel 
 {
+	import net.flashpunk.Entity;
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Key;
 	import net.flashpunk.graphics.Image;
@@ -13,6 +14,7 @@ package games.repeatTheLevel
 		public static const FALLING:int = 1;
 		public static const JUMPING:int = 2;
 		public static const SWIMMING:int = 3;
+		public static const DEAD:int = 4;
 		
 		public static const GRAV:Number = 0.5;
 		private const MAX_Y_VEL:int = 10;
@@ -25,11 +27,19 @@ package games.repeatTheLevel
 		public var h_dir:int = 0;
 		public var v_dir:int = 0;
 		
+		private var worldPointer:MantraGameWorld;
+		
 		
 		public function Player(x:int, y:int, image:Image, hit_x:int, hit_y:int, width:int, height:int) 
 		{
 			super(x, y, image, hit_x, hit_y, width, height, "player");
 			layer = 1;
+			
+		}
+		
+		public function setWorld(world:MantraGameWorld):void
+		{
+			worldPointer = world;
 		}
 		
 		override public function update():void
@@ -39,8 +49,11 @@ package games.repeatTheLevel
 			var x_inc:int = 0;
 			var y_inc:int = 0;
 			
-			if (Input.check(Key.LEFT)) x_inc += -1;
-			if (Input.check(Key.RIGHT)) x_inc += 1;
+			if (state != DEAD)
+			{
+				if (Input.check(Key.LEFT)) x_inc += -1;
+				if (Input.check(Key.RIGHT)) x_inc += 1;
+			}
 
 			
 			if (Input.check(Key.SPACE)) 
@@ -88,6 +101,13 @@ package games.repeatTheLevel
 					//dir = i_x * x_inc;
 					break;
 				}
+				else if (collide("threat", x, y) as Entity)
+				{
+					worldPointer.setDropDownFlag();
+					state = DEAD;
+					y_vel = 0;
+					
+				}
 			}
 			h_dir = i_x * x_inc;
 			
@@ -114,6 +134,13 @@ package games.repeatTheLevel
 					}
 					y_vel = 0;
 					break;
+				}
+				else if (collide("threat", x, y) as Entity)
+				{
+					worldPointer.setDropDownFlag();
+					state = DEAD;
+					y_vel = 0;
+					
 				}
 			}
 			v_dir = i_y * y_inc;

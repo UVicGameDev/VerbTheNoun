@@ -23,7 +23,7 @@ package games.repeatTheLevel
 					picture.height / 10, 
 					picture.width - picture.width/5,
 					picture.height - picture.height/5,
-					"solid");
+					"threat");
 			layer = 0;
 		}
 		
@@ -37,7 +37,7 @@ package games.repeatTheLevel
 			for (var i_y:int = 0; i_y < Math.abs(y_vel);i_y++)
 			{
 				y += y_inc;
-				if (collide("puddle", x+originX, y+originY) || y > 1200 || y<0)
+				if (collide("threat", x+originX, y+originY) || y > 1200 || y<0)
 				{
 					FP.world.remove(this);
 				}

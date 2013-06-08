@@ -17,13 +17,14 @@ package games.repeatTheLevel
 		private const boundary_inc:int = 640;
 		
 		private var  level_y:int = 400;
-		private const  level_y_inc:int = 400;
+		private const  level_y_jump:int = 1200;
 		private var  level_x:int = 500;
 		private const  level_x_inc:int = 500;
 		
 		private var hasDropped:Boolean = false;
 		private var updatePositionsFlag:Boolean = false;
 		private var removeOldLevelFlag:Boolean = false;
+		private var dropDownFlag:Boolean = false;
 		
 		private var  player:Player = new Player(0, 300, new Image(Assets.IMG_PLAYERSTANDIN), 0, 0, 10, 32);
 		
@@ -38,7 +39,13 @@ package games.repeatTheLevel
 			FP.console.enable();
 			buildLevel(0, 400);
 			//level_y += level_y_inc;
+			player.setWorld(this);
 			add(player);
+		}
+		
+		public function setDropDownFlag():void
+		{
+			dropDownFlag = true;
 		}
 		
 		public function dropDown():void
@@ -58,15 +65,16 @@ package games.repeatTheLevel
 
 			prevLevel.splice(prevLevel.indexOf(player), 1);
 			
-			buildLevel(player.x - 400, 600);
+			buildLevel(player.x - 400, level_y_jump);
 			hasDropped = true;
 			updatePositionsFlag = true;
+			dropDownFlag = false;
 		}
 		
 		public function updatePositions():void
 		{
 			var x_change:int = player.x - 400;
-			var y_change:int = 200;
+			var y_change:int = level_y_jump - level_y;
 			
 			var allEnts:Vector.<Entity> = new Vector.<Entity>;
 			getAll(allEnts);
@@ -108,7 +116,7 @@ package games.repeatTheLevel
 			
 			add(new SolidBuilder()	.useImage(new Image(Assets.IMG_PUDDLE))
 									.setPosition(start_x + 480, y_level)
-									.overrideType("puddle")
+									.overrideType("threat")
 									.build());
 									
 			add(new AcidPipe(start_x + 480, y_level - 384));
@@ -130,6 +138,10 @@ package games.repeatTheLevel
 				{
 					dropDown();
 				}
+				else if (dropDownFlag)
+				{
+					dropDown();
+				}
 			}
 			
 			if (removeOldLevelFlag)
@@ -141,6 +153,7 @@ package games.repeatTheLevel
 					removeOldLevelFlag = false;
 					hasDropped = false;
 					prevLevel = new Vector.<Entity>;
+					trace("new camera location: " + camera.x + ", " + camera.y + "\nnew player position: " + player.x + ", " + player.y);
 				}
 			}
 			cameraManager.update(boundary_x+200, camera);
