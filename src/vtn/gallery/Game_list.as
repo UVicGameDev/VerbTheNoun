@@ -6,6 +6,7 @@ package vtn.gallery
 	import HeartTheBeets.Cloud;
 	import net.flashpunk.World;
 	import vtn.gallery.test.TestWorld;
+	import games.repeatTheLevel.MantraGameWorld;
 	/**
 	 * ...
 	 * @author Lambwatt
@@ -28,7 +29,7 @@ package vtn.gallery
 			game_list.push((new GamePortal(function():World { return new MissTheMissile; }, REDSTANDIN)));
 			game_list.push((new GamePortal(function():World { return new HeartTheBeetsWorld; }, CLOUD)));
 			game_list.push((new GamePortal(function():World { return new DialThePhone; }, YELLOWSTANDIN)));
-			game_list.push((new GamePortal(function():World {return new TestWorld(BLUESTANDIN)}, BLUESTANDIN)));
+			game_list.push((new GamePortal(function():World { return new MantraGameWorld; }, GREENSTANDIN)));
 			game_list.push((new GamePortal(function():World {return new TestWorld(VIOLETSTANDIN)}, VIOLETSTANDIN)));
 		}	
 	}
