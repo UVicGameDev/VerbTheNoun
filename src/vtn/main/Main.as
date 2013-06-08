@@ -32,6 +32,7 @@ package vtn.main
 			Input.define(Keys.CANCEL,	Key.A);
 			Input.define(Keys.START,	Key.ENTER);
 			Input.define(Keys.SELECT,	Key.SPACE);
+			Input.define(Keys.PAUSE,	Key.ENTER);
 		}
 		override public function init():void
 		{

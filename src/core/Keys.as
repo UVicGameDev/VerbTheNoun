@@ -15,7 +15,8 @@ package core
 								ACTION1:String	= "action1",
 								ACTION2:String	= "action2",
 								START:String	= "start",
-								SELECT:String	= "select";
+								SELECT:String	= "select",
+								PAUSE:String	= START;
 	}
 
 }

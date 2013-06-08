@@ -1,11 +1,13 @@
 package core.ui.windows 
 {
 	import core.Game;
+	import core.Keys;
 	import core.ui.menus.pause.PauseScreenDecorator;
 	import core.ui.menus.pause.QuitOption;
 	import core.ui.menus.pause.RestartOption;
 	import core.ui.menus.pause.ResumeOption;
 	import core.ui.menus.VerticalSelectionList;
+	import net.flashpunk.utils.Input;
 	/**
 	 * ...
 	 * @author beyamor
@@ -26,6 +28,12 @@ package core.ui.windows
 				new QuitOption(decorator.quitOption)
 			);			
 			updateables.add(selectionList);
+		}
+		
+		override public function update():void 
+		{
+			super.update();
+			if (Input.pressed(Keys.PAUSE)) close();
 		}
 	}
 
