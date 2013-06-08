@@ -24,6 +24,7 @@ package games.repeatTheLevel
 					picture.width - picture.width/5,
 					picture.height - picture.height/5,
 					"solid");
+			layer = 0;
 		}
 		
 		override public function update():void

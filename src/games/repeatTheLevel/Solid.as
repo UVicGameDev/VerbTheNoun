@@ -18,6 +18,7 @@ package games.repeatTheLevel
 			this.x = x;
 			this.y = y;
 			this.type = type;
+			layer = 2;
 		}
 	}
 }

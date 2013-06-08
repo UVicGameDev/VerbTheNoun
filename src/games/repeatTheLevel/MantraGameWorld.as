@@ -13,7 +13,7 @@ package games.repeatTheLevel
 	 */
 	public class MantraGameWorld extends World 
 	{
-		private var boundary_x:int = 1640;
+		private var boundary_x:int = 2650;
 		private const boundary_inc:int = 640;
 		
 		private var  level_y:int = 400;
@@ -91,7 +91,8 @@ package games.repeatTheLevel
 		
 		public function buildLevel(start_x:int, y_level:int):void 
 		{
-			for (var i:int = 0; i < 80; i++)
+			var levelSize:int = (boundary_x+200) / 32;
+			for (var i:int = 0; i < levelSize; i++)
 			{
 				add(new SolidBuilder()	.useImage(new Image(Assets.IMG_BLOCK))
 										.setPosition(start_x +(i * 32), y_level )
@@ -125,7 +126,7 @@ package games.repeatTheLevel
 			}
 			else
 			{
-				if (player.x > 800)
+				if (player.x > boundary_x)
 				{
 					dropDown();
 				}
@@ -133,7 +134,6 @@ package games.repeatTheLevel
 			
 			if (removeOldLevelFlag)
 			{
-				trace("velocity = " + player.y_vel);
 				if (player.y_vel == 0)
 				{
 					
@@ -143,11 +143,7 @@ package games.repeatTheLevel
 					prevLevel = new Vector.<Entity>;
 				}
 			}
-			
-			//camera = cameraManager.update(boundary_x);
-			cameraManager.update(boundary_x, camera);
-			//trace(camera);
-			//FP.screen.camera = camera;
+			cameraManager.update(boundary_x+200, camera);
 		}
 	}
 

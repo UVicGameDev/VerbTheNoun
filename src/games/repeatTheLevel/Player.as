@@ -25,9 +25,11 @@ package games.repeatTheLevel
 		public var h_dir:int = 0;
 		public var v_dir:int = 0;
 		
+		
 		public function Player(x:int, y:int, image:Image, hit_x:int, hit_y:int, width:int, height:int) 
 		{
 			super(x, y, image, hit_x, hit_y, width, height, "player");
+			layer = 1;
 		}
 		
 		override public function update():void
