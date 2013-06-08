@@ -14,6 +14,7 @@ package games.repeatTheLevel
 		private var target:Player;
 		private var min_x:int;
 		private var max_x:int;
+		private var verticalFollow:Boolean = false;
 		
 		public function MantraCamera(p:Player) 
 		{
@@ -23,31 +24,47 @@ package games.repeatTheLevel
 		
 		public function update(max_x:int, camera:Point):void
 		{
-			var dir:int = target.dir;
-			//trace(dir);
-			if (target.x > 400 && target.x < 1000)
+			//horizontal movement
+			var h_dir:int = target.h_dir;
+			if (target.x > 400 && target.x < max_x+400)
 			{
-				if (dir > 0)
+				if (h_dir > 0)
 				{
 					if (camera.x < max_x)
 					{
-						if (camera.x  + dir < max_x)
-							camera.x += dir;
+						if (camera.x  + h_dir < max_x)
+							camera.x += h_dir;
 						else
 							camera.x  = max_x;
 					}
 				}
-				else if (dir < 0)
+				else if (h_dir < 0)
 				{
 					if (camera.x  > min_x)
 					{
-						if (camera.x  + dir > min_x)
-							camera.x  += dir;
+						if (camera.x  + h_dir > min_x)
+							camera.x  += h_dir;
 						else
 							camera.x  = min_x;
 					}
 				}
 			}
+			
+			//vertical movement
+			var v_dir:int = target.v_dir;
+			if (target.x < 600)
+			{
+				verticalFollow = true;
+			}
+			if (verticalFollow)
+			{
+				if (camera.y < 0)
+					camera.y  += target.v_dir;
+				else
+					camera.y  = 0;
+			}
+			
+			trace("camera at " + camera.x + ", " + camera.y);
 		}
 	}
 

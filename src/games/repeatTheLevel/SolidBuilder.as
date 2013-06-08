@@ -44,6 +44,12 @@ package games.repeatTheLevel
 			return this;
 		}
 		
+		public function overrideType(type:String):SolidBuilder
+		{
+			this.type = type;
+			return this;
+		}
+		
 		public function build():Solid
 		{
 			return new Solid(x,y,image,hit_x,hit_y,width,height,type);

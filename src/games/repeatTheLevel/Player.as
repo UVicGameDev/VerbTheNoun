@@ -22,7 +22,8 @@ package games.repeatTheLevel
 		public var y_vel:Number = 0;
 		private var mid_jump:int = 0;
 		
-		public var dir:int = 0;
+		public var h_dir:int = 0;
+		public var v_dir:int = 0;
 		
 		public function Player(x:int, y:int, image:Image, hit_x:int, hit_y:int, width:int, height:int) 
 		{
@@ -60,7 +61,8 @@ package games.repeatTheLevel
 			else {
 				if (state == JUMPING)
 				{
-					y_vel = 0;
+					if(y_vel < 0)
+						y_vel = 0;
 					state = FALLING;
 				}
 				else 
@@ -81,11 +83,11 @@ package games.repeatTheLevel
 				if (collide("solid", x, y) as Solid)
 				{
 					x -= x_inc;
-					dir = i_x * x_inc;
+					//dir = i_x * x_inc;
 					break;
 				}
 			}
-			dir = i_x * x_inc;
+			h_dir = i_x * x_inc;
 			
 			//move in y
 			for (var i_y:int = 0; i_y < Math.abs(y_vel);i_y++)
@@ -111,7 +113,9 @@ package games.repeatTheLevel
 					break;
 				}
 			}
+			v_dir = i_y * y_inc;
 			
+			trace("player at " + x + ", " + y);
 		}
 	}
 

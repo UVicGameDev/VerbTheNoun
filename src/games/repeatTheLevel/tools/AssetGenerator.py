@@ -26,12 +26,12 @@ import os.path
 import re
 
 # HACK: fix the function - CP
-PACKAGE_NAME = 'common'
+PACKAGE_NAME = 'games.repeatTheLevel.common'
 
-#DEFAULT_ASSET_PATH = r"..\src\assets"
-#DEFAULT_OUTPUT_FILE = r"..\src\common\Assets.as"
-DEFAULT_ASSET_PATH = os.path.join("..", "", "src", "assets")
-DEFAULT_OUTPUT_FILE = os.path.join("..", "", "src", "common",
+#DEFAULT_ASSET_PATH = r"..\assets"
+#DEFAULT_OUTPUT_FILE = r"..\common\Assets.as"
+DEFAULT_ASSET_PATH = os.path.join("..", "", "", "assets")
+DEFAULT_OUTPUT_FILE = os.path.join("..", "", "", "common",
 "Assets.as")
 
 # What extensions to look for
