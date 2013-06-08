@@ -1,5 +1,7 @@
 package games.missTheMissile.ui 
 {
+	import core.ui.menus.HighlightableEntity;
+	import core.ui.menus.Hightlightable;
 	import core.ui.menus.Selectable;
 	import flash.text.TextFormatAlign;
 	import net.flashpunk.Entity;
@@ -9,7 +11,7 @@ package games.missTheMissile.ui
 	 * ...
 	 * @author beyamor
 	 */
-	public class MenuOption extends Entity implements Selectable 
+	public class MenuOption extends HighlightableEntity implements Selectable
 	{
 		private var	onSelection:Function,
 					label:String,
@@ -31,12 +33,12 @@ package games.missTheMissile.ui
 		
 		/* INTERFACE core.ui.menus.Selectable */
 		
-		public function highlight():void 
+		override public function highlight():void 
 		{
 			text.text = highlightLabel;
 		}
 		
-		public function removeHighlight():void 
+		override public function removeHighlight():void 
 		{
 			text.text = regularLabel;
 		}

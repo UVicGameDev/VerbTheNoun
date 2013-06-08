@@ -15,7 +15,6 @@ package games.missTheMissile
 	import games.missTheMissile.ui.ScoreDisplay;
 	import games.missTheMissile.windows.GameOverScreen;
 	import games.missTheMissile.windows.MissTheMissilePopup;
-	import games.missTheMissile.windows.PauseMenu;
 	import net.flashpunk.FP;
 	import net.flashpunk.graphics.Text;
 	import net.flashpunk.utils.Input;
