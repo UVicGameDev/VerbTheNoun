@@ -3,8 +3,8 @@ package games.missTheMissile.windows
 	import core.Game;
 	import core.Keys;
 	import core.ui.menus.VerticalSelectionList;
-	import core.ui.windows.sub.Popup;
-	import core.ui.windows.sub.SubWindow;
+	import core.ui.windows.Popup;
+	import core.ui.windows.SubWindow;
 	import games.missTheMissile.MissTheMissile;
 	import games.missTheMissile.states.PlayState;
 	import games.missTheMissile.ui.MenuOption;

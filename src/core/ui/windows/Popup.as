@@ -1,4 +1,4 @@
-package core.ui.windows.sub 
+package core.ui.windows 
 {
 	import core.Game;
 	import core.Keys;

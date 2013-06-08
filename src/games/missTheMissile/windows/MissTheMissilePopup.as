@@ -2,7 +2,7 @@ package games.missTheMissile.windows
 {
 	import core.Game;
 	import core.ui.menus.VerticalSelectionList;
-	import core.ui.windows.sub.Popup;
+	import core.ui.windows.Popup;
 	import games.missTheMissile.MissTheMissile;
 	import games.missTheMissile.ui.MenuOption;
 	import net.flashpunk.Entity;
