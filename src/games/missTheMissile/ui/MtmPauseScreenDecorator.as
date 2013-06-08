@@ -2,7 +2,7 @@ package games.missTheMissile.ui
 {
 	import core.ui.menus.HighlightableEntity;
 	import core.ui.menus.Hightlightable;
-	import core.ui.menus.pause.PauseScreenDecorator;
+	import core.ui.windows.decorators.PauseScreenDecorator;
 	import core.ui.windows.PauseScreen;
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Text;
@@ -11,7 +11,7 @@ package games.missTheMissile.ui
 	 * ...
 	 * @author beyamor
 	 */
-	public class MtmPauseScreenDecorator extends PauseScreenDecorator 
+	public class MtmPauseScreenDecorator extends PauseScreenDecorator
 	{
 		
 		public function MtmPauseScreenDecorator() 

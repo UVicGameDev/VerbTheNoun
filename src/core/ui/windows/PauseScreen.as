@@ -2,11 +2,11 @@ package core.ui.windows
 {
 	import core.Game;
 	import core.Keys;
-	import core.ui.menus.pause.PauseScreenDecorator;
-	import core.ui.menus.pause.QuitOption;
-	import core.ui.menus.pause.RestartOption;
-	import core.ui.menus.pause.ResumeOption;
 	import core.ui.menus.VerticalSelectionList;
+	import core.ui.windows.decorators.PauseScreenDecorator;
+	import core.ui.windows.options.QuitOption;
+	import core.ui.windows.options.RestartOption;
+	import core.ui.windows.options.ResumeOption;
 	import net.flashpunk.utils.Input;
 	/**
 	 * ...

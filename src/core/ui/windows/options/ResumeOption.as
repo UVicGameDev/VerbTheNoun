@@ -1,4 +1,4 @@
-package core.ui.menus.pause 
+package core.ui.windows.options 
 {
 	import core.ui.menus.HighlightableSelector;
 	import core.ui.menus.Hightlightable;

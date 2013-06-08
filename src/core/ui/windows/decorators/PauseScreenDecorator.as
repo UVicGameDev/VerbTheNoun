@@ -1,4 +1,4 @@
-package core.ui.menus.pause 
+package core.ui.windows.decorators 
 {
 	import core.ui.menus.HighlightableEntity;
 	import core.ui.menus.Hightlightable;
