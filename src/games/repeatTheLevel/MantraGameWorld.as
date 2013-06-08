@@ -23,13 +23,14 @@ package games.repeatTheLevel
 		
 		private var hasDropped:Boolean = false;
 		private var updatePositionsFlag:Boolean = false;
+		private var removeOldLevelFlag:Boolean = false;
 		
 		private var  player:Player = new Player(0, 300, new Image(Assets.IMG_PLAYERSTANDIN), 0, 0, 10, 32);
 		
 		private var cameraManager:MantraCamera = new MantraCamera(player);
 		
 		private var prevLevel:Vector.<Entity> = new Vector.<Entity>;
-		private var currLevel:Vector.<Entity> = new Vector.<Entity>;
+		//private var currLevel:Vector.<Entity> = new Vector.<Entity>;
 		
 		
 		public function MantraGameWorld() 
@@ -45,18 +46,19 @@ package games.repeatTheLevel
 			if (hasDropped)
 				return;
 			getAll(prevLevel)
-			var updateCounts:int = 0;
+
 			for each (var e:Entity in prevLevel)
 			{
-				updateCounts++;
+
 				if (e.type != "player")
 				{
 					e.type = "untouchable";
 				}	
 			}
-			trace("invalidated " + updateCounts + " objects");
+
+			prevLevel.splice(prevLevel.indexOf(player), 1);
 			
-			buildLevel(player.x - 400, 1200);
+			buildLevel(player.x - 400, 600);
 			hasDropped = true;
 			updatePositionsFlag = true;
 		}
@@ -64,30 +66,28 @@ package games.repeatTheLevel
 		public function updatePositions():void
 		{
 			var x_change:int = player.x - 400;
-			var y_change:int = 800;
+			var y_change:int = 200;
 			
 			var allEnts:Vector.<Entity> = new Vector.<Entity>;
 			getAll(allEnts);
-			var updateCounts:int = 0;
+
 			for each (var e:Entity in allEnts)
 			{
-				updateCounts++;
-				if (e is Player)
-					trace("Player.x =  "+e.x);
+
+
 				e.x -= x_change;
 				e.y -= y_change;
-				if (e is Player)
-					trace("New Player.x =  "+e.x);
+
 				
 			}
-			trace("updated " + updateCounts + " objects");
+
 			camera.x -= x_change;
 			camera.y -= y_change;
-			trace(camera.x + ", " + camera.y);
+			
 			
 			updatePositionsFlag = false;
+			removeOldLevelFlag = true;
 		}
-		
 		
 		public function buildLevel(start_x:int, y_level:int):void 
 		{
@@ -110,7 +110,7 @@ package games.repeatTheLevel
 									.overrideType("puddle")
 									.build());
 									
-			add(new AcidPipe(start_x + 480, y_level / 5));
+			add(new AcidPipe(start_x + 480, y_level - 384));
 			
 		}
 		
@@ -128,6 +128,19 @@ package games.repeatTheLevel
 				if (player.x > 800)
 				{
 					dropDown();
+				}
+			}
+			
+			if (removeOldLevelFlag)
+			{
+				trace("velocity = " + player.y_vel);
+				if (player.y_vel == 0)
+				{
+					
+					removeList(prevLevel);
+					removeOldLevelFlag = false;
+					hasDropped = false;
+					prevLevel = new Vector.<Entity>;
 				}
 			}
 			

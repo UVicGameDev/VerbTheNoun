@@ -36,7 +36,7 @@ package games.repeatTheLevel
 			for (var i_y:int = 0; i_y < Math.abs(y_vel);i_y++)
 			{
 				y += y_inc;
-				if (collide("puddle", x+originX, y+originY))
+				if (collide("puddle", x+originX, y+originY) || y > 1200 || y<0)
 				{
 					FP.world.remove(this);
 				}

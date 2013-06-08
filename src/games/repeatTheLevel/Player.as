@@ -107,15 +107,16 @@ package games.repeatTheLevel
 					}
 					else
 					{
-						y_vel = 0;
+						
 						state = FALLING;
 					}
+					y_vel = 0;
 					break;
 				}
 			}
 			v_dir = i_y * y_inc;
 			
-			trace("player at " + x + ", " + y);
+			
 		}
 	}
 

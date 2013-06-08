@@ -64,7 +64,7 @@ package games.repeatTheLevel
 					camera.y  = 0;
 			}
 			
-			trace("camera at " + camera.x + ", " + camera.y);
+
 		}
 	}
 
