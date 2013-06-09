@@ -10,7 +10,7 @@ package games.repeatTheLevel
 	 */
 	public class AcidPipe extends Solid 
 	{
-		private var timeIntervalCoef:Number = 0.9;
+		private var timeInterval:Number = 0.9;
 		private var time:Number = timeInterval;
 		
 		public function AcidPipe(x:int,y:int) 
