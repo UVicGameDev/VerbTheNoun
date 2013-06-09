@@ -1,22 +1,18 @@
 package core.ui.windows.decorators 
 {
 	import core.ui.menus.HighlightableEntity;
-	import core.ui.menus.Hightlightable;
 	import core.ui.windows.PauseScreen;
-	
 	/**
 	 * ...
 	 * @author beyamor
 	 */
-	public class PauseScreenDecorator 
+	public class GameOverDecorator 
 	{
-		public var	resumeOption:HighlightableEntity,
-					restartOption:HighlightableEntity,
+		public var	restartOption:HighlightableEntity,
 					quitOption:HighlightableEntity;
 		
 		public function decorate(pauseScreen:PauseScreen):void {
 			
-			pauseScreen.view.add(resumeOption);
 			pauseScreen.view.add(restartOption);
 			pauseScreen.view.add(quitOption);
 		}
@@ -32,8 +28,8 @@ package core.ui.windows.decorators
 		
 		protected function get options():Vector.<HighlightableEntity> {
 			
-			return new <HighlightableEntity>[resumeOption, restartOption, quitOption];
+			return new <HighlightableEntity>[restartOption, quitOption];
 		}
 	}
-	
+
 }
