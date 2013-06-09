@@ -1,6 +1,6 @@
 package core.ui.windows 
 {
-	import core.games.Game;
+	import core.games.GameWorld;
 	import core.Keys;
 	import core.ui.menus.VerticalSelectionList;
 	import core.ui.windows.decorators.PauseScreenDecorator;
@@ -20,7 +20,7 @@ package core.ui.windows
 	public class PauseScreen extends Popup 
 	{
 		
-		public function PauseScreen(game:Game, decorator:PauseScreenDecorator)
+		public function PauseScreen(game:GameWorld, decorator:PauseScreenDecorator)
 		{
 			super(decorator.width, decorator.height, game.windows);
 			centerOnParent();

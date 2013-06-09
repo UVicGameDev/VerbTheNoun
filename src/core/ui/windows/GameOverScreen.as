@@ -1,6 +1,6 @@
 package core.ui.windows 
 {
-	import core.games.Game;
+	import core.games.GameWorld;
 	import core.ui.menus.VerticalSelectionList;
 	import core.ui.windows.decorators.GameOverScreenDecorator;
 	import core.ui.windows.options.QuitOption;
@@ -16,7 +16,7 @@ package core.ui.windows
 	public class GameOverScreen extends SubWindow 
 	{
 		
-		public function GameOverScreen(game:Game, decorator:GameOverScreenDecorator)
+		public function GameOverScreen(game:GameWorld, decorator:GameOverScreenDecorator)
 		{
 			super(decorator.width, decorator.height);
 			centerOnParent();

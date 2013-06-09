@@ -12,7 +12,7 @@ package core.games
 	 * 
 	 * @author beyamor
 	 */
-	public class Game extends World 
+	public class GameWorld extends World 
 	{
 		private var _windows:WindowStack	= new WindowStack,
 					_updateables:UpdateList	= new UpdateList;
@@ -27,7 +27,7 @@ package core.games
 		 */
 		public function get updateables():UpdateList { return _updateables; }
 		
-		public function Game() 
+		public function GameWorld() 
 		{
 			
 		}

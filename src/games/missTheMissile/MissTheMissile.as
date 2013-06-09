@@ -3,7 +3,7 @@ package games.missTheMissile
 	import core.context.ELUStateMachine;
 	import core.Debug;
 	import core.GameConsts;
-	import core.games.Game;
+	import core.games.GameWorld;
 	import core.util.Timer;
 	import games.missTheMissile.arena.Arena;
 	import games.missTheMissile.entities.Player;
@@ -21,7 +21,7 @@ package games.missTheMissile
 	 * ...
 	 * @author beyamor
 	 */
-	public class MissTheMissile extends Game
+	public class MissTheMissile extends GameWorld
 	{
 		private var _data:GameData,
 					_viewSystem:ViewSystem;

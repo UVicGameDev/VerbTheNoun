@@ -3,7 +3,7 @@ package games.dialThePhone
 	import core.context.ELUStateMachine;
 	import core.Debug;
 	import core.GameConsts;
-	import core.games.Game;
+	import core.games.GameWorld;
 	import core.ui.View;
 	import core.util.Timer;
 	import flash.geom.Point;
@@ -26,7 +26,7 @@ package games.dialThePhone
 	 * ...
 	 * @author beyamor
 	 */
-	public class DialThePhone extends Game
+	public class DialThePhone extends GameWorld
 	{
 		private var DURATION:Number = 30;
 		
