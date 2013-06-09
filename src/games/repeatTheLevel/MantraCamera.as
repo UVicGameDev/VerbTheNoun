@@ -26,6 +26,7 @@ package games.repeatTheLevel
 		{
 			//horizontal movement
 			var h_dir:int = target.h_dir;
+			trace("h_dir = "+h_dir);
 			if (target.x > 400 && target.x < max_x+400)
 			{
 				if (h_dir > 0)
@@ -64,7 +65,8 @@ package games.repeatTheLevel
 					camera.y  = 0;
 			}
 			
-
+			target.h_dir = 0;
+			target.v_dir = 0;
 		}
 	}
 

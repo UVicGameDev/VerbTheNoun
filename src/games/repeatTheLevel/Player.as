@@ -27,6 +27,8 @@ package games.repeatTheLevel
 		public var h_dir:int = 0;
 		public var v_dir:int = 0;
 		
+		public var mount:MovingPlatform = null;
+		
 		private var worldPointer:MantraGameWorld;
 		
 		
@@ -62,6 +64,7 @@ package games.repeatTheLevel
 				{
 					y_vel = -8;
 					state = JUMPING;
+					dismount();
 				}
 
 				else if (state == SWIMMING)
@@ -109,7 +112,7 @@ package games.repeatTheLevel
 					
 				}
 			}
-			h_dir = i_x * x_inc;
+			h_dir += i_x * x_inc;
 			
 			//move in y
 			for (var i_y:int = 0; i_y < Math.abs(y_vel);i_y++)
@@ -123,13 +126,17 @@ package games.repeatTheLevel
 					y -= y_inc;
 					if (solid.y > y)
 					{
-						
+						if (solid is MovingPlatform)
+						{
+							(solid as MovingPlatform).mount(this);
+							mount = (solid as MovingPlatform);
+						}
 						state = WALKING;
 						
 					}
 					else
 					{
-						
+						dismount();
 						state = FALLING;
 					}
 					y_vel = 0;
@@ -142,9 +149,29 @@ package games.repeatTheLevel
 					y_vel = 0;
 					
 				}
+				else {
+					dismount();
+					state = FALLING;
+				}
 			}
 			v_dir = i_y * y_inc;
+		}
+		
+		public function push(dir:int):void
+		{
+			h_dir += dir;
+			x += dir;
 			
+			trace("new h_dir = " + h_dir);
+		}
+		
+		private function dismount():void
+		{
+			if (mount != null )
+			{
+				mount.dismount();
+				mount = null;
+			}
 			
 		}
 	}

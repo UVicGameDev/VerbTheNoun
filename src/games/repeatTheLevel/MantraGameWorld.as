@@ -81,12 +81,13 @@ package games.repeatTheLevel
 
 			for each (var e:Entity in allEnts)
 			{
-
-
 				e.x -= x_change;
 				e.y -= y_change;
-
 				
+				if (e is MovingPlatform)
+				{
+					(e as MovingPlatform).applyOffset(x_change);
+				}
 			}
 
 			camera.x -= x_change;
@@ -120,6 +121,8 @@ package games.repeatTheLevel
 									.build());
 									
 			add(new AcidPipe(start_x + 480, y_level - 384));
+			
+			add(new MovingPlatform(start_x + 720, y_level - 64, start_x + 720 + 32*8))
 			
 		}
 		
