@@ -20,10 +20,10 @@ package vtn.gallery
 		public var game:Game;
 		private var game_graphic:Graphic;
 		
-		public function GamePortal(game:Game, game_graphic:Class) 
+		public function GamePortal(game:Game) 
 		{
 			super(0,0);
-			this.game_graphic = new Image(game_graphic);
+			this.game_graphic = new Image(game.info.thumbnail);
 			this.game = game;
 		}
 		

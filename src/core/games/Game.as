@@ -34,6 +34,11 @@ package core.games
 			
 			throw new Error("Override in subclass");
 		}
+		
+		public function get info():GameInfo {
+			
+			throw Error("Override in subclass");
+		}
 	}
 
 }

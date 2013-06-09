@@ -28,7 +28,7 @@ package vtn.gallery
 		public function Game_list() 
 		{
 			game_list = new Array();
-			game_list.push((new GamePortal(new MissTheMissile, REDSTANDIN)));
+			game_list.push((new GamePortal(new MissTheMissile)));
 			/*game_list.push((new GamePortal(function():World { return new HeartTheBeetsWorld; }, CLOUD)));
 			game_list.push((new GamePortal(function():World { return new DialThePhone; }, YELLOWSTANDIN)));
 			game_list.push((new GamePortal(function():World { return new MantraGameWorld; }, GREENSTANDIN)));
