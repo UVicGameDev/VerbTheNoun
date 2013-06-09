@@ -1,4 +1,4 @@
-package games.dialThePhone 
+package HeartTheBeets 
 {
 	import core.games.Game;
 	import core.games.GameInfo;
@@ -8,19 +8,19 @@ package games.dialThePhone
 	 * ...
 	 * @author beyamor
 	 */
-	public class DialThePhone extends Game 
+	public class HeartTheBeets extends Game 
 	{
-		[Embed(source = '/assets/game_standin_yellow.png')] private const THUMBNAIL:Class;
+		[Embed(source = '/HeartTheBeets/HTB_assets/Cloud.png')] public const CLOUD:Class;
 		
 		override protected function createGameWorld():World 
 		{
-			return new DialThePhoneWorld(this);
+			return new HeartTheBeetsWorld;
 		}
 		
 		override public function get info():GameInfo 
 		{
 			return GameInfo.description
-					.thumbnail(THUMBNAIL)
+					.thumbnail(CLOUD)
 					.finish();
 		}
 	}

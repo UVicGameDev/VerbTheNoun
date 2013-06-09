@@ -2,6 +2,7 @@ package games.dialThePhone.states
 {
 	import core.context.ELUState;
 	import games.dialThePhone.DialThePhone;
+	import games.dialThePhone.DialThePhoneWorld;
 	import games.dialThePhone.entities.finger.Finger;
 	import games.dialThePhone.numbers.Entry;
 	import games.dialThePhone.numbers.NumberGenerator;
@@ -15,11 +16,11 @@ package games.dialThePhone.states
 		private var	expectedNumber:NumberGenerator,
 					enteredNumber:Entry,
 					finger:Finger,
-					game:DialThePhone;
+					world:DialThePhoneWorld;
 		
-		public function CheckState(game:DialThePhone, finger:Finger, expectedNumber:NumberGenerator, enteredNumber:Entry) 
+		public function CheckState(world:DialThePhoneWorld, finger:Finger, expectedNumber:NumberGenerator, enteredNumber:Entry) 
 		{
-			this.game			= game;
+			this.world			= world;
 			this.finger			= finger;
 			this.expectedNumber	= expectedNumber;
 			this.enteredNumber	= enteredNumber;

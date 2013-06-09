@@ -3,18 +3,19 @@ package games.dialThePhone.states
 	import core.context.ELUState;
 	import core.util.UpdateList;
 	import games.dialThePhone.DialThePhone;
+	import games.dialThePhone.DialThePhoneWorld;
 	/**
 	 * ...
 	 * @author beyamor
 	 */
 	public class DialState implements ELUState 
 	{
-		private var	game:DialThePhone,
+		private var	world:DialThePhoneWorld,
 					updateables:UpdateList;
 		
-		public function DialState(game:DialThePhone) 
+		public function DialState(world:DialThePhoneWorld) 
 		{
-			this.game = game;
+			this.world = world;
 			updateables = new UpdateList;
 		}
 		

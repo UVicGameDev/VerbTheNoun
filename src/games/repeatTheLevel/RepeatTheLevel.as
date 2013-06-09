@@ -1,4 +1,4 @@
-package games.dialThePhone 
+package games.repeatTheLevel 
 {
 	import core.games.Game;
 	import core.games.GameInfo;
@@ -8,13 +8,13 @@ package games.dialThePhone
 	 * ...
 	 * @author beyamor
 	 */
-	public class DialThePhone extends Game 
+	public class RepeatTheLevel extends Game 
 	{
-		[Embed(source = '/assets/game_standin_yellow.png')] private const THUMBNAIL:Class;
+		[Embed(source = '/assets/game_standin_violet.png')] private const THUMBNAIL:Class;
 		
 		override protected function createGameWorld():World 
 		{
-			return new DialThePhoneWorld(this);
+			return new MantraGameWorld;
 		}
 		
 		override public function get info():GameInfo 
