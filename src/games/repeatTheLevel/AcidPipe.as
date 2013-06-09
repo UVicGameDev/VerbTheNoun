@@ -10,8 +10,8 @@ package games.repeatTheLevel
 	 */
 	public class AcidPipe extends Solid 
 	{
-		private var timeIntervalCoef:Number = 1.5;
-		private var time:Number = timeIntervalCoef*FP.frameRate/100;
+		private var timeIntervalCoef:Number = 0.9;
+		private var time:Number = timeInterval;
 		
 		public function AcidPipe(x:int,y:int) 
 		{
@@ -27,11 +27,11 @@ package games.repeatTheLevel
 			{
 				
 				FP.world.add(new AcidDrop(this.x + width / 2, this.y + height / 2));
-				time = timeIntervalCoef*FP.frameRate/100;
+				time = timeInterval;
 			}
 			else 
 			{
-				time-= 0.01;
+				time-= 1/FP.frameRate;
 			}
 		}
 	}
