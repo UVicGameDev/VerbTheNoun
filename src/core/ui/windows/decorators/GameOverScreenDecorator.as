@@ -1,8 +1,7 @@
 package core.ui.windows.decorators 
 {
 	import core.ui.menus.HighlightableEntity;
-	import core.ui.windows.GameOverScreen;
-	import core.ui.windows.PauseScreen;
+	import core.ui.View;
 	
 	/**
 	 * Games provide their own aesthetic for game over screens by specializing this class.
@@ -14,10 +13,10 @@ package core.ui.windows.decorators
 		public var	restartOption:HighlightableEntity,
 					quitOption:HighlightableEntity;
 		
-		public function decorate(screen:GameOverScreen):void {
+		public function decorate(view:View):void {
 			
-			screen.view.add(restartOption);
-			screen.view.add(quitOption);
+			view.add(restartOption);
+			view.add(quitOption);
 		}
 		
 		public function get width():uint {

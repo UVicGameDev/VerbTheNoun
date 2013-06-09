@@ -25,7 +25,7 @@ package core.ui.windows
 			super(decorator.width, decorator.height, game.windows);
 			centerOnParent();
 			
-			decorator.decorate(this);
+			decorator.decorate(view);
 			
 			var	selectionList:VerticalSelectionList = new VerticalSelectionList(
 				new ResumeOption(this, decorator.resumeOption),

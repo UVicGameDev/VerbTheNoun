@@ -2,8 +2,8 @@ package games.missTheMissile.ui
 {
 	import core.ui.menus.HighlightableEntity;
 	import core.ui.menus.Hightlightable;
+	import core.ui.View;
 	import core.ui.windows.decorators.PauseScreenDecorator;
-	import core.ui.windows.PauseScreen;
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Text;
 	
@@ -21,10 +21,10 @@ package games.missTheMissile.ui
 			quitOption		= new MenuOption("quit");
 		}
 		
-		override public function decorate(screen:PauseScreen):void 
+		override public function decorate(view:View):void 
 		{
-			super.decorate(screen);
-			(new MtmScreenDecorator).decorate(screen, options, "Paused");
+			super.decorate(view);
+			(new MtmScreenDecorator).decorate(view, options, "Paused");
 		}
 	}
 

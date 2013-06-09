@@ -2,7 +2,7 @@ package core.ui.windows.decorators
 {
 	import core.ui.menus.HighlightableEntity;
 	import core.ui.menus.Hightlightable;
-	import core.ui.windows.PauseScreen;
+	import core.ui.View;
 	
 	/**
 	 * Games provide their own aesthetic for pause screens by specializing this class.
@@ -29,11 +29,11 @@ package core.ui.windows.decorators
 					restartOption:HighlightableEntity,
 					quitOption:HighlightableEntity;
 		
-		public function decorate(pauseScreen:PauseScreen):void {
+		public function decorate(view:View):void {
 			
-			pauseScreen.view.add(resumeOption);
-			pauseScreen.view.add(restartOption);
-			pauseScreen.view.add(quitOption);
+			view.add(resumeOption);
+			view.add(restartOption);
+			view.add(quitOption);
 		}
 		
 		public function get width():uint {
