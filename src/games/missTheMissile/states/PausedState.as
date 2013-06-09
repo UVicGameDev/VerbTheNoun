@@ -1,8 +1,9 @@
 package games.missTheMissile.states 
 {
 	import core.context.ELUState;
+	import core.ui.windows.PauseScreen;
 	import games.missTheMissile.MissTheMissile;
-	import games.missTheMissile.windows.PauseMenu;
+	import games.missTheMissile.ui.MtmPauseScreenDecorator;
 	/**
 	 * ...
 	 * @author beyamor
@@ -20,7 +21,12 @@ package games.missTheMissile.states
 		
 		public function enter():void 
 		{
-			game.windows.push(new PauseMenu(game));
+			var pauseScreen:PauseScreen = new PauseScreen(game, new MtmPauseScreenDecorator);
+			pauseScreen.onClose = function():void {
+				game.state.switchTo("play");
+			}
+			
+			game.windows.push(pauseScreen);
 		}
 		
 		public function update():void 

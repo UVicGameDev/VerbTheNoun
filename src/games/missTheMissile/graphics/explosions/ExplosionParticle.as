@@ -1,6 +1,6 @@
 package games.missTheMissile.graphics.explosions 
 {
-	import core.ui.windows.sub.Popup;
+	import core.ui.windows.Popup;
 	import flash.geom.Point;
 	import core.Random;
 	import flash.display.BitmapData;

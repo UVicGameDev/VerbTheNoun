@@ -1,4 +1,4 @@
-package core.ui.windows.sub 
+package core.ui.windows 
 {
 	import core.Game;
 	import core.Keys;
@@ -10,7 +10,8 @@ package core.ui.windows.sub
 	 */
 	public class Popup extends SubWindow 
 	{
-		private var		stack:WindowStack;
+		private var		stack:WindowStack,
+						closeCallbacks:Vector.<Function>	= new Vector.<Function>;
 		protected var	canBeClosed:Boolean	= true;
 		
 		public function Popup(width:Number, height:Number, stack:WindowStack)
@@ -25,6 +26,7 @@ package core.ui.windows.sub
 		public function close():void {
 			
 			if (stack.top == this) stack.pop();
+			for each (var callback:Function in closeCallbacks) callback();
 		}
 		
 		override public function update():void 
@@ -32,6 +34,11 @@ package core.ui.windows.sub
 			super.update();
 			
 			if (canBeClosed && Input.pressed(Keys.CANCEL)) close();
+		}
+		
+		public function set onClose(callback:Function):void {
+			
+			closeCallbacks.push(callback);
 		}
 	}
 

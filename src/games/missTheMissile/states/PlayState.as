@@ -37,7 +37,7 @@ package games.missTheMissile.states
 			game.viewSystem.update();
 			
 			if (game.data.playerIsDead)			game.state.switchTo("gameOver");
-			else if (Input.pressed(Keys.START))	game.state.switchTo("paused");
+			else if (Input.pressed(Keys.PAUSE))	game.state.switchTo("paused");
 			
 			scoreIncrementer.update();
 		}
