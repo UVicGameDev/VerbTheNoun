@@ -7,8 +7,8 @@ package core.games
 	/**
 	 * Make games, make games.
 	 * 
-	 * Each Game represents its own self-contained VtN minigame.
-	 * Minigames should therefore subclass Game.
+	 * A game's world should contain all of the game's entities and logic.
+	 * So, make a game world the same way you would a regular FlashPunk world, I dunno.
 	 * 
 	 * @author beyamor
 	 */
