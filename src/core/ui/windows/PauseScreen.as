@@ -1,6 +1,6 @@
 package core.ui.windows 
 {
-	import core.Game;
+	import core.games.Game;
 	import core.Keys;
 	import core.ui.menus.VerticalSelectionList;
 	import core.ui.windows.decorators.PauseScreenDecorator;

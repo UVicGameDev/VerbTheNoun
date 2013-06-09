@@ -1,4 +1,4 @@
-package core 
+package core.games 
 {
 	import core.ui.windows.WindowStack;
 	import core.util.UpdateList;
