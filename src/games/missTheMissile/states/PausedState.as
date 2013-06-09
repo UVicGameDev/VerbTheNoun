@@ -1,8 +1,10 @@
 package games.missTheMissile.states 
 {
 	import core.context.ELUState;
+	import core.games.Game;
 	import core.ui.windows.PauseScreen;
 	import games.missTheMissile.MissTheMissile;
+	import games.missTheMissile.MissTheMissileWorld;
 	import games.missTheMissile.ui.MtmPauseScreenDecorator;
 	/**
 	 * ...
@@ -10,23 +12,23 @@ package games.missTheMissile.states
 	 */
 	public class PausedState implements ELUState 
 	{
-		private var game:MissTheMissile;
+		private var world:MissTheMissileWorld;
 		
-		public function PausedState(game:MissTheMissile) 
+		public function PausedState(world:MissTheMissileWorld) 
 		{
-			this.game = game;
+			this.world = world;
 		}
 		
 		/* INTERFACE games.missTheMissile.states.GameState */
 		
 		public function enter():void 
 		{
-			var pauseScreen:PauseScreen = new PauseScreen(game, new MtmPauseScreenDecorator);
+			var pauseScreen:PauseScreen = new PauseScreen(world, new MtmPauseScreenDecorator);
 			pauseScreen.onClose = function():void {
-				game.state.switchTo("play");
+				world.state.switchTo("play");
 			}
 			
-			game.windows.push(pauseScreen);
+			world.windows.push(pauseScreen);
 		}
 		
 		public function update():void 

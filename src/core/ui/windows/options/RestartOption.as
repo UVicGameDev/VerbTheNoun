@@ -1,5 +1,6 @@
 package core.ui.windows.options 
 {
+	import core.games.Game;
 	import core.ui.menus.HighlightableSelector;
 	import core.ui.menus.Hightlightable;
 	import net.flashpunk.FP;
@@ -10,9 +11,9 @@ package core.ui.windows.options
 	 */
 	public class RestartOption extends HighlightableSelector 
 	{
-		private var game:Class;
+		private var game:Game;
 		
-		public function RestartOption(game:Class, highlightable:Hightlightable) 
+		public function RestartOption(game:Game, highlightable:Hightlightable) 
 		{
 			super(highlightable);
 			this.game = game;
@@ -20,7 +21,7 @@ package core.ui.windows.options
 		
 		override public function select():void 
 		{
-			FP.world = new game;
+			game.restart();
 		}
 	}
 

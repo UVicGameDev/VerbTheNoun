@@ -1,5 +1,6 @@
 package core.ui.windows 
 {
+	import core.games.Game;
 	import core.games.GameWorld;
 	import core.ui.menus.VerticalSelectionList;
 	import core.ui.windows.decorators.GameOverScreenDecorator;
@@ -16,7 +17,7 @@ package core.ui.windows
 	public class GameOverScreen extends SubWindow 
 	{
 		
-		public function GameOverScreen(game:GameWorld, decorator:GameOverScreenDecorator)
+		public function GameOverScreen(world:GameWorld, decorator:GameOverScreenDecorator)
 		{
 			super(decorator.width, decorator.height);
 			centerOnParent();
@@ -24,8 +25,8 @@ package core.ui.windows
 			decorator.decorate(view);
 			
 			var	selectionList:VerticalSelectionList = new VerticalSelectionList(
-				new RestartOption(Object(game).constructor, decorator.restartOption),
-				new QuitOption(decorator.quitOption)
+				new RestartOption(world.game, decorator.restartOption),
+				new QuitOption(world.game, decorator.quitOption)
 			);			
 			updateables.add(selectionList);
 		}

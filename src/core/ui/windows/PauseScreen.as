@@ -1,5 +1,6 @@
 package core.ui.windows 
 {
+	import core.games.Game;
 	import core.games.GameWorld;
 	import core.Keys;
 	import core.ui.menus.VerticalSelectionList;
@@ -20,17 +21,17 @@ package core.ui.windows
 	public class PauseScreen extends Popup 
 	{
 		
-		public function PauseScreen(game:GameWorld, decorator:PauseScreenDecorator)
+		public function PauseScreen(world:GameWorld, decorator:PauseScreenDecorator)
 		{
-			super(decorator.width, decorator.height, game.windows);
+			super(decorator.width, decorator.height, world.windows);
 			centerOnParent();
 			
 			decorator.decorate(view);
 			
 			var	selectionList:VerticalSelectionList = new VerticalSelectionList(
 				new ResumeOption(this, decorator.resumeOption),
-				new RestartOption(Object(game).constructor, decorator.restartOption),
-				new QuitOption(decorator.quitOption)
+				new RestartOption(world.game, decorator.restartOption),
+				new QuitOption(world.game, decorator.quitOption)
 			);			
 			updateables.add(selectionList);
 		}

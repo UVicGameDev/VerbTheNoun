@@ -1,7 +1,9 @@
 package vtn.gallery
 {
+	import core.games.Game;
 	import games.dialThePhone.DialThePhone;
 	import games.missTheMissile.MissTheMissile;
+	import games.missTheMissile.MissTheMissileWorld;
 	import HeartTheBeets.HeartTheBeetsWorld;
 	import HeartTheBeets.Cloud;
 	import net.flashpunk.World;
@@ -26,11 +28,11 @@ package vtn.gallery
 		public function Game_list() 
 		{
 			game_list = new Array();
-			game_list.push((new GamePortal(function():World { return new MissTheMissile; }, REDSTANDIN)));
-			game_list.push((new GamePortal(function():World { return new HeartTheBeetsWorld; }, CLOUD)));
+			game_list.push((new GamePortal(new MissTheMissile, REDSTANDIN)));
+			/*game_list.push((new GamePortal(function():World { return new HeartTheBeetsWorld; }, CLOUD)));
 			game_list.push((new GamePortal(function():World { return new DialThePhone; }, YELLOWSTANDIN)));
 			game_list.push((new GamePortal(function():World { return new MantraGameWorld; }, GREENSTANDIN)));
-			game_list.push((new GamePortal(function():World {return new TestWorld(VIOLETSTANDIN)}, VIOLETSTANDIN)));
+			game_list.push((new GamePortal(function():World {return new TestWorld(VIOLETSTANDIN)}, VIOLETSTANDIN)));*/
 		}	
 	}
 

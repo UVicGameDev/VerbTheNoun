@@ -3,6 +3,7 @@ package games.dialThePhone
 	import core.context.ELUStateMachine;
 	import core.Debug;
 	import core.GameConsts;
+	import core.games.Game;
 	import core.games.GameWorld;
 	import core.ui.View;
 	import core.util.Timer;
@@ -37,8 +38,10 @@ package games.dialThePhone
 					phoneView:View,
 					timeLimit:Timer;
 		
-		public function DialThePhone() 
+		public function DialThePhone(game:Game) 
 		{
+			super(game);
+			
 			FP.screen.color = 0xd6ae76;
 			
 			if (Debug.isEnabled) addGraphic(new Text("Dial the Phone"));

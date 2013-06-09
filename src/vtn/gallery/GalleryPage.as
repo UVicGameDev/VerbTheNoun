@@ -33,8 +33,8 @@ package vtn.gallery
 			rightArrow = new GalleryArrow(630, 150, 1);
 			backButton = new GalleryButton(230, 400);
 			game_index = 0;
-			num_games = 2;
 			game_list = new Game_list();
+			num_games = Math.min(2, game_list.game_list.length);
 			
 			leftArrow.left_link = rightArrow;
 			leftArrow.up_link = backButton;
@@ -166,7 +166,8 @@ package vtn.gallery
 			}
 			else if (selector.selection is GameSelectable)
 			{
-				FP.world = ((GameSelectable)(selector.selection)).portal.game();
+				//FP.world = ((GameSelectable)(selector.selection)).portal.game();
+				((GameSelectable)(selector.selection)).portal.game.start();
 			}
 		}
 		

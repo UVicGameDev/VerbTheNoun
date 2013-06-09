@@ -4,7 +4,7 @@ package games.missTheMissile.states
 	import core.Keys;
 	import core.util.Timer;
 	import games.missTheMissile.GameData;
-	import games.missTheMissile.MissTheMissile;
+	import games.missTheMissile.MissTheMissileWorld;
 	import net.flashpunk.utils.Input;
 	/**
 	 * ...
@@ -12,17 +12,17 @@ package games.missTheMissile.states
 	 */
 	public class PlayState implements ELUState 
 	{
-		private var game:MissTheMissile,
+		private var world:MissTheMissileWorld,
 					scoreIncrementer:Timer;
 		
-		public function PlayState(game:MissTheMissile) 
+		public function PlayState(world:MissTheMissileWorld) 
 		{
-			this.game = game;
+			this.world = world;
 			
 			scoreIncrementer = new Timer(0.5);
 			scoreIncrementer.loops = true;
 			scoreIncrementer.addCallback(function():void {
-				game.data.incrementScore();
+				world.data.incrementScore();
 			});
 		}
 		
@@ -34,10 +34,10 @@ package games.missTheMissile.states
 		
 		public function update():void 
 		{
-			game.viewSystem.update();
+			world.viewSystem.update();
 			
-			if (game.data.playerIsDead)			game.state.switchTo("gameOver");
-			else if (Input.pressed(Keys.PAUSE))	game.state.switchTo("paused");
+			if (world.data.playerIsDead)			world.state.switchTo("gameOver");
+			else if (Input.pressed(Keys.PAUSE))	world.state.switchTo("paused");
 			
 			scoreIncrementer.update();
 		}

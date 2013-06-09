@@ -1,5 +1,6 @@
 package core.ui.windows.options 
 {
+	import core.games.Game;
 	import core.ui.menus.Hightlightable;
 	import core.ui.menus.HighlightableSelector;
 	import net.flashpunk.FP;
@@ -11,15 +12,17 @@ package core.ui.windows.options
 	 */
 	public class QuitOption extends HighlightableSelector 
 	{
+		private var game:Game;
 		
-		public function QuitOption(highlightable:Hightlightable) 
+		public function QuitOption(game:Game, highlightable:Hightlightable) 
 		{
 			super(highlightable);
+			this.game = game;
 		}
 		
 		override public function select():void 
 		{
-			FP.world = new GalleryPage;
+			game.quit();
 		}
 	}
 

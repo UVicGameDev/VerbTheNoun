@@ -1,5 +1,6 @@
 package vtn.gallery
 {
+	import core.games.Game;
 	import net.flashpunk.Entity;
 	import net.flashpunk.World;
 	import net.flashpunk.graphics.Image;
@@ -16,10 +17,10 @@ package vtn.gallery
 			super(0, 0);
 		}
 		*/
-		public var game:Function;
+		public var game:Game;
 		private var game_graphic:Graphic;
 		
-		public function GamePortal(game:Function, game_graphic:Class) 
+		public function GamePortal(game:Game, game_graphic:Class) 
 		{
 			super(0,0);
 			this.game_graphic = new Image(game_graphic);

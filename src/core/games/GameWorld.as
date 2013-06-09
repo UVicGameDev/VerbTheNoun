@@ -15,21 +15,27 @@ package core.games
 	public class GameWorld extends World 
 	{
 		private var _windows:WindowStack	= new WindowStack,
-					_updateables:UpdateList	= new UpdateList;
+					_updateables:UpdateList	= new UpdateList,
+					_game:Game;
 					
 		/**
-		 * The game's window stack.
+		 * The game world's window stack.
 		 */
 		public function get windows():WindowStack { return _windows; }
 		
 		/**
-		 * The game's updateables. These are updated on every update call.
+		 * The game world's game.
+		 */
+		public function get game():Game { return _game; }
+		
+		/**
+		 * The game world's updateables. These are updated on every update call.
 		 */
 		public function get updateables():UpdateList { return _updateables; }
 		
-		public function GameWorld() 
+		public function GameWorld(game:Game) 
 		{
-			
+			_game = game;
 		}
 		
 		/**
