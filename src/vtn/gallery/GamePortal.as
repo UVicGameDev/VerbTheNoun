@@ -22,9 +22,10 @@ package vtn.gallery
 		
 		public function GamePortal(game:Game) 
 		{
-			super(0,0);
-			this.game_graphic = new Image(game.info.thumbnail);
-			this.game = game;
+			super(0, 0);
+			
+			this.game			= game;
+			this.game_graphic	= new Image(game.info.thumbnail);
 		}
 		
 		public function get_game_graphic(x:int, y:int):Graphic

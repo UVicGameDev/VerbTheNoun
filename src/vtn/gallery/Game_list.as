@@ -15,7 +15,7 @@ package vtn.gallery
 	 */
 	public class Game_list 
 	{
-		public var game_list:Array;
+		public var game_list:Vector.<GamePortal>;
 		
 		//Embedd Game selectable 
 		[Embed(source = '/assets/game_standin_red.png')] private const REDSTANDIN:Class;
@@ -27,8 +27,13 @@ package vtn.gallery
 		
 		public function Game_list() 
 		{
-			game_list = new Array();
-			game_list.push((new GamePortal(new MissTheMissile)));
+			var allGames:Vector.<Class> = new <Class>[
+				MissTheMissile
+			];
+			
+			game_list = new Vector.<GamePortal>;
+			for each (var gameClass:Class in allGames) game_list.push(new GamePortal(new gameClass));
+			
 			/*game_list.push((new GamePortal(function():World { return new HeartTheBeetsWorld; }, CLOUD)));
 			game_list.push((new GamePortal(function():World { return new DialThePhone; }, YELLOWSTANDIN)));
 			game_list.push((new GamePortal(function():World { return new MantraGameWorld; }, GREENSTANDIN)));
