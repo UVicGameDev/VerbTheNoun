@@ -12,11 +12,6 @@ package games.missTheMissile
 	{
 		[Embed(source = '/assets/game_standin_red.png')] private const THUMBNAIL:Class;
 		
-		public function MissTheMissile() 
-		{
-			
-		}
-		
 		override protected function createGameWorld():World 
 		{
 			return new MissTheMissileWorld(this);
