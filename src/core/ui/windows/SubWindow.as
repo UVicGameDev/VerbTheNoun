@@ -1,7 +1,7 @@
-package core.ui.windows.sub 
+package core.ui.windows 
 {
 	import core.ui.View;
-	import core.ui.windows.main.MainWindow;
+	import core.ui.windows.MainWindow;
 	import core.ui.windows.Window;
 	import core.util.camera.Camera;
 	import core.util.camera.concrete.ViewCamera;

@@ -1,4 +1,4 @@
-package core.ui.windows.main 
+package core.ui.windows 
 {
 	import core.ui.windows.Window;
 	import core.util.camera.concrete.FPCamera;

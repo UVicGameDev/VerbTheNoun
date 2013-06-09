@@ -1,6 +1,6 @@
 package games.missTheMissile.graphics 
 {
-	import core.ui.windows.main.MainWindow;
+	import core.ui.windows.MainWindow;
 	import flash.display.BitmapData;
 	import flash.display.Graphics;
 	import flash.display.Shape;
