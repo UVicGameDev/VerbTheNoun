@@ -15,8 +15,8 @@ package core.ui.windows.decorators
 		
 		public function decorate(view:View):void {
 			
-			view.add(restartOption);
-			view.add(quitOption);
+			if (restartOption)	view.add(restartOption);
+			if (quitOption)		view.add(quitOption);
 		}
 		
 		public function get width():uint {
