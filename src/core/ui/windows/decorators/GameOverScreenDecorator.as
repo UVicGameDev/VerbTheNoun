@@ -6,7 +6,7 @@ package core.ui.windows.decorators
 	 * ...
 	 * @author beyamor
 	 */
-	public class GameOverDecorator 
+	public class GameOverScreenDecorator 
 	{
 		public var	restartOption:HighlightableEntity,
 					quitOption:HighlightableEntity;
