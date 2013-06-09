@@ -8,8 +8,13 @@ package core.ui.windows
 	import core.ui.windows.options.RestartOption;
 	import core.ui.windows.options.ResumeOption;
 	import net.flashpunk.utils.Input;
+	
 	/**
-	 * ...
+	 * The player should be able to open the pause screen by pressing the pause button.
+	 * It has three options - resume, restart, and quit.
+	 * It can also be closed by pressing cancel or pause.
+	 * It is decorated by a game-specific PauseScreenDecorator.
+	 * 
 	 * @author beyamor
 	 */
 	public class PauseScreen extends Popup 

@@ -16,9 +16,9 @@ package games.missTheMissile.ui
 		
 		public function MtmPauseScreenDecorator() 
 		{
-			resumeOption	= new MenuOption("resume", null);
-			restartOption	= new MenuOption("restart", null);
-			quitOption		= new MenuOption("quit", null);
+			resumeOption	= new MenuOption("resume");
+			restartOption	= new MenuOption("restart");
+			quitOption		= new MenuOption("quit");
 		}
 		
 		override public function decorate(screen:PauseScreen):void 

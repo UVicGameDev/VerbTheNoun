@@ -2,7 +2,7 @@ package games.missTheMissile.ui
 {
 	import core.ui.menus.HighlightableEntity;
 	import core.ui.menus.Hightlightable;
-	import core.ui.windows.decorators.PauseScreenDecorator;
+	import core.ui.windows.decorators.GameOverScreenDecorator;
 	import core.ui.windows.GameOverScreen;
 	import core.ui.windows.PauseScreen;
 	import net.flashpunk.Entity;
@@ -12,18 +12,18 @@ package games.missTheMissile.ui
 	 * ...
 	 * @author beyamor
 	 */
-	public class MtmGameOverScreenDecorator extends PauseScreenDecorator
+	public class MtmGameOverScreenDecorator extends GameOverScreenDecorator
 	{
 		
 		public function MtmGameOverScreenDecorator() 
 		{
-			restartOption	= new MenuOption("restart", null);
-			quitOption		= new MenuOption("quit", null);
+			restartOption	= new MenuOption("restart");
+			quitOption		= new MenuOption("quit");
 		}
 		
 		override public function decorate(screen:GameOverScreen):void 
 		{
-			super.decorate(pauseScreen);
+			super.decorate(screen);
 			(new MtmScreenDecorator).decorate(screen, options, "Game Over");
 		}
 	}

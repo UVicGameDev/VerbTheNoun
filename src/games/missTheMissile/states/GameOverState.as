@@ -1,8 +1,10 @@
 package games.missTheMissile.states 
 {
 	import core.context.ELUState;
+	import core.ui.windows.decorators.GameOverScreenDecorator;
+	import core.ui.windows.GameOverScreen;
 	import games.missTheMissile.MissTheMissile;
-	import games.missTheMissile.windows.GameOverScreen;
+	import games.missTheMissile.ui.MtmGameOverScreenDecorator;
 	/**
 	 * ...
 	 * @author beyamor
@@ -20,7 +22,7 @@ package games.missTheMissile.states
 		
 		public function enter():void 
 		{
-			game.windows.push(new GameOverScreen(game));
+			game.windows.push(new GameOverScreen(game, new MtmGameOverScreenDecorator));
 		}
 		
 		public function update():void 

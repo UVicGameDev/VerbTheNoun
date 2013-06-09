@@ -7,7 +7,7 @@ package core.ui.windows.options
 	import core.ui.windows.Window;
 	
 	/**
-	 * ...
+	 * The resume option can be used to close a pause screen.
 	 * @author beyamor
 	 */
 	public class ResumeOption extends HighlightableSelector 

@@ -5,8 +5,12 @@ package core.ui.windows
 	import core.ui.windows.decorators.GameOverScreenDecorator;
 	import core.ui.windows.options.QuitOption;
 	import core.ui.windows.options.RestartOption;
+	
 	/**
-	 * ...
+	 * The game over screen pops up when a game is completed.
+	 * It has two options - restart and quit.
+	 * It is decorated by a game-specific GameOverScreenDecorator.
+	 * 
 	 * @author beyamor
 	 */
 	public class GameOverScreen extends SubWindow 
@@ -14,7 +18,7 @@ package core.ui.windows
 		
 		public function GameOverScreen(game:Game, decorator:GameOverScreenDecorator)
 		{
-			super(decorator.width, decorator.height, game.windows);
+			super(decorator.width, decorator.height);
 			centerOnParent();
 			
 			decorator.decorate(this);

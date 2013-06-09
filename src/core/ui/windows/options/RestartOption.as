@@ -5,7 +5,7 @@ package core.ui.windows.options
 	import net.flashpunk.FP;
 	
 	/**
-	 * ...
+	 * The restart option restarts whatever game the player is currently playing.
 	 * @author beyamor
 	 */
 	public class RestartOption extends HighlightableSelector 
