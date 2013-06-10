@@ -185,6 +185,8 @@ package games.repeatTheLevel
 				}
 			}
 			v_dir = i_y * y_inc;
+			
+			//trace("[" + x + "," + y + "]");
 		}
 		
 		public function push(dir:int):void

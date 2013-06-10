@@ -98,22 +98,103 @@ package games.repeatTheLevel
 			removeOldLevelFlag = true;
 		}
 		
+		private function buildFloor(start:int, height:int, length:int):void
+		{
+			for (var i:int = 0; i < length; i++)
+			{
+				add(new SolidBuilder()	.useImage(new Image(Assets.IMG_BLOCK))
+										.setPosition(start +(i * 32), height )
+										.build());
+			}
+		}
+		
+		private function buildAcid(start:int, height:int, length:int):void
+		{
+			add(new SolidBuilder()	.useImage(new Image(Assets.IMG_BLOCK))
+									.setPosition(start, height )
+									.build());
+									
+			add(new SolidBuilder()	.useImage(new Image(Assets.IMG_PUDDLE))
+									.setPosition(start, height-1)
+									.overrideType("threat")
+									.build());
+									
+			add(new AcidPipe(start, height - 384));
+		}
+		
+		private function buildFire(start:int, height:int, length:int):void
+		{
+			for (var i:int = 0; i < length; i++)
+			{
+				add(new Fire(start +(i * 32), height) );
+			}
+			
+			buildFloor(start - 32, height + 32, length + 2);
+			
+			//trace("created platform at " + (start + 32));
+			add(new MovingPlatform(start + 32, height - 64, start + (length*32) - 96));
+		}
+		
+		private function buildSpikes(start:int, height:int, length:int):void
+		{
+			//var phantoms:Array = [1,4,9]
+			for (var i:int = 0; i < length; i++)
+			{
+				if (i==1 || i==4 || i==9)
+					add(new PhantomSpike(start +(i * 32), height) );
+				else
+					add(new Spike(start +(i * 32), height) );
+			}
+			buildFloor(start - 32, height + 32, length + 2);
+			
+			add(new MovingPlatform(start + 32, height - 64, start + (length*32) - 96));
+		}
+		
+		private function buildWater(start:int, height:int, length:int):void
+		{
+			for (var i:int = 0; i < length; i++)
+			{
+				add(new SolidBuilder()	.useImage(new Image(Assets.IMG_WATERBLOCK))
+										.setPosition(start + 32*i, height+32)
+										.overrideType("water")
+										.build());
+				add(new SolidBuilder()	.useImage(new Image(Assets.IMG_WATERBLOCK))
+										.setPosition(start + 32*i, height+64)
+										.overrideType("water")
+										.build());
+				add(new SolidBuilder()	.useImage(new Image(Assets.IMG_WATERSURFACE))
+										.setHitboxDim(32, 16)
+										.setPosition(start + 32*i, height)
+										.overrideType("water")
+										.build());
+				
+			}
+			
+			for (i = 0; i < 2; i++ )
+			{
+			
+				add(new SolidBuilder()	.useImage(new Image(Assets.IMG_BLOCK))
+										.setPosition(start-32, height+32+(i*32))
+										.build());
+				add(new SolidBuilder()	.useImage(new Image(Assets.IMG_BLOCK))
+										.setPosition(start+32+(32*length), height+32+(i*32))
+										.build());
+			}
+			
+			buildFloor(start - 32, height + 69, length + 2);
+			
+			add(new SpikePlatform(start + 32, height - 64, start + (length * 32) - 96));
+		}
+		
 		public function buildLevel(start_x:int, y_level:int):void 
 		{
-			var levelSize:int = (boundary_x+200) / 32;
+			/*var levelSize:int = (boundary_x+200) / 32;
 			for (var i:int = 0; i < levelSize; i++)
 			{
 				add(new SolidBuilder()	.useImage(new Image(Assets.IMG_BLOCK))
 										.setPosition(start_x +(i * 32), y_level )
 										.build());
 			}
-			
-			/*for (i = 0; i < 10; i++)
-			{
-				add(new SolidBuilder()	.useImage(new Image(Assets.IMG_BLOCK))
-										.setPosition(start_x +(i * 64), y_level - (i*8))
-										.build());
-			}*/
 			
 			add(new SolidBuilder()	.useImage(new Image(Assets.IMG_PUDDLE))
 									.setPosition(start_x + 480, y_level)
@@ -127,18 +208,18 @@ package games.repeatTheLevel
 			for (i = 0; i < 12; i++)
 			{
 				add(new SolidBuilder()	.useImage(new Image(Assets.IMG_WATERBLOCK))
-										.setPosition(start_x + 640 + 32*i, y_level-32)
+										.setPosition(start_x + 640 + 32*i, y_level+32)
 										.overrideType("water")
 										.build());
 				add(new SolidBuilder()	.useImage(new Image(Assets.IMG_WATERBLOCK))
-										.setPosition(start_x + 640 + 32*i, y_level-64)
+										.setPosition(start_x + 640 + 32*i, y_level+64)
 										.overrideType("water")
 										.build());
-				/*add(new SolidBuilder()	.useImage(new Image(Assets.IMG_WATERSURFACE))
-										.
+				add(new SolidBuilder()	.useImage(new Image(Assets.IMG_WATERSURFACE))
+										.setHitboxDim(32, 16)
 										.setPosition(start_x + 480, y_level)
 										.overrideType("water")
-										.build());*/
+										.build());
 			}
 			add(new SolidBuilder()	.useImage(new Image(Assets.IMG_BLOCK))
 										.setPosition(start_x + 640 + 32*12, y_level-72)
@@ -147,7 +228,62 @@ package games.repeatTheLevel
 			add(new SolidBuilder()	.useImage(new Image(Assets.IMG_BLOCK))
 										.setPosition(start_x + 640 - 32, y_level-72)
 										.build());
+			*/
+										
+			var position:int = start_x;
 			
+			buildFloor(position, level_y, 23);
+			position += 23 * 32;
+			
+			buildAcid(position, level_y, 23);
+			position += 32;
+			
+			buildFloor(position, level_y, 20);
+			position += 20 * 32;
+			
+			buildFire(position, level_y, 17);
+			position += 17 * 32;
+			
+			
+			buildFloor(position, level_y, 23);
+			position += 23 * 32;
+			
+			buildAcid(position, level_y, 23);
+			position += 32;
+			
+			buildFloor(position, level_y, 20);
+			position += 20 * 32;
+			
+			buildSpikes(position, level_y, 9);
+			position += 9 * 32;
+			
+			
+			buildFloor(position, level_y, 23);
+			position += 23 * 32;
+			
+			buildAcid(position, level_y, 1);
+			position += 32;
+			
+			buildFloor(position, level_y, 20);
+			position += 20 * 32;
+			
+			buildWater(position, level_y, 17);
+			position += 17 * 32;
+			
+			
+			buildFloor(position, level_y, 23);
+			position += 23 * 32;
+			
+			buildAcid(position, level_y, 1);
+			position += 32;
+			
+			buildFloor(position, level_y, 20);
+			position += 20 * 32;
+			
+			boundary_x = position - start_x;
+			
+			buildFloor(position, level_y, 23);
+			position += 23 * 32;
 		}
 		
 		//in update()
