@@ -62,8 +62,9 @@ package games.repeatTheLevel
 					e.type = "untouchable";
 				}	
 			}
-
+			trace("prev level length before splice = " + prevLevel.length);
 			prevLevel.splice(prevLevel.indexOf(player), 1);
+			trace("prev level length after splice = " + prevLevel.length);
 			
 			buildLevel(player.x - 400, level_y_jump);
 			hasDropped = true;
@@ -167,7 +168,6 @@ package games.repeatTheLevel
 										.setPosition(start + 32*i, height)
 										.overrideType("water")
 										.build());
-				
 			}
 			
 			for (i = 0; i < 2; i++ )
@@ -177,11 +177,11 @@ package games.repeatTheLevel
 										.setPosition(start-32, height+32+(i*32))
 										.build());
 				add(new SolidBuilder()	.useImage(new Image(Assets.IMG_BLOCK))
-										.setPosition(start+32+(32*length), height+32+(i*32))
+										.setPosition(start+(32*length), height+32+(i*32))
 										.build());
 			}
 			
-			buildFloor(start - 32, height + 69, length + 2);
+			buildFloor(start - 32, height + 96, length + 2);
 			
 			add(new SpikePlatform(start + 32, height - 64, start + (length * 32) - 96));
 		}
@@ -232,55 +232,57 @@ package games.repeatTheLevel
 										
 			var position:int = start_x;
 			
-			buildFloor(position, level_y, 23);
+			buildFloor(position, y_level, 23);
 			position += 23 * 32;
 			
-			buildAcid(position, level_y, 23);
+			buildAcid(position, y_level, 23);
 			position += 32;
 			
-			buildFloor(position, level_y, 20);
+			buildFloor(position, y_level, 20);
 			position += 20 * 32;
 			
-			buildFire(position, level_y, 17);
+			buildFire(position, y_level, 17);
 			position += 17 * 32;
 			
 			
-			buildFloor(position, level_y, 23);
+			buildFloor(position, y_level, 23);
 			position += 23 * 32;
 			
-			buildAcid(position, level_y, 23);
+			buildAcid(position, y_level, 23);
 			position += 32;
 			
-			buildFloor(position, level_y, 20);
+			buildFloor(position, y_level, 20);
 			position += 20 * 32;
 			
-			buildSpikes(position, level_y, 9);
+			buildSpikes(position, y_level, 9);
 			position += 9 * 32;
 			
 			
-			buildFloor(position, level_y, 23);
+			buildFloor(position, y_level, 23);
 			position += 23 * 32;
 			
-			buildAcid(position, level_y, 1);
+			buildAcid(position, y_level, 1);
 			position += 32;
 			
-			buildFloor(position, level_y, 20);
+			buildFloor(position, y_level, 20);
 			position += 20 * 32;
 			
-			buildWater(position, level_y, 17);
+			buildWater(position, y_level, 17);
 			position += 17 * 32;
 			
 			
-			buildFloor(position, level_y, 23);
+			buildFloor(position, y_level, 23);
 			position += 23 * 32;
 			
-			buildAcid(position, level_y, 1);
+			buildAcid(position, y_level, 1);
 			position += 32;
 			
-			buildFloor(position, level_y, 20);
+			buildFloor(position, y_level, 20);
 			position += 20 * 32;
 			
+			
 			boundary_x = position - start_x;
+			//trace("border = "+boundary_x+" start at "+start_x)
 			
 			buildFloor(position, level_y, 23);
 			position += 23 * 32;

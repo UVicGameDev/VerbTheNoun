@@ -11,7 +11,6 @@ package games.repeatTheLevel
 		public function Fire(x:int, y:int) 
 		{
 			var picture:Image = new Image(Assets.IMG_FIRE);
-			trace("hitbox offset = " + (picture.height - 8));
 			super (x, y, picture, 0, -(picture.height - 8), picture.width,8,"threat");		
 			layer = 0;
 		}

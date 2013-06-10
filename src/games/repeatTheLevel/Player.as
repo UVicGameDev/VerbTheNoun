@@ -175,7 +175,6 @@ package games.repeatTheLevel
 					
 					if (state == SWIMMING)
 					{
-						trace("left water here");
 						y_vel -= 4;
 						state = JUMPING
 					}
