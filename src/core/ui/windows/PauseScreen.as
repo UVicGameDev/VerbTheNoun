@@ -5,7 +5,6 @@ package core.ui.windows
 	import core.Keys;
 	import core.ui.menus.HighlightableEntity;
 	import core.ui.menus.VerticalSelectionList;
-	import core.ui.windows.decorators.PauseScreenDecorator;
 	import core.ui.windows.options.QuitOption;
 	import core.ui.windows.options.RestartOption;
 	import core.ui.windows.options.ResumeOption;

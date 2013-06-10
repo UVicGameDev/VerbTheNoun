@@ -1,12 +1,9 @@
 package games.missTheMissile.states 
 {
 	import core.context.ELUState;
-	import core.ui.windows.decorators.GameOverScreenDecorator;
 	import core.ui.windows.GameOverScreen;
 	import games.missTheMissile.MissTheMissileWorld;
 	import games.missTheMissile.ui.MenuOption;
-	import games.missTheMissile.ui.MtmGameOverScreenDecorator;
-	import games.missTheMissile.ui.MtmPauseScreenDecorator;
 	import games.missTheMissile.ui.MtmScreenDecorator;
 	/**
 	 * ...

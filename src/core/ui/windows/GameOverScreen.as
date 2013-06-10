@@ -4,7 +4,6 @@ package core.ui.windows
 	import core.games.GameWorld;
 	import core.ui.menus.HighlightableEntity;
 	import core.ui.menus.VerticalSelectionList;
-	import core.ui.windows.decorators.GameOverScreenDecorator;
 	import core.ui.windows.options.QuitOption;
 	import core.ui.windows.options.RestartOption;
 	

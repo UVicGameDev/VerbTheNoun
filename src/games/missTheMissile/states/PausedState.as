@@ -6,7 +6,6 @@ package games.missTheMissile.states
 	import games.missTheMissile.MissTheMissile;
 	import games.missTheMissile.MissTheMissileWorld;
 	import games.missTheMissile.ui.MenuOption;
-	import games.missTheMissile.ui.MtmPauseScreenDecorator;
 	import games.missTheMissile.ui.MtmScreenDecorator;
 	/**
 	 * ...
