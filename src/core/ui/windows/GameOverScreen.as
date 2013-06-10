@@ -10,7 +10,8 @@ package core.ui.windows
 	/**
 	 * The game over screen pops up when a game is completed.
 	 * It has two options - restart and quit.
-	 * It is decorated by a game-specific GameOverScreenDecorator.
+	 * 
+	 * See PauseScreen for more information about constructing a screen.
 	 * 
 	 * @author beyamor
 	 */
@@ -18,6 +19,10 @@ package core.ui.windows
 	{
 		private var _options:Vector.<HighlightableEntity> = new Vector.<HighlightableEntity>;
 		
+		/**
+		 * Creates a new GameOverScreen.
+		 * It is recommended that GameOverScreens be constructed using the GameOverScreen.description method.
+		 */
 		public function GameOverScreen(
 			width:uint,
 			height:uint,
@@ -46,11 +51,17 @@ package core.ui.windows
 			} else throw new Error("Quit option is mandatory in quit screen");
 		}
 		
+		/**
+		 * Supplies the option buttons which were provided in this game over screen.
+		 */
 		public function get options():Vector.<HighlightableEntity> {
 			
 			return _options;
 		}
 		
+		/**
+		 * Starts the construction of a new game over screen.
+		 */
 		public static function get description():GameOverScreenBuilder {
 			
 			return new GameOverScreenBuilder;
@@ -67,7 +78,11 @@ class GameOverScreenBuilder {
 				_quitOption:HighlightableEntity,
 				_width:uint		= 400,
 				_height:uint	= 300;
-				
+	
+	/**
+	 * Sets the dimensions of the screen.
+	 * Note that this is optional. Default values will be used if not overriden.
+	 */
 	public function dimensions(width:uint, height:uint):GameOverScreenBuilder {
 		
 		_width	= width;
@@ -75,18 +90,27 @@ class GameOverScreenBuilder {
 		return this;
 	}
 	
+	/**
+	 * Sets the restart option entity. Mandatory.
+	 */
 	public function restart(restartOption:HighlightableEntity):GameOverScreenBuilder {
 		
 		_restartOption = restartOption;
 		return this;
 	}
 	
+	/**
+	 * Sets the quit option entity. Mandatory.
+	 */
 	public function quit(quitOption:HighlightableEntity):GameOverScreenBuilder {
 		
 		_quitOption = quitOption;
 		return this;
 	}
 	
+	/**
+	 * Constructs the game over screen for some game world.
+	 */
 	public function buildFor(world:GameWorld):GameOverScreen {
 		
 		if (_restartOption == null)	throw new Error("Restart option is mandatory in quit screen");

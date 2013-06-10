@@ -12,9 +12,24 @@ package core.ui.windows
 	
 	/**
 	 * The player should be able to open the pause screen by pressing the pause button.
-	 * It has three options - resume, restart, and quit.
+	 * It has up to three options - resume, restart, and quit. Restart is optional.
 	 * It can also be closed by pressing cancel or pause.
-	 * It is decorated by a game-specific PauseScreenDecorator.
+	 * 
+	 * A PauseScreen instance should be built using the builder supplied by the static description method.
+	 * When building, HighlightableEntitys should be supplied for the resume, restart, and quit options.
+	 * These HighlightableEntitys are the buttons for the options on the screen.
+	 * It is expected that games will supply their own thematically approporiate buttons.
+	 * 
+	 * Additional decoration can be supplied by adding additional entities to the screen's view.
+	 * 
+	 * An example PauseScreen construction is supplied below:
+	 * 
+	 * 			var pauseScreen:PauseScreen	=	PauseScreen.description
+	 *												.resume(MenuOption.lablled("resume"))
+	 *												.restart(MenuOption.lablled("restart"))
+	 *												.quit(MenuOption.lablled("quit"))
+	 *												.buildFor(world);
+	 *			(new MtmScreenDecorator).decorate(pauseScreen.view, pauseScreen.options, "pause");
 	 * 
 	 * @author beyamor
 	 */
@@ -22,6 +37,10 @@ package core.ui.windows
 	{
 		private var _options:Vector.<HighlightableEntity> = new Vector.<HighlightableEntity>;
 		
+		/**
+		 * Creates a new PauseScreen.
+		 * It is recommended that PauseScreens be constructed using the PauseScreen.description method.
+		 */
 		public function PauseScreen(
 			width:uint,
 			height:uint,
@@ -64,11 +83,17 @@ package core.ui.windows
 			if (Input.pressed(Keys.PAUSE)) close();
 		}
 		
+		/**
+		 * Supplies the option buttons which were provided in this pause screen.
+		 */
 		public function get options():Vector.<HighlightableEntity> {
 			
 			return _options;
 		}
 		
+		/**
+		 * Starts the construction of a new pause screen.
+		 */
 		public static function get description():PauseScreenBuilder {
 			
 			return new PauseScreenBuilder;
@@ -86,7 +111,11 @@ class PauseScreenBuilder {
 				_quitOption:HighlightableEntity,
 				_width:uint		= 400,
 				_height:uint	= 300;
-				
+	
+	/**
+	 * Sets the dimensions of the screen.
+	 * Note that this is optional. Default values will be used if not overriden.
+	 */
 	public function dimensions(width:uint, height:uint):PauseScreenBuilder {
 		
 		_width	= width;
@@ -94,24 +123,36 @@ class PauseScreenBuilder {
 		return this;
 	}
 	
+	/**
+	 * Sets the resume option entity. Mandatory.
+	 */
 	public function resume(resumeOption:HighlightableEntity):PauseScreenBuilder {
 		
 		_resumeOption = resumeOption;
 		return this;
 	}
 	
+	/**
+	 * Sets the restart option entity. Optional.
+	 */
 	public function restart(restartOption:HighlightableEntity):PauseScreenBuilder {
 		
 		_restartOption = restartOption;
 		return this;
 	}
 	
+	/**
+	 * Sets the quit option entity. Mandatory.
+	 */
 	public function quit(quitOption:HighlightableEntity):PauseScreenBuilder {
 		
 		_quitOption = quitOption;
 		return this;
 	}
 	
+	/**
+	 * Constructs the pause screen for some game world.
+	 */
 	public function buildFor(world:GameWorld):PauseScreen {
 		
 		if (_resumeOption == null)	throw new Error("Resume option is mandatory in pause screen");
