@@ -4,7 +4,10 @@ package games.missTheMissile.states
 	import core.ui.windows.decorators.GameOverScreenDecorator;
 	import core.ui.windows.GameOverScreen;
 	import games.missTheMissile.MissTheMissileWorld;
+	import games.missTheMissile.ui.MenuOption;
 	import games.missTheMissile.ui.MtmGameOverScreenDecorator;
+	import games.missTheMissile.ui.MtmPauseScreenDecorator;
+	import games.missTheMissile.ui.MtmScreenDecorator;
 	/**
 	 * ...
 	 * @author beyamor
@@ -22,7 +25,13 @@ package games.missTheMissile.states
 		
 		public function enter():void 
 		{
-			world.windows.push(new GameOverScreen(world, new MtmGameOverScreenDecorator));
+			var gameOverScreen:GameOverScreen = GameOverScreen.description
+													.restart(MenuOption.lablled("restart"))
+													.quit(MenuOption.lablled("quit"))
+													.buildFor(world);
+			(new MtmScreenDecorator).decorate(gameOverScreen.view, gameOverScreen.options, "game over");
+			
+			world.windows.push(gameOverScreen);
 		}
 		
 		public function update():void 

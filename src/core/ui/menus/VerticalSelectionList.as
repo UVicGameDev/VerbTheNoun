@@ -21,6 +21,11 @@ package core.ui.menus
 			selectables.addAll(selectablesToAdd);
 		}
 		
+		public function add(selectableToAdd:Selectable):void {
+			
+			selectables.addAll([selectableToAdd]);
+		}
+		
 		public function update():void 
 		{
 			if (Input.pressed(Keys.DOWN))		selectables.moveToNext();

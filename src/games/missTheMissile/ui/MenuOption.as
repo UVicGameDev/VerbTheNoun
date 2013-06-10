@@ -25,6 +25,11 @@ package games.missTheMissile.ui
 			super(0, 0, text);
 		}
 		
+		public static function lablled(label:String):MenuOption {
+			
+			return new MenuOption(label);
+		}
+		
 		private function get regularLabel():String { return ' ' + label + ' '; }
 		private function get highlightLabel():String { return '-' + label + '-'; }
 		
@@ -39,7 +44,6 @@ package games.missTheMissile.ui
 		{
 			text.text = regularLabel;
 		}
-		
 	}
 
 }

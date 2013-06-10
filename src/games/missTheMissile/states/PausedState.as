@@ -5,7 +5,9 @@ package games.missTheMissile.states
 	import core.ui.windows.PauseScreen;
 	import games.missTheMissile.MissTheMissile;
 	import games.missTheMissile.MissTheMissileWorld;
+	import games.missTheMissile.ui.MenuOption;
 	import games.missTheMissile.ui.MtmPauseScreenDecorator;
+	import games.missTheMissile.ui.MtmScreenDecorator;
 	/**
 	 * ...
 	 * @author beyamor
@@ -23,7 +25,14 @@ package games.missTheMissile.states
 		
 		public function enter():void 
 		{
-			var pauseScreen:PauseScreen = new PauseScreen(world, new MtmPauseScreenDecorator);
+			var pauseScreen:PauseScreen = PauseScreen.description
+											.resume(MenuOption.lablled("resume"))
+											.restart(MenuOption.lablled("restart"))
+											.quit(MenuOption.lablled("quit"))
+											.buildFor(world);
+			
+			(new MtmScreenDecorator).decorate(pauseScreen.view, pauseScreen.options, "pause");
+			
 			pauseScreen.onClose = function():void {
 				world.state.switchTo("play");
 			}
