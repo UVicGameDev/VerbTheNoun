@@ -122,7 +122,31 @@ package games.repeatTheLevel
 									
 			add(new AcidPipe(start_x + 480, y_level - 384));
 			
-			add(new MovingPlatform(start_x + 720, y_level - 64, start_x + 720 + 32*8))
+			add(new MovingPlatform(start_x + 720, y_level - 128, start_x + 720 + 32 * 8))
+			
+			for (i = 0; i < 12; i++)
+			{
+				add(new SolidBuilder()	.useImage(new Image(Assets.IMG_WATERBLOCK))
+										.setPosition(start_x + 640 + 32*i, y_level-32)
+										.overrideType("water")
+										.build());
+				add(new SolidBuilder()	.useImage(new Image(Assets.IMG_WATERBLOCK))
+										.setPosition(start_x + 640 + 32*i, y_level-64)
+										.overrideType("water")
+										.build());
+				/*add(new SolidBuilder()	.useImage(new Image(Assets.IMG_WATERSURFACE))
+										.
+										.setPosition(start_x + 480, y_level)
+										.overrideType("water")
+										.build());*/
+			}
+			add(new SolidBuilder()	.useImage(new Image(Assets.IMG_BLOCK))
+										.setPosition(start_x + 640 + 32*12, y_level-72)
+										.build()); 
+										
+			add(new SolidBuilder()	.useImage(new Image(Assets.IMG_BLOCK))
+										.setPosition(start_x + 640 - 32, y_level-72)
+										.build());
 			
 		}
 		
@@ -156,7 +180,6 @@ package games.repeatTheLevel
 					removeOldLevelFlag = false;
 					hasDropped = false;
 					prevLevel = new Vector.<Entity>;
-					trace("new camera location: " + camera.x + ", " + camera.y + "\nnew player position: " + player.x + ", " + player.y);
 				}
 			}
 			cameraManager.update(boundary_x+200, camera);

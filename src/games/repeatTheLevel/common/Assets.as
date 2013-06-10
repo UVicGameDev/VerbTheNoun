@@ -13,6 +13,8 @@ package games.repeatTheLevel.common{
 		[Embed(source = "../assets/puddle.png")] public static const IMG_PUDDLE:Class
 		[Embed(source = "../assets/SpikePlatform.png")] public static const IMG_SPIKEPLATFORM:Class
 		[Embed(source = "../assets/TallBlock.png")] public static const IMG_TALLBLOCK:Class
+		[Embed(source = "../assets/WaterBlock.png")] public static const IMG_WATERBLOCK:Class
+		[Embed(source = "../assets/WaterSurface.png")] public static const IMG_WATERSURFACE:Class
 
 	}
 }

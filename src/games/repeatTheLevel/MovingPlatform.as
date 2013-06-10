@@ -46,7 +46,6 @@ package games.repeatTheLevel
 				
 				if (rider != null)
 				{
-					trace("moving player in direction " + dir);
 					rider.push(dir);
 				}
 				

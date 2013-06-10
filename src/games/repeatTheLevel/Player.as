@@ -46,6 +46,7 @@ package games.repeatTheLevel
 		
 		override public function update():void
 		{
+			//trace("state = "+ state + " and y_vel = "+y_vel);
 			super.update();
 			
 			var x_inc:int = 0;
@@ -60,8 +61,10 @@ package games.repeatTheLevel
 			
 			if (Input.check(Key.SPACE)) 
 			{
+				//trace("saw space");
 				if (state == WALKING) 
 				{
+					//trace("jumped");
 					y_vel = -8;
 					state = JUMPING;
 					dismount();
@@ -69,10 +72,23 @@ package games.repeatTheLevel
 
 				else if (state == SWIMMING)
 				{
-					
+					if (collide("water", x, y) as Entity)
+					{
+						//trace("swam");
+						y_vel += -2;
+						if (y_vel < -7)
+							y_vel = -7;
+					}
+					else
+					{
+						//trace("jumped from water");
+						state = JUMPING;
+						y_vel = -4;
+					}
 				}
 				else
 				{
+					//trace("fell");
 					y_vel += GRAV;
 				}
 			}
@@ -149,9 +165,23 @@ package games.repeatTheLevel
 					y_vel = 0;
 					
 				}
+				else if (collide("water", x, y) as Entity)
+				{
+					state = SWIMMING;
+					y_vel /= 2;
+				}
 				else {
 					dismount();
-					state = FALLING;
+					
+					if (state == SWIMMING)
+					{
+						trace("left water here");
+						y_vel -= 4;
+						state = JUMPING
+					}
+					else
+						state = FALLING;
+					
 				}
 			}
 			v_dir = i_y * y_inc;
@@ -161,8 +191,6 @@ package games.repeatTheLevel
 		{
 			h_dir += dir;
 			x += dir;
-			
-			trace("new h_dir = " + h_dir);
 		}
 		
 		private function dismount():void
