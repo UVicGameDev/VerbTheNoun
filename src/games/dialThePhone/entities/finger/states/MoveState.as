@@ -35,7 +35,7 @@ package games.dialThePhone.entities.finger.states
 			if (finger.moveIntention.tryingToMove)	finger.accelerate();
 			else									finger.applyFriction();
 			
-			if (Input.pressed(Keys.ACTION1) && finger.tappingIsEnabled) finger.state.switchTo("tapDown");
+			if (Input.pressed(Keys.PRIMARY) && finger.tappingIsEnabled) finger.state.switchTo("tapDown");
 		}
 		
 	}

@@ -22,17 +22,17 @@ package vtn.main
 			FP.world = new MainMenuWorld;
 			
 			// TODO: Make these configurable
-			Input.define(Keys.UP,		Key.UP);
-			Input.define(Keys.DOWN,		Key.DOWN);
-			Input.define(Keys.LEFT,		Key.LEFT);
-			Input.define(Keys.RIGHT,	Key.RIGHT);
-			Input.define(Keys.ACTION1,	Key.S);
-			Input.define(Keys.ACTION2,	Key.A);
-			Input.define(Keys.CONFIRM,	Key.S);
-			Input.define(Keys.CANCEL,	Key.A);
-			Input.define(Keys.START,	Key.ENTER);
-			Input.define(Keys.SELECT,	Key.SPACE);
-			Input.define(Keys.PAUSE,	Key.ENTER);
+			Input.define(Keys.UP,			Key.UP);
+			Input.define(Keys.DOWN,			Key.DOWN);
+			Input.define(Keys.LEFT,			Key.LEFT);
+			Input.define(Keys.RIGHT,		Key.RIGHT);
+			Input.define(Keys.PRIMARY,		Key.S);
+			Input.define(Keys.SECONDARY,	Key.A);
+			Input.define(Keys.CONFIRM,		Key.S);
+			Input.define(Keys.CANCEL,		Key.A);
+			Input.define(Keys.START,		Key.ENTER);
+			Input.define(Keys.SELECT,		Key.SPACE);
+			Input.define(Keys.PAUSE,		Key.ENTER);
 		}
 		override public function init():void
 		{
