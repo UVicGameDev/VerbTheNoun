@@ -4,8 +4,6 @@ package vtn.gallery
 	import games.dialThePhone.DialThePhone;
 	import games.missTheMissile.MissTheMissile;
 	import games.repeatTheLevel.RepeatTheLevel;
-	import HeartTheBeets.HeartTheBeets;
-	import HeartTheBeets.Cloud;
 	import net.flashpunk.World;
 	import vtn.gallery.test.TestWorld;
 	
@@ -22,7 +20,6 @@ package vtn.gallery
 			var allGames:Vector.<Class> = new <Class>[
 				MissTheMissile,
 				RepeatTheLevel,
-				HeartTheBeets,
 				DialThePhone
 			];
 			
