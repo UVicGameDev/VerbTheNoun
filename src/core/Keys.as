@@ -14,8 +14,6 @@ package core
 								SECONDARY:String	= "secondary",
 								CONFIRM:String		= "confirm",
 								CANCEL:String		= "cancel",
-								START:String		= "start",
-								SELECT:String		= "select",
 								PAUSE:String		= START;
 	}
 
