@@ -26,10 +26,10 @@ package vtn.main
 			Input.define(Keys.DOWN,			Key.DOWN, Key.S, Key.K);
 			Input.define(Keys.LEFT,			Key.LEFT, Key.A, Key.J);
 			Input.define(Keys.RIGHT,		Key.RIGHT, Key.D, Key.L);
-			Input.define(Keys.PRIMARY,		Key.X, Key.M, Key.ENTER, Key.SPACE, Key.ENTER);
-			Input.define(Keys.SECONDARY,	Key.X, Key.M, Key.ENTER, Key.SPACE, Key.ENTER);
-			Input.define(Keys.CONFIRM,		Key.X, Key.M, Key.ENTER, Key.SPACE, Key.ENTER);
-			Input.define(Keys.CANCEL,		Key.X, Key.M, Key.ENTER, Key.SPACE, Key.ENTER);
+			Input.define(Keys.PRIMARY,		Key.X, Key.M, Key.SPACE, Key.ENTER);
+			Input.define(Keys.SECONDARY,	Key.Z, Key.N, Key.BACKSPACE);
+			Input.define(Keys.CONFIRM,		Key.X, Key.M, Key.SPACE, Key.ENTER);
+			Input.define(Keys.CANCEL,		Key.Z, Key.N, Key.BACKSPACE);
 			Input.define(Keys.PAUSE,		Key.ENTER, Key.ESCAPE);
 		}
 		override public function init():void
